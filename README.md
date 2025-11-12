@@ -71,8 +71,8 @@ $$
 $$
 
 $$
-\frac{d\boldsymbol{m}}{dt} = -\gamma',\boldsymbol{m}\times\boldsymbol{B}*{\mathrm{eff}} -\gamma'\alpha,\boldsymbol{m}\times\big(\boldsymbol{m}\times\boldsymbol{B}*{\mathrm{eff}}\big),
-\quad \gamma'=\frac{\gamma}{1+\alpha^2}\quad\text{(LL)},.
+\frac{d\boldsymbol{m}}{dt} = -\gamma',\boldsymbol{m}\times\boldsymbol{B}*{\mathrm{eff}} -\gamma'\alpha,\boldsymbol{m}\times\big(\boldsymbol{m}\times\boldsymbol{B}*{\mathrm{eff}}\big), 
+\quad \gamma'=\frac{\gamma}{1+\alpha^2}\quad\text{(LL)},. 
 $$
 
 ### 1.2 Stochastic LLG (thermal field)
