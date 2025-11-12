@@ -30,6 +30,7 @@ The following techniques are eligible for quantum-native magnetic modeling on Ne
 ---
 
 
+
 | Aspect | Ehrenfest–LLB–Boltzmann (E‑LLB‑B) | Ehrenfest–LL–Boltzmann (E‑LL‑B) |
 |---|---|---|
 | Drift structure | Precession + transverse relaxation ($\Gamma_\perp$) + **longitudinal relaxation ($\Gamma_\parallel$)** toward $m_eq(T)$ | Precession + transverse relaxation ($\Gamma_\perp$) only; **no longitudinal channel** |
@@ -104,6 +105,7 @@ $$
 ### 1.4 Adapted (Qiskit‑ready)
 
 **Hamiltonian (single macrospin or per site (i))**
+
 $$
 H(t)= -\frac{\hbar\gamma}{2},\mathbf{B}_{\mathrm{eff}}(t)\cdot\boldsymbol{\sigma}
 \quad\text{(encode as a sum of Pauli terms)}.
@@ -125,9 +127,10 @@ $$
 * \frac{\gamma,\alpha_{\parallel}(T)}{m^2},(\mathbf{m}!\cdot!\mathbf{B}_{\mathrm{eff}}),\mathbf{m}
 
 - \frac{\gamma,\alpha_{\perp}(T)}{m^2},\mathbf{m}\times\big(\mathbf{m}\times\mathbf{B}_{\mathrm{eff}}\big).
-  $$
+$$
 
 A standard longitudinal field used inside ( $\mathbf{B}*{\mathrm{eff}}$ ) is
+
 $$
 \mathbf{B}*{\parallel}
 =\frac{1}{\chi_{\parallel}(T)}
@@ -147,22 +150,25 @@ $$
 ### 2.3 Adapted (Qiskit‑ready)
 
 **Jump operators and rates**
+
 $$
 L^{-}=\sqrt{\gamma_{\downarrow}},\sigma^{-},\qquad
 L^{+}=\sqrt{\gamma_{\uparrow}},\sigma^{+},\qquad
 L^{z}=\sqrt{\gamma_{\phi}},\sigma^{z},
 $$
+
 $$
 \Gamma_{\parallel}=\gamma_{\downarrow}+\gamma_{\uparrow},\qquad
 \Gamma_{\perp}=\frac{\Gamma_{\parallel}}{2}+\gamma_{\phi},\qquad
 \frac{\gamma_{\uparrow}}{\gamma_{\downarrow}}=e^{-\beta\hbar\omega}\ \ (\text{KMS}).
 $$
 
-Implement with `qiskit_dynamics.models.LindbladModel` and a Pauli‑decomposed (H).
+Implement with `qiskit_dynamics.models.LindbladModel` and a Pauli‑decomposed ($H$).
 
 ### 2.4 **Quantum‑native LLB (qLLB)** — deterministic mean with quantum‑derived rates
 
 **Same drift as 2.2**, but now use **qLLB coefficients**; e.g., for a spin–phonon case:
+
 $$
 \alpha_{\parallel}(T)
 =\lambda,\frac{2T}{3T_C},\frac{2q_s}{\sinh(2q_s)},\qquad
@@ -170,16 +176,19 @@ $$
 =\lambda\left[\frac{\tanh q_s}{q_s}-\frac{2T}{3T_C}\right],\qquad
 q_s=\frac{\mu H_{\mathrm{MFA}}}{k_{\mathrm B}T},,
 $$
-with (m_{\mathrm{eq}}(T)) from the Brillouin/Langevin mean‑field appropriate to the material.
+
+with ($m_{\mathrm{eq}}(T)$) from the Brillouin/Langevin mean‑field appropriate to the material.
 
 **Stochastic extension (qLLB‑SDE, trajectory level)**
 Write anisotropic noise consistent with fluctuation–dissipation:
+
 $$
 d\mathbf{s}
 =\Big[\text{qLLB drift of 2.2 with qLLB rates}\Big],dt
 +\sqrt{2D_{\perp}(T)},(\mathbf{I}-\hat{\mathbf{b}}\hat{\mathbf{b}}^{!\top}),d\mathbf{W}*{\perp}
 +\sqrt{2D*{\parallel}(T)},\hat{\mathbf{b}},dW_{\parallel},
 $$
+
 with ( $\langle dW_\mu\rangle=0$ ), ( $\langle dW_\mu(t),dW_\nu(t)\rangle=\delta_{\mu\nu},dt$ ), and
 ( $D_{\parallel,\perp}(T)$ ) chosen so that the stationary distribution is Boltzmann for the LLB free energy (i.e., Fokker–Planck consistency).
 
@@ -188,33 +197,39 @@ with ( $\langle dW_\mu\rangle=0$ ), ( $\langle dW_\mu(t),dW_\nu(t)\rangle=\delta
 ## 3) Kinetic‑aware Ehrenfest models on the Bloch ball ($f(\mathbf{m},t)$)
 
 Define a drift–diffusion–collision kinetic equation
+
 $$
 \partial_t f
 +\nabla_{\mathbf{m}}!\cdot!\big[\mathbf{A}(\mathbf{m},T),f\big]
 =\nabla_{\mathbf{m}}!\cdot!\big[\mathbf{D}(\mathbf{m},T),\nabla_{\mathbf{m}} f\big]
 +\mathcal{C}[f],
 $$
+
 where ($\mathcal{C}[f]$) encodes magnon/electron/phonon collision integrals, and ( $\mathbf{D}$ ) satisfies fluctuation–dissipation.
 
 ### 3.1 **Ehrenfest–LLB–Boltzmann (E‑LLB‑B)**
 
 Use **LLB drift**:
+
 $$
 \mathbf{A}*{\mathrm{LLB}}(\mathbf{m},T)
 =\frac{2}{\hbar},\mathbf{m}\times\mathbf{B}*{\mathrm{eff}}
 -\Gamma_{\perp}(T)\Big(\mathbf{m}-(\mathbf{m}!\cdot!\hat{\mathbf{b}})\hat{\mathbf{b}}\Big)
 -\Gamma_{\parallel}(T)\Big[(\mathbf{m}!\cdot!\hat{\mathbf{b}})-m_{\mathrm{eq}}(T)\Big]\hat{\mathbf{b}},
 $$
+
 and let ($\mathcal{C}[f]$) (e.g., Orbach/Raman/direct spin‑lattice processes; magnon–phonon kernels) determine temperature‑ and material‑dependent rates (qLLB‑style).
 
 ### 3.2 **Ehrenfest–LL–Boltzmann (E‑LL‑B)**
 
 Use **LL transverse drift only**:
+
 $$
 \mathbf{A}*{\mathrm{LL}}(\mathbf{m},T)
 =\frac{2}{\hbar},\mathbf{m}\times\mathbf{B}*{\mathrm{eff}}
 -\Gamma_{\perp}(T)\Big(\mathbf{m}-(\mathbf{m}!\cdot!\hat{\mathbf{b}})\hat{\mathbf{b}}\Big)!,
 $$
+
 which lacks a longitudinal channel, so it cannot by itself produce the amplitude collapse ( $m\to 0$ ) at ( $T_C$ ).
 
 ---
@@ -234,6 +249,7 @@ $$
 ### 4.2 Detailed balance (KMS) and the ($T_1/T_2$) dictionary
 
 For Bohr frequency ($\omega$) between system levels,
+
 $$
 \frac{\gamma_{\uparrow}}{\gamma_{\downarrow}}=e^{-\beta\hbar\omega},\quad
 \Gamma_{\parallel}=\gamma_{\downarrow}+\gamma_{\uparrow},\quad
@@ -250,6 +266,7 @@ $$
 ## 5) “Adapted” Hamiltonian building blocks (for Qiskit encodings)
 
 Nearest‑neighbor Heisenberg + Zeeman + DMI on a qubit graph:
+
 $$
 H = -\frac{\hbar\gamma}{2}\sum_i \mathbf{B}*{\mathrm{eff},i}!\cdot!\boldsymbol{\sigma}*i
 -\sum*{\langle i,j\rangle}!\big(J_x X_iX_j+J_y Y_iY_j+J_z Z_iZ_j\big)
@@ -257,6 +274,7 @@ H = -\frac{\hbar\gamma}{2}\sum_i \mathbf{B}*{\mathrm{eff},i}!\cdot!\boldsymbol{\
 $$
 
 **Lindblad channels (per site ($i$))**
+
 $$
 L_i^{-}=\sqrt{\gamma_{\downarrow,i}},\sigma_i^{-},\quad
 L_i^{+}=\sqrt{\gamma_{\uparrow,i}},\sigma_i^{+},\quad
@@ -283,6 +301,6 @@ These three primitives (Pauli‑decomposed ($H$); ($L_i^\pm,L_i^z$) with KMS rat
 
 ---
 
-### (Optional) symbol mini‑glossary
+### Symbol mini‑glossary
 
 ( $\gamma$ ): gyromagnetic ratio; ( $\alpha$ ): Gilbert damping; ( $\alpha_{\parallel,\perp}(T)$ ): LLB coefficients; ( $\Gamma_{\parallel,\perp}$ ): Ehrenfest rates; ( $m_{\mathrm{eq}}(T)$ ): equilibrium magnetization; ( $\chi_{\parallel}(T)$ ): longitudinal susceptibility; ( $\boldsymbol{\sigma}=(X,Y,Z)$ ): Pauli vector; ( $J_{x,y,z}$ ): exchange couplings; ( $\mathbf{D}*{ij}$ ): DMI vector; ( $\gamma*{\uparrow,\downarrow,\phi}$ ): Lindblad rate parameters; ( $\beta=(k_{\mathrm B}T)^{-1}$ ).
