@@ -15,7 +15,8 @@ The following techniques are eligible for quantum-native magnetic modeling on No
 
 One of the best techniques to implement for NISQ systems can be achieved with the following: 
 - QITE implemented with quantum error mitigation on as many qubits as possible.
-
+- Stochastic Schrödinger‑equation-discretization-implemented near-term quantum computer with error correction or error mitigation.
+- Quantum-metropolis-sampling-implemented near-term quantum computer with error correction or error mitigation.
 
 ---
 
@@ -32,6 +33,8 @@ The following techniques are eligible for quantum-native magnetic modeling on Ne
 To predict Curie temperature for magnetic materials:
 - Solve the stochastic Landau Lifshitz Gilbert (LLG) or the Landau Lifshitz Bloch (LLB) equations. 
   - Mathematical description is available in the latter half of this markdown. 
+- MuMax3 solves a micromagnetic effective field model whose equation of motion is the (stochastic) Landau–Lifshitz–Gilbert (LLG) equation.
+- The LLG equation itself is a phenomenological, coarse-grained model derived from underlying atomic spins and quantum mechanics, so the whole MuMax3 framework is “effective” by construction.
 - The stochastic LLG equation can be solved with MuMax3 if done carefully.
 - This can be performed in Python on Google Colab for example, especially on the GPU for working with larger data. 
 
