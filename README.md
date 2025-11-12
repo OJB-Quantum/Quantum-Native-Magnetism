@@ -52,16 +52,16 @@ Relevant equation:
 
 ## Notation
 
-* Magnetization (unit): ( \mathbf{m}=\mathbf{M}/M_s ), ( m=\lVert\mathbf{m}\rVert ).
-* Effective field: ( \mathbf{B}_{\mathrm{eff}}=-\partial \mathcal{F}/\partial \mathbf{m} ), with Zeeman, exchange, anisotropy, Dzyaloshinskii–Moriya (DMI), etc.
-* Quantum expectation (site (i)): ( \mathbf{s}_i(t)=\mathrm{Tr}!\big[\rho(t),\boldsymbol{\sigma}_i\big] ).
-* Unit field direction: ( \hat{\mathbf{b}}=\mathbf{B}*{\mathrm{eff}}/\lVert \mathbf{B}*{\mathrm{eff}}\rVert ).
-* Rates: longitudinal ( \Gamma_\parallel=1/T_1 ), transverse ( \Gamma_\perp=1/T_2 ); LLB coefficients ( \alpha_\parallel(T),\alpha_\perp(T) ).
-* Equilibrium magnetization: ( m_{\mathrm{eq}}(T) ) (or ( m_{\mathrm{eq}}(T,D) ) if a finite‑size parameter (D) is included).
+* Magnetization (unit): ( $\mathbf{m}=\mathbf{M}/M_s$ ), ( $m=\lVert\mathbf{m}\rVert$ ).
+* Effective field: ( $\mathbf{B}_{\mathrm{eff}}=-\partial \mathcal{F}/\partial \mathbf{m}$ ), with Zeeman, exchange, anisotropy, Dzyaloshinskii–Moriya (DMI), etc.
+* Quantum expectation (site (i)): ( $\mathbf{s}_i(t)=\mathrm{Tr}!\big[\rho(t),\boldsymbol{\sigma}_i\big]$ ).
+* Unit field direction: ( $\hat{\mathbf{b}}=\mathbf{B}*{\mathrm{eff}}/\lVert \mathbf{B}*{\mathrm{eff}}\rVert$ ).
+* Rates: longitudinal ( $\Gamma_\parallel=1/T_1$ ), transverse ( $\Gamma_\perp=1/T_2$ ); LLB coefficients ( $\alpha_\parallel(T),\alpha_\perp(T)$ ).
+* Equilibrium magnetization: ( $m_{\mathrm{eq}}(T)$ ) (or ( $m_{\mathrm{eq}}(T,D)$ ) if a finite‑size parameter ($D$) is included).
 
 ---
 
-## 1) Landau–Lifshitz / Gilbert and stochastic LLG
+## 1) Landau–Lifshitz/ Gilbert and stochastic LLG
 
 ### 1.1 Classical original (Gilbert and LL forms)
 
@@ -110,7 +110,7 @@ H(t)= -\frac{\hbar\gamma}{2},\mathbf{B}_{\mathrm{eff}}(t)\cdot\boldsymbol{\sigma
 $$
 
 **Optional LL‑like transverse damping on simulators**
-Use dephasing Lindblad (L^z=\sqrt{\gamma_\phi},\sigma^z) to reproduce a chosen (T_2), see §4.
+Use dephasing Lindblad ($L^z=\sqrt{\gamma_\phi},\sigma^z$) to reproduce a chosen ($T_2$), see §4.
 
 ---
 
@@ -127,7 +127,7 @@ $$
 - \frac{\gamma,\alpha_{\perp}(T)}{m^2},\mathbf{m}\times\big(\mathbf{m}\times\mathbf{B}_{\mathrm{eff}}\big).
   $$
 
-A standard longitudinal field used inside ( \mathbf{B}*{\mathrm{eff}} ) is
+A standard longitudinal field used inside ( $\mathbf{B}*{\mathrm{eff}}$ ) is
 $$
 \mathbf{B}*{\parallel}
 =\frac{1}{\chi_{\parallel}(T)}
@@ -180,12 +180,12 @@ d\mathbf{s}
 +\sqrt{2D_{\perp}(T)},(\mathbf{I}-\hat{\mathbf{b}}\hat{\mathbf{b}}^{!\top}),d\mathbf{W}*{\perp}
 +\sqrt{2D*{\parallel}(T)},\hat{\mathbf{b}},dW_{\parallel},
 $$
-with ( \langle dW_\mu\rangle=0 ), ( \langle dW_\mu(t),dW_\nu(t)\rangle=\delta_{\mu\nu},dt ), and
-( D_{\parallel,\perp}(T) ) chosen so that the stationary distribution is Boltzmann for the LLB free energy (i.e., Fokker–Planck consistency).
+with ( $\langle dW_\mu\rangle=0$ ), ( $\langle dW_\mu(t),dW_\nu(t)\rangle=\delta_{\mu\nu},dt$ ), and
+( $D_{\parallel,\perp}(T)$ ) chosen so that the stationary distribution is Boltzmann for the LLB free energy (i.e., Fokker–Planck consistency).
 
 ---
 
-## 3) Kinetic‑aware Ehrenfest models on the Bloch ball (f(\mathbf{m},t))
+## 3) Kinetic‑aware Ehrenfest models on the Bloch ball ($f(\mathbf{m},t)$)
 
 Define a drift–diffusion–collision kinetic equation
 $$
@@ -194,7 +194,7 @@ $$
 =\nabla_{\mathbf{m}}!\cdot!\big[\mathbf{D}(\mathbf{m},T),\nabla_{\mathbf{m}} f\big]
 +\mathcal{C}[f],
 $$
-where (\mathcal{C}[f]) encodes magnon/electron/phonon collision integrals, and ( \mathbf{D} ) satisfies fluctuation–dissipation.
+where ($\mathcal{C}[f]$) encodes magnon/electron/phonon collision integrals, and ( $\mathbf{D}$ ) satisfies fluctuation–dissipation.
 
 ### 3.1 **Ehrenfest–LLB–Boltzmann (E‑LLB‑B)**
 
@@ -205,7 +205,7 @@ $$
 -\Gamma_{\perp}(T)\Big(\mathbf{m}-(\mathbf{m}!\cdot!\hat{\mathbf{b}})\hat{\mathbf{b}}\Big)
 -\Gamma_{\parallel}(T)\Big[(\mathbf{m}!\cdot!\hat{\mathbf{b}})-m_{\mathrm{eq}}(T)\Big]\hat{\mathbf{b}},
 $$
-and let (\mathcal{C}[f]) (e.g., Orbach/Raman/direct spin‑lattice processes; magnon–phonon kernels) determine temperature‑ and material‑dependent rates (qLLB‑style).
+and let ($\mathcal{C}[f]$) (e.g., Orbach/Raman/direct spin‑lattice processes; magnon–phonon kernels) determine temperature‑ and material‑dependent rates (qLLB‑style).
 
 ### 3.2 **Ehrenfest–LL–Boltzmann (E‑LL‑B)**
 
@@ -215,7 +215,7 @@ $$
 =\frac{2}{\hbar},\mathbf{m}\times\mathbf{B}*{\mathrm{eff}}
 -\Gamma_{\perp}(T)\Big(\mathbf{m}-(\mathbf{m}!\cdot!\hat{\mathbf{b}})\hat{\mathbf{b}}\Big)!,
 $$
-which lacks a longitudinal channel, so it cannot by itself produce the amplitude collapse ( m\to 0 ) at ( T_C ).
+which lacks a longitudinal channel, so it cannot by itself produce the amplitude collapse ( $m\to 0$ ) at ( $T_C$ ).
 
 ---
 
@@ -229,11 +229,11 @@ $$
 
 * \sum_\mu \Big(L_\mu,\rho,L_\mu^\dagger-\tfrac12{L_\mu^\dagger L_\mu,\rho}\Big)
   \equiv -\frac{i}{\hbar}[H,\rho]+\sum_\mu \mathcal{D}[L_\mu]\rho.
-  $$
+$$
 
-### 4.2 Detailed balance (KMS) and the (T_1/T_2) dictionary
+### 4.2 Detailed balance (KMS) and the ($T_1/T_2$) dictionary
 
-For Bohr frequency (\omega) between system levels,
+For Bohr frequency ($\omega$) between system levels,
 $$
 \frac{\gamma_{\uparrow}}{\gamma_{\downarrow}}=e^{-\beta\hbar\omega},\quad
 \Gamma_{\parallel}=\gamma_{\downarrow}+\gamma_{\uparrow},\quad
@@ -256,14 +256,14 @@ H = -\frac{\hbar\gamma}{2}\sum_i \mathbf{B}*{\mathrm{eff},i}!\cdot!\boldsymbol{\
 +\sum*{\langle i,j\rangle}!\mathbf{D}_{ij}!\cdot!(\boldsymbol{\sigma}_i\times\boldsymbol{\sigma}_j) ; (+,\text{penalties/anisotropy}).
 $$
 
-**Lindblad channels (per site (i))**
+**Lindblad channels (per site ($i$))**
 $$
 L_i^{-}=\sqrt{\gamma_{\downarrow,i}},\sigma_i^{-},\quad
 L_i^{+}=\sqrt{\gamma_{\uparrow,i}},\sigma_i^{+},\quad
 L_i^{z}=\sqrt{\gamma_{\phi,i}},\sigma_i^{z}.
 $$
 
-These three primitives (Pauli‑decomposed (H); (L_i^\pm,L_i^z) with KMS rates) reproduce the **Ehrenfest–LLB** drift in §2.2. Adding a kinetic outer loop for (\mathcal{C}[f]) turns it into **E‑LLB‑B** (§3.1).
+These three primitives (Pauli‑decomposed ($H$); ($L_i^\pm,L_i^z$) with KMS rates) reproduce the **Ehrenfest–LLB** drift in §2.2. Adding a kinetic outer loop for ($\mathcal{C}[f]$) turns it into **E‑LLB‑B** (§3.1).
 
 ---
 
@@ -279,10 +279,10 @@ These three primitives (Pauli‑decomposed (H); (L_i^\pm,L_i^z) with KMS rates) 
 * **E‑LLB‑B kinetic PDE:** §3.1.
 * **E‑LL‑B kinetic PDE (LL drift only):** §3.2.
 * **GKSL (quantum‑native) + KMS:** §4.1–§4.2.
-* **Adapted Hamiltonian + dissipators (Qiskit):** §5.
+* **Adapted Hamiltonian + dissipators (Qiskit):** §5. 
 
 ---
 
 ### (Optional) symbol mini‑glossary
 
-( \gamma ): gyromagnetic ratio; ( \alpha ): Gilbert damping; ( \alpha_{\parallel,\perp}(T) ): LLB coefficients; ( \Gamma_{\parallel,\perp} ): Ehrenfest rates; ( m_{\mathrm{eq}}(T) ): equilibrium magnetization; ( \chi_{\parallel}(T) ): longitudinal susceptibility; ( \boldsymbol{\sigma}=(X,Y,Z) ): Pauli vector; ( J_{x,y,z} ): exchange couplings; ( \mathbf{D}*{ij} ): DMI vector; ( \gamma*{\uparrow,\downarrow,\phi} ): Lindblad rate parameters; ( \beta=(k_{\mathrm B}T)^{-1} ).
+( $\gamma$ ): gyromagnetic ratio; ( $\alpha$ ): Gilbert damping; ( $\alpha_{\parallel,\perp}(T)$ ): LLB coefficients; ( $\Gamma_{\parallel,\perp}$ ): Ehrenfest rates; ( $m_{\mathrm{eq}}(T)$ ): equilibrium magnetization; ( $\chi_{\parallel}(T)$ ): longitudinal susceptibility; ( $\boldsymbol{\sigma}=(X,Y,Z)$ ): Pauli vector; ( $J_{x,y,z}$ ): exchange couplings; ( $\mathbf{D}*{ij}$ ): DMI vector; ( $\gamma*{\uparrow,\downarrow,\phi}$ ): Lindblad rate parameters; ( $\beta=(k_{\mathrm B}T)^{-1}$ ).
