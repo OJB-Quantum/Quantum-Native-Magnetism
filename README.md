@@ -14,10 +14,13 @@ The following techniques are eligible for quantum-native magnetic modeling on No
 ```
 
 Four of the best techniques to implement for NISQ systems can be achieved with the following: 
+
+```
 - QITE on a NISQ quantum computer implemented with quantum error mitigation on as many qubits as possible.
 - Thermofield double-state on a NISQ or near-term quantum computer implemented with quantum error mitigation or quantum error correction.
 - Stochastic Schrödinger‑equation-discretization-implemented near-term quantum computer with quantum error mitigation or quantum error correction.
 - Quantum-metropolis-sampling-implemented near-term quantum computer with quantum error mitigation or quantum error correction.
+```
 
 ---
 
