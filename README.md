@@ -17,9 +17,9 @@ Four of the best techniques to implement for NISQ systems can be achieved with t
 
 ```
 - Quantum Imaginary-Time Evolution (QITE) on a NISQ quantum computer implemented with quantum error mitigation (QEM) on as many qubits as possible.
-- Thermofield double-state on a NISQ or near-term quantum computer implemented with quantum error mitigation (QEM) or quantum error correction (QEC).
-- Stochastic Schrödinger‑equation-discretization-implemented near-term quantum computer with quantum error mitigation (QEM) or quantum error correction (QEC).
-- Quantum-metropolis-sampling-implemented near-term quantum computer with quantum error mitigation (QEM) or quantum error correction (QEC).
+- Thermo Field Double (TFD) State on a NISQ or near-term quantum computer implemented with quantum error mitigation (QEM) or quantum error correction (QEC).
+- Stochastic Schrödinger‑Equation-(SSE)-Discretization-implemented near-term quantum computer with quantum error mitigation (QEM) or quantum error correction (QEC).
+- Quantum-Metropolis-Sampling-(QMS)-implemented near-term quantum computer with quantum error mitigation (QEM) or quantum error correction (QEC).
 ```
 
 The following techniques are eligible for quantum-native magnetic modeling on Near-Term or Fault-Tolerant quantum computing systems: 
