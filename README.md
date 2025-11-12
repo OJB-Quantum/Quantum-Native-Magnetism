@@ -30,9 +30,9 @@ The following techniques are eligible for quantum-native magnetic modeling on Ne
 ---
 
 To predict Curie temperature for magnetic materials:
-- Solve the stochastic LLG or the LLB.
+- Solve the stochastic Landau Lifshitz Gilbert (LLG) or the Landau Lifshitz Bloch (LLB). Mathematical description is available in the latter half of this markdown. 
 - The stochastic LLG equation can be solved with MuMax3 if done carefully.
-- This can be performed in Python on Google Colab for example, especially on the GPU for working with larger data.
+- This can be performed in Python on Google Colab for example, especially on the GPU for working with larger data. 
 
 Other notes: 
 - Solving the standard LLG equation by itself cannot predict the Curie temperature. 
@@ -47,7 +47,7 @@ Other notes:
 Magnetization Dynamics (micromagnetic scale)
 └─ MuMax3
    ├─ Core engine (C/CUDA + Go)
-   │   ├─ Solves LLG / sLLG
+   │   ├─ Solves LLG/ sLLG
    │   │   ├─ Deterministic LLG (T = 0)
    │   │   └─ Stochastic LLG (Temp > 0, Brown thermal field)
    │   ├─ Effective fields
