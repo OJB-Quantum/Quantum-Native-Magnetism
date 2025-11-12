@@ -263,3 +263,30 @@ These three primitives (Pauli‑decomposed ($H$); ($L_i^\pm,L_i^z$) with KMS rat
 ### Symbol mini‑glossary
 
 ( $\gamma$ ): gyromagnetic ratio; ( $\alpha$ ): Gilbert damping; ( $\alpha_{\parallel,\perp}(T)$ ): LLB coefficients; ( $\Gamma_{\parallel,\perp}$ ): Ehrenfest rates; ( $m_{\mathrm{eq}}(T)$ ): equilibrium magnetization; ( $\chi_{\parallel}(T)$ ): longitudinal susceptibility; ( $\boldsymbol{\sigma}$ = $(X,Y,Z)$ ): Pauli vector; ( $J_{x,y,z}$ ): exchange couplings; ( $\boldsymbol{D} * {ij}$ ): DMI vector; ( $\gamma*{\uparrow,\downarrow,\phi}$ ): Lindblad rate parameters; ( $\beta=(k_{\mathrm B}T)^{-1}$ ).
+
+---
+
+References
+
+Here is the reference list in numbered Harvard format, compatible with GitHub markdown.
+
+The list has been alphabetized by author and duplicates from the original request have been consolidated. One entry (`https://arxiv.org/abs/2001.02403`) could not be verified and has been omitted.
+
+1.  Atxitia, U., Hinzke, D. and Nowak, U. (2017) 'Fundamentals and applications of the Landau–Lifshitz–Bloch equation', *Journal of Physics D: Applied Physics*, 50(3), p. 033003. doi: 10.1088/1361-6463/50/3/033003.
+2.  Castin, Y., Dalibard, J. and Mølmer, K. (2008) *A Wave Function approach to dissipative processes*. arXiv:0805.4002. doi: 10.48550/arXiv.0805.4002.
+3.  Chen, C-F., Kastoryano, M., Brandão, F.G.S.L. and Gilyén, A. (2025) 'Efficient quantum thermal simulation', *Nature*, 646(8085), pp. 561–566. doi: 10.1038/s41586-025-09583-x.
+4.  Dalibard, J., Castin, Y. and Mølmer, K. (1992) 'Wave-function approach to dissipative processes in quantum optics', *Physical Review Letters*, 68(5), pp. 580–583. doi: 10.1103/PhysRevLett.68.580.
+5.  Devyaterikov, D.I., Proglyado, V.V., Zhaketov, V.D., Nikitenko, Y.V., Kondrat'ev, O.A., Pashaev, E.M., Subbotin, I.A., Zverev, V.I., Kravtsov, E.A. and Ustinov, V.V. (2021) 'Influence of Dimensional Effects on the Curie Temperature of Dy and Ho Thin Films', *Physics of Metals and Metallography*, 122(5), pp. 465–471. doi: 10.1134/S0031918X21050033.
+6.  Evans, R.F.L., Hinzke, D., Atxitia, U., Nowak, U., Chantrell, R.W. and Chubykalo-Fesenko, O. (2012) 'Stochastic form of the Landau-Lifshitz-Bloch equation', *Physical Review B*, 85(1), p. 014433. doi: 10.1103/PhysRevB.85.014433.
+7.  Garanin, D.A. (1998) *Fokker-Planck and Landau-Lifshitz-Bloch equations for classical ferromagnets*. arXiv:cond-mat/9805054. doi: 10.48550/arXiv.cond-mat/9805054.
+8.  Gokhale, S. and Manna, U. (2023) *Optimal control of the stochastic Landau-Lifshitz-Bloch equation*. arXiv:2305.10861. doi: 10.48550/arXiv.2305.10861.
+9.  Liu, S.H., Behrendt, D.R., Legvold, S. and Good, R.H., Jr. (1959) 'Interpretation of Magnetic Properties of Dysprosium', *Physical Review*, 116(6), pp. 1464–1468. doi: 10.1103/PhysRev.116.1464.
+10. Menarini, M. and Lomakin, V. (2020) 'Thermal fluctuations in the Landau-Lifshitz-Bloch model', *Physical Review B*, 102(2), p. 024428. doi: 10.1103/PhysRevB.102.024428.
+11. Miceli, R. and McGuigan, M. (2019) *Thermo field dynamics on a quantum computer*. arXiv:1911.03335. doi: 10.48550/arXiv.1911.03335.
+12. Mondal, P., Suresh, A. and Nikolić, B.K. (2021) 'When can localized spins interacting with conduction electrons in ferro- or antiferromagnets be described classically via the Landau-Lifshitz equation: Transition from quantum many-body entangled to quantum-classical nonequilibrium states', *Physical Review B*, 104(21), p. 214401. doi: 10.1103/PhysRevB.104.214401.
+13. Mølmer, K., Castin, Y. and Dalibard, J. (1993) 'Monte Carlo wave-function method in quantum optics', *Journal of the Optical Society of America B*, 10(3), pp. 524–538. Available at: [https://www.phys.ens.psl.eu/~dalibard/publi3/osa_93.pdf](https://www.phys.ens.psl.eu/~dalibard/publi3/osa_93.pdf).
+14. Nieves, P., Serantes, D., Atxitia, U. and Chubykalo-Fesenko, O. (2014) 'Quantum Landau-Lifshitz-Bloch (Quantum LLB) equation and its comparison with the classical case', *Physical Review B*, 90(10), p. 104428. doi: 10.1103/PhysRevB.90.104428.
+15. 'Quantum jump method' (2025) *Wikipedia*. Available at: [https://en.wikipedia.org/wiki/Quantum_jump_method](https://en.wikipedia.org/wiki/Quantum_jump_method) (Accessed: 12 November 2025).
+16. Rau, C., Jin, C. and Robert, M. (1988) 'Ferromagnetic order at Tb surfaces above the bulk Curie temperature', *Journal of Applied Physics*, 63(8), pp. 3667–3668. doi: 10.1063/1.340051.
+17. Schlimgen, A.W., Head-Marsden, K., Sager, L.M., Narang, P. and Mazziotti, D.A. (2022) 'Quantum simulation of the Lindblad equation using a unitary decomposition of operators', *Physical Review Research*, 4(2), p. 023216. doi: 10.1103/PhysRevResearch.4.023216.
+18. Wieser, R. (2013) 'Comparison of Quantum and Classical Relaxation in Spin Dynamics', *Physical Review Letters*, 110(14), p. 147201. doi: 10.1103/PhysRevLett.110.147201.
