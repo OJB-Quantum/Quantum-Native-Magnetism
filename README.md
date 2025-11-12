@@ -146,7 +146,7 @@ $$
 \alpha_{\parallel}(T) =\lambda,\frac{2T}{3T_C},\frac{2q_s}{\sinh(2q_s)},\qquad \alpha_{\perp}(T) =\lambda\left[\frac{\tanh q_s}{q_s}-\frac{2T}{3T_C}\right],\qquad q_s=\frac{\mu H_{\mathrm{MFA}}}{k_{\mathrm B}T},,
 $$
 
-with ($m_{\mathrm{eq}}(T)$) from the Brillouin/Langevin mean‑field appropriate to the material.
+with ($m_{\mathrm{eq}}$ $(T)$) from the Brillouin/Langevin mean‑field appropriate to the material.
 
 **Stochastic extension (qLLB‑SDE, trajectory level)**
 Write anisotropic noise consistent with fluctuation–dissipation:
