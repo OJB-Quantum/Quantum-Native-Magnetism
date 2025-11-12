@@ -53,10 +53,10 @@ Relevant equation:
 
 ## Notation
 
-* Magnetization (unit): ( $\mathbf{m}=\mathbf{M}/M_s$ ), ( $m=\lVert\mathbf{m}\rVert$ ).
-* Effective field: ( $\mathbf{B}_{\mathrm{eff}}=-\partial \mathcal{F}/\partial \mathbf{m}$ ), with Zeeman, exchange, anisotropy, Dzyaloshinskii–Moriya (DMI), etc.
-* Quantum expectation (site (i)): ( $\mathbf{s}_i(t)=\mathrm{Tr}!\big[\rho(t),\boldsymbol{\sigma}_i\big]$ ).
-* Unit field direction: ( $ \hat{\mathbf{b}}=\mathbf{B}*{\mathrm{eff}}$/ $\lVert \mathbf{B}*{\mathrm{eff}}\rVert$ ).
+* Magnetization (unit): ( $\boldsymbol{m}=\boldsymbol{M}/M_s$ ), ( $m=\lVert\boldsymbol{m}\rVert$ ).
+* Effective field: ( $\boldsymbol{B}_{\mathrm{eff}}=-\partial \mathcal{F}/\partial \boldsymbol{m}$ ), with Zeeman, exchange, anisotropy, Dzyaloshinskii–Moriya (DMI), etc.
+* Quantum expectation (site (i)): ( $\boldsymbol{s}_i(t)=\mathrm{Tr}!\big[\rho(t),\boldsymbol{\sigma}_i\big]$ ).
+* Unit field direction: ( $ \hat{\boldsymbol{b}}=\boldsymbol{B}*{\mathrm{eff}}$/ $\lVert \boldsymbol{B}*{\mathrm{eff}}\rVert$ ).
 * Rates: longitudinal ( $\Gamma_\parallel=1/T_1$ ), transverse ( $\Gamma_\perp=1/T_2$ ); LLB coefficients ( $\alpha_\parallel(T),\alpha_\perp(T)$ ).
 * Equilibrium magnetization: ( $m_{\mathrm{eq}}(T)$ ) (or ( $m_{\mathrm{eq}}(T,D)$ ) if a finite‑size parameter ($D$) is included).
 
@@ -67,15 +67,15 @@ Relevant equation:
 ### 1.1 Classical original (Gilbert and LL forms)
 
 $$
-\frac{d\mathbf{m}}{dt}
-= -\gamma,\mathbf{m}\times\mathbf{B}_{\mathrm{eff}}
-+\frac{\alpha}{m_s},\mathbf{m}\times\frac{d\mathbf{m}}{dt} \quad\text{(Gilbert)},,
+\frac{d\boldsymbol{m}}{dt}
+= -\gamma,\boldsymbol{m}\times\boldsymbol{B}_{\mathrm{eff}}
++\frac{\alpha}{m_s},\boldsymbol{m}\times\frac{d\boldsymbol{m}}{dt} \quad\text{(Gilbert)},,
 $$
 
 $$
-\frac{d\mathbf{m}}{dt}
-= -\gamma',\mathbf{m}\times\mathbf{B}*{\mathrm{eff}}
--\gamma'\alpha,\mathbf{m}\times\big(\mathbf{m}\times\mathbf{B}*{\mathrm{eff}}\big),
+\frac{d\boldsymbol{m}}{dt}
+= -\gamma',\boldsymbol{m}\times\boldsymbol{B}*{\mathrm{eff}}
+-\gamma'\alpha,\boldsymbol{m}\times\big(\boldsymbol{m}\times\boldsymbol{B}*{\mathrm{eff}}\big),
 \quad
 \gamma'=\frac{\gamma}{1+\alpha^2}\quad\text{(LL)},.
 $$
@@ -83,9 +83,9 @@ $$
 ### 1.2 Stochastic LLG (thermal field)
 
 $$
-\frac{d\mathbf{m}}{dt}
-= -\gamma,\mathbf{m}\times\big(\mathbf{B}*{\mathrm{eff}}+\mathbf{B}*{\mathrm{th}}(t)\big)
-+\frac{\alpha}{m_s},\mathbf{m}\times\frac{d\mathbf{m}}{dt},
+\frac{d\boldsymbol{m}}{dt}
+= -\gamma,\boldsymbol{m}\times\big(\boldsymbol{B}*{\mathrm{eff}}+\boldsymbol{B}*{\mathrm{th}}(t)\big)
++\frac{\alpha}{m_s},\boldsymbol{m}\times\frac{d\boldsymbol{m}}{dt},
 $$
 
 $$
@@ -97,9 +97,9 @@ $$
 ### 1.3 Ehrenfest (expectation) form for LL‑type transverse damping
 
 $$
-\frac{d\mathbf{s}}{dt}
-=\frac{2}{\hbar},\mathbf{s}\times\mathbf{B}*{\mathrm{eff}}
--\Gamma*{\perp}\Big(\mathbf{s}-(\mathbf{s}!\cdot!\hat{\mathbf{b}})\hat{\mathbf{b}}\Big),.
+\frac{d\boldsymbol{s}}{dt}
+=\frac{2}{\hbar},\boldsymbol{s}\times\boldsymbol{B}*{\mathrm{eff}}
+-\Gamma*{\perp}\Big(\boldsymbol{s}-(\boldsymbol{s}!\cdot!\hat{\boldsymbol{b}})\hat{\boldsymbol{b}}\Big),.
 $$
 
 ### 1.4 Adapted (Qiskit‑ready)
@@ -107,7 +107,7 @@ $$
 **Hamiltonian (single macrospin or per site (i))**
 
 $$
-H(t)= -\frac{\hbar\gamma}{2},\mathbf{B}_{\mathrm{eff}}(t)\cdot\boldsymbol{\sigma}
+H(t)= -\frac{\hbar\gamma}{2},\boldsymbol{B}_{\mathrm{eff}}(t)\cdot\boldsymbol{\sigma}
 \quad\text{(encode as a sum of Pauli terms)}.
 $$
 
@@ -121,30 +121,30 @@ Use dephasing Lindblad ($L^z=\sqrt{\gamma_\phi},\sigma^z$) to reproduce a chosen
 ### 2.1 Classical original (single‑sublattice macrospin)
 
 $$
-\frac{d\mathbf{m}}{dt}
-= -\gamma,\mathbf{m}\times\mathbf{B}_{\mathrm{eff}}
+\frac{d\boldsymbol{m}}{dt}
+= -\gamma,\boldsymbol{m}\times\boldsymbol{B}_{\mathrm{eff}}
 
-* \frac{\gamma,\alpha_{\parallel}(T)}{m^2},(\mathbf{m}!\cdot!\mathbf{B}_{\mathrm{eff}}),\mathbf{m}
+* \frac{\gamma,\alpha_{\parallel}(T)}{m^2},(\boldsymbol{m}!\cdot!\boldsymbol{B}_{\mathrm{eff}}),\boldsymbol{m}
 
-- \frac{\gamma,\alpha_{\perp}(T)}{m^2},\mathbf{m}\times\big(\mathbf{m}\times\mathbf{B}_{\mathrm{eff}}\big).
+- \frac{\gamma,\alpha_{\perp}(T)}{m^2},\boldsymbol{m}\times\big(\boldsymbol{m}\times\boldsymbol{B}_{\mathrm{eff}}\big).
 $$
 
-A standard longitudinal field used inside ( $\mathbf{B}*{\mathrm{eff}}$ ) is
+A standard longitudinal field used inside ( $\boldsymbol{B}*{\mathrm{eff}}$ ) is
 
 $$
-\mathbf{B}*{\parallel}
+\boldsymbol{B}*{\parallel}
 =\frac{1}{\chi_{\parallel}(T)}
-\left(1-\frac{m^2}{m_{\mathrm{eq}}^2(T)}\right)\mathbf{m},
-\quad\text{so}\quad \lVert \mathbf{m}\rVert \to m_{\mathrm{eq}}(T).
+\left(1-\frac{m^2}{m_{\mathrm{eq}}^2(T)}\right)\boldsymbol{m},
+\quad\text{so}\quad \lVert \boldsymbol{m}\rVert \to m_{\mathrm{eq}}(T).
 $$
 
 ### 2.2 **Ehrenfest form of LLB** (deterministic mean)
 
 $$
-\frac{d\mathbf{s}}{dt}
-= \frac{2}{\hbar},\mathbf{s}\times\mathbf{B}*{\mathrm{eff}}
--\Gamma*{\perp}(T)\Big(\mathbf{s}-(\mathbf{s}!\cdot!\hat{\mathbf{b}})\hat{\mathbf{b}}\Big)
--\Gamma_{\parallel}(T)\Big[(\mathbf{s}!\cdot!\hat{\mathbf{b}})-m_{\mathrm{eq}}(T)\Big]\hat{\mathbf{b}},.
+\frac{d\boldsymbol{s}}{dt}
+= \frac{2}{\hbar},\boldsymbol{s}\times\boldsymbol{B}*{\mathrm{eff}}
+-\Gamma*{\perp}(T)\Big(\boldsymbol{s}-(\boldsymbol{s}!\cdot!\hat{\boldsymbol{b}})\hat{\boldsymbol{b}}\Big)
+-\Gamma_{\parallel}(T)\Big[(\boldsymbol{s}!\cdot!\hat{\boldsymbol{b}})-m_{\mathrm{eq}}(T)\Big]\hat{\boldsymbol{b}},.
 $$
 
 ### 2.3 Adapted (Qiskit‑ready)
@@ -183,10 +183,10 @@ with ($m_{\mathrm{eq}}(T)$) from the Brillouin/Langevin mean‑field appropriate
 Write anisotropic noise consistent with fluctuation–dissipation:
 
 $$
-d\mathbf{s}
+d\boldsymbol{s}
 =\Big[\text{qLLB drift of 2.2 with qLLB rates}\Big],dt
-+\sqrt{2D_{\perp}(T)},(\mathbf{I}-\hat{\mathbf{b}}\hat{\mathbf{b}}^{!\top}),d\mathbf{W}*{\perp}
-+\sqrt{2D*{\parallel}(T)},\hat{\mathbf{b}},dW_{\parallel},
++\sqrt{2D_{\perp}(T)},(\boldsymbol{I}-\hat{\boldsymbol{b}}\hat{\boldsymbol{b}}^{!\top}),d\boldsymbol{W}*{\perp}
++\sqrt{2D*{\parallel}(T)},\hat{\boldsymbol{b}},dW_{\parallel},
 $$
 
 with ( $\langle dW_\mu\rangle=0$ ), ( $\langle dW_\mu(t),dW_\nu(t)\rangle=\delta_{\mu\nu},dt$ ), and
@@ -194,28 +194,28 @@ with ( $\langle dW_\mu\rangle=0$ ), ( $\langle dW_\mu(t),dW_\nu(t)\rangle=\delta
 
 ---
 
-## 3) Kinetic‑aware Ehrenfest models on the Bloch ball ($f(\mathbf{m},t)$)
+## 3) Kinetic‑aware Ehrenfest models on the Bloch ball ($f(\boldsymbol{m},t)$)
 
 Define a drift–diffusion–collision kinetic equation
 
 $$
 \partial_t f
-+\nabla_{\mathbf{m}}!\cdot!\big[\mathbf{A}(\mathbf{m},T),f\big]
-=\nabla_{\mathbf{m}}!\cdot!\big[\mathbf{D}(\mathbf{m},T),\nabla_{\mathbf{m}} f\big]
++\nabla_{\boldsymbol{m}}!\cdot!\big[\boldsymbol{A}(\boldsymbol{m},T),f\big]
+=\nabla_{\boldsymbol{m}}!\cdot!\big[\boldsymbol{D}(\boldsymbol{m},T),\nabla_{\boldsymbol{m}} f\big]
 +\mathcal{C}[f],
 $$
 
-where ($\mathcal{C}[f]$) encodes magnon/electron/phonon collision integrals, and ( $\mathbf{D}$ ) satisfies fluctuation–dissipation.
+where ($\mathcal{C}[f]$) encodes magnon/electron/phonon collision integrals, and ( $\boldsymbol{D}$ ) satisfies fluctuation–dissipation.
 
 ### 3.1 **Ehrenfest–LLB–Boltzmann (E‑LLB‑B)**
 
 Use **LLB drift**:
 
 $$
-\mathbf{A}*{\mathrm{LLB}}(\mathbf{m},T)
-=\frac{2}{\hbar},\mathbf{m}\times\mathbf{B}*{\mathrm{eff}}
--\Gamma_{\perp}(T)\Big(\mathbf{m}-(\mathbf{m}!\cdot!\hat{\mathbf{b}})\hat{\mathbf{b}}\Big)
--\Gamma_{\parallel}(T)\Big[(\mathbf{m}!\cdot!\hat{\mathbf{b}})-m_{\mathrm{eq}}(T)\Big]\hat{\mathbf{b}},
+\boldsymbol{A}*{\mathrm{LLB}}(\boldsymbol{m},T)
+=\frac{2}{\hbar},\boldsymbol{m}\times\boldsymbol{B}*{\mathrm{eff}}
+-\Gamma_{\perp}(T)\Big(\boldsymbol{m}-(\boldsymbol{m}!\cdot!\hat{\boldsymbol{b}})\hat{\boldsymbol{b}}\Big)
+-\Gamma_{\parallel}(T)\Big[(\boldsymbol{m}!\cdot!\hat{\boldsymbol{b}})-m_{\mathrm{eq}}(T)\Big]\hat{\boldsymbol{b}},
 $$
 
 and let ($\mathcal{C}[f]$) (e.g., Orbach/Raman/direct spin‑lattice processes; magnon–phonon kernels) determine temperature‑ and material‑dependent rates (qLLB‑style).
@@ -225,9 +225,9 @@ and let ($\mathcal{C}[f]$) (e.g., Orbach/Raman/direct spin‑lattice processes; 
 Use **LL transverse drift only**:
 
 $$
-\mathbf{A}*{\mathrm{LL}}(\mathbf{m},T)
-=\frac{2}{\hbar},\mathbf{m}\times\mathbf{B}*{\mathrm{eff}}
--\Gamma_{\perp}(T)\Big(\mathbf{m}-(\mathbf{m}!\cdot!\hat{\mathbf{b}})\hat{\mathbf{b}}\Big)!,
+\boldsymbol{A}*{\mathrm{LL}}(\boldsymbol{m},T)
+=\frac{2}{\hbar},\boldsymbol{m}\times\boldsymbol{B}*{\mathrm{eff}}
+-\Gamma_{\perp}(T)\Big(\boldsymbol{m}-(\boldsymbol{m}!\cdot!\hat{\boldsymbol{b}})\hat{\boldsymbol{b}}\Big)!,
 $$
 
 which lacks a longitudinal channel, so it cannot by itself produce the amplitude collapse ( $m\to 0$ ) at ( $T_C$ ).
@@ -268,9 +268,9 @@ $$
 Nearest‑neighbor Heisenberg + Zeeman + DMI on a qubit graph:
 
 $$
-H = -\frac{\hbar\gamma}{2}\sum_i \mathbf{B}*{\mathrm{eff},i}!\cdot!\boldsymbol{\sigma}*i
+H = -\frac{\hbar\gamma}{2}\sum_i \boldsymbol{B}*{\mathrm{eff},i}!\cdot!\boldsymbol{\sigma}*i
 -\sum*{\langle i,j\rangle}!\big(J_x X_iX_j+J_y Y_iY_j+J_z Z_iZ_j\big)
-+\sum*{\langle i,j\rangle}!\mathbf{D}_{ij}!\cdot!(\boldsymbol{\sigma}_i\times\boldsymbol{\sigma}_j) ; (+,\text{penalties/anisotropy}).
++\sum*{\langle i,j\rangle}!\boldsymbol{D}_{ij}!\cdot!(\boldsymbol{\sigma}_i\times\boldsymbol{\sigma}_j) ; (+,\text{penalties/anisotropy}).
 $$
 
 **Lindblad channels (per site ($i$))**
@@ -303,4 +303,4 @@ These three primitives (Pauli‑decomposed ($H$); ($L_i^\pm,L_i^z$) with KMS rat
 
 ### Symbol mini‑glossary
 
-( $\gamma$ ): gyromagnetic ratio; ( $\alpha$ ): Gilbert damping; ( $\alpha_{\parallel,\perp}(T)$ ): LLB coefficients; ( $\Gamma_{\parallel,\perp}$ ): Ehrenfest rates; ( $m_{\mathrm{eq}}(T)$ ): equilibrium magnetization; ( $\chi_{\parallel}(T)$ ): longitudinal susceptibility; ( $\boldsymbol{\sigma}=(X,Y,Z)$ ): Pauli vector; ( $J_{x,y,z}$ ): exchange couplings; ( $\mathbf{D}*{ij}$ ): DMI vector; ( $\gamma*{\uparrow,\downarrow,\phi}$ ): Lindblad rate parameters; ( $\beta=(k_{\mathrm B}T)^{-1}$ ).
+( $\gamma$ ): gyromagnetic ratio; ( $\alpha$ ): Gilbert damping; ( $\alpha_{\parallel,\perp}(T)$ ): LLB coefficients; ( $\Gamma_{\parallel,\perp}$ ): Ehrenfest rates; ( $m_{\mathrm{eq}}(T)$ ): equilibrium magnetization; ( $\chi_{\parallel}(T)$ ): longitudinal susceptibility; ( $\boldsymbol{\sigma}=(X,Y,Z)$ ): Pauli vector; ( $J_{x,y,z}$ ): exchange couplings; ( $\boldsymbol{D}*{ij}$ ): DMI vector; ( $\gamma*{\uparrow,\downarrow,\phi}$ ): Lindblad rate parameters; ( $\beta=(k_{\mathrm B}T)^{-1}$ ).
