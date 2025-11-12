@@ -3,7 +3,7 @@ A repository for performing quantum-native scientific computing for atomistic an
 
 ---
 
-The following techniques are at least eligible for Noisy Intermediate-Scale Quantum (NISQ) computing systems for quantum-native magnetic modeling:
+The following techniques are at least eligible for quantum-native magnetic modeling on Noisy Intermediate-Scale Quantum (NISQ) computing systems:
 
 ```
 - Thermofield-Double State (purified Gibbs state, VQE and VQS-based, NISQ and Near-Term Quantum) 
@@ -16,3 +16,13 @@ The following techniques are at least eligible for Noisy Intermediate-Scale Quan
 One of the best techniques to implement for NISQ systems can be achieved with the following:
 - QITE implemented with error mitigation on as many qubits as possible.
 
+
+---
+
+The following techniques are eligible for quantum-native magnetic modeling on Near-Term or Fault-Tolerant quantum computing systems: 
+
+```
+- Stochastic Dirac‑equation sampling (Near-Term Quantum) 
+- Quantum Metropolis Sampling (preparing thermal distributions, for Near-Term) 
+- Quantum stochastic differential equations (QSDE) (Fault-Tolerant Quantum)
+```
