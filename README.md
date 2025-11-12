@@ -22,7 +22,7 @@ Four of the best techniques to implement for NISQ systems can be achieved with t
 - Quantum-metropolis-sampling-implemented near-term quantum computer with quantum error mitigation (QEM) or quantum error correction (QEC).
 ```
 
-* **Near term:**
+* **Near-term:**
   Ehrenfest–LLB–Boltzmann + QITE + QEM on a **156-qubit Heron-class processor** (for example, `ibm_fez` or its siblings in the Heron r2 family) is likely the most realistic way to build a MuMax3-compatible “full quantum” module that **materially outperforms purely classical LLB–Boltzmann** on selected cluster-level problems. The extra qubits, improved coherence, and built-in error-mitigation workflows in the IBM Runtime stack give more headroom for larger local spin–bath registers and slightly deeper QITE circuits than on earlier ~133-qubit Heron-generation devices, while still staying within NISQ-era limits when combined with zero-noise extrapolation, measurement-error mitigation, and related QEM techniques.
 
 * **Conceptually best:**
