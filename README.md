@@ -14,7 +14,7 @@ The following techniques are at least eligible for quantum-native magnetic model
 ```
 
 One of the best techniques to implement for NISQ systems can be achieved with the following:
-- QITE implemented with error mitigation on as many qubits as possible.
+- QITE implemented with quantum error mitigation on as many qubits as possible.
 
 
 ---
