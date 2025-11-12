@@ -16,11 +16,14 @@ The following techniques are eligible for quantum-native magnetic modeling on No
 Four of the best techniques to implement for NISQ systems can be achieved with the following: 
 
 ```
-- QITE on a NISQ quantum computer implemented with quantum error mitigation on as many qubits as possible.
-- Thermofield double-state on a NISQ or near-term quantum computer implemented with quantum error mitigation or quantum error correction.
-- Stochastic Schrödinger‑equation-discretization-implemented near-term quantum computer with quantum error mitigation or quantum error correction.
-- Quantum-metropolis-sampling-implemented near-term quantum computer with quantum error mitigation or quantum error correction.
+- Quantum Imaginary-Time Evolution (QITE) on a NISQ quantum computer implemented with quantum error mitigation (QEM) on as many qubits as possible.
+- Thermofield double-state on a NISQ or near-term quantum computer implemented with quantum error mitigation (QEM) or quantum error correction (QEC).
+- Stochastic Schrödinger‑equation-discretization-implemented near-term quantum computer with quantum error mitigation (QEM) or quantum error correction (QEC).
+- Quantum-metropolis-sampling-implemented near-term quantum computer with quantum error mitigation (QEM) or quantum error correction (QEC).
 ```
+
+- Near term: Ehrenfest-LLB-Boltzmann+QITE+QEM on ~133 qubits is likely the most realistic way to build a MuMax3-compatible “full quantum” module that materially outperforms purely classical LLB-Boltzmann on some cluster-level problems.
+- Conceptually best: SSE-, QMS- and TFD-based methods can, in principle, deliver higher physical fidelity and broader applicability (especially for strong correlations, non-Markovian baths and finite-T entanglement), but they are currently more demanding in qubits, depth and variational complexity.
 
 ---
 
@@ -77,6 +80,88 @@ Magnetization Dynamics (micromagnetic scale)
        ├─ Other tools (ParaView, OVF viewers)
        └─ Multiscale coupling (atomistic spin, LLB, Qiskit, etc.)
 ```
+
+## Ideas for a kind of "quantum MuMax3" simulation workflow 
+
+```
+Goal: “MuMax3 full quantum solver” for magnetization dynamics
+    (backed by a 156-qubit IBM Heron r2 processor with quantum error mitigation)
+
+├─ 0. Classical baseline
+│  └─ LLB–Boltzmann
+│     ├─ LLB for macrospin m(t) (transverse + longitudinal damping)
+│     └─ Boltzmann for electrons/phonons (ultrafast kinetics, spin-flip channels)
+│
+├─ 1. Quantum-augmented effective models
+│  ├─ qLLB (Nieves et al.) → quantum corrections to LLB rates/statistics
+│  ├─ Quantum LLG/ q-LLG (Wieser; Liu; Azimi-Mousolou, etc.)
+│  └─ Ehrenfest coupling to classical fields
+│     (Ehrenfest–LLB–Boltzmann: quantum spin cluster + classical micromagnetic field)
+│
+└─ 2. NISQ-compatible quantum solvers
+      (156-qubit IBM Heron r2 + QEM layer via Qiskit Runtime)
+
+   ├─ Hardware + QEM envelope
+   │   ├─ Processor: IBM Heron r2, 156-qubit heavy-hex lattice,
+   │   │   tunable couplers, TLS-mitigation-enhanced coherence (e.g. ibm_fez). 
+   │   └─ Quantum error mitigation layer:
+   │       • Noise characterization on Heron (sparse Pauli-Lindblad models, etc.)
+   │       • Techniques: Pauli twirling/ randomized compiling, ZNE, PEC,
+   │         measurement error mitigation, hybrid QEM protocols.
+   │       • Implemented through Qiskit Runtime error-mitigation passes.
+   │
+   ├─ 2A. QITE-based Ehrenfest–LLB–Boltzmann (primary MuMax3-quantum module)
+   │   ├─ Encode local Ehrenfest–qLLB–Boltzmann generator as a linear operator
+   │   │   on a spin + bath register (subset of the 156 qubits).
+   │   ├─ Use QITE-style circuits to prepare steady/ thermal states and
+   │   │   short real-time steps for ⟨m(t)⟩, ⟨E(t)⟩.
+   │   └─ Run on Heron r2 with QEM:
+   │       • Compile to heavy-hex topology, optimize depth.
+   │       • Apply ZNE + Pauli twirling and/or PEC to magnetization observables.
+   │
+   ├─ 2B. SSE-based trajectories on Heron r2
+   │   ├─ Variational SSE (Endo; Lan): simulate stochastic Schrödinger trajectories
+   │   │   for local quantum spin clusters (tens of spins + ancillas).
+   │   ├─ Optionally embed Generalized Quantum Master Equation (GQME) kernels
+   │   │   to capture non-Markovian baths.
+   │   └─ Use QEM on expectation values from trajectory ensembles
+   │       (ZNE/PEC + measurement mitigation).
+   │
+   ├─ 2C. QMS (quantum Metropolis) on Heron r2
+   │   ├─ Quantum-Metropolis(-Hastings) sampling for Gibbs states of spin
+   │   │   Hamiltonians relevant to micromagnetics (Heisenberg + anisotropy, etc.).
+   │   ├─ Use the 156-qubit space to host moderate-size quantum spin lattices
+   │   │   whose thermal states are hard for classical Monte Carlo (sign problems).
+   │   └─ Apply QEM to thermal expectation values (magnetization curves, χ(T), etc.).
+   │
+   └─ 2D. TFD-based finite-T simulation on Heron r2
+       ├─ Variational TFD preparation (Sagastizabal, Su, Zhu style circuits)
+       │   for embedded spin clusters, using up to ~1/2 of the 156 qubits per copy.
+       ├─ Real-time evolution of TFD states to compute finite-temperature
+       │   correlation functions and dynamical susceptibilities.
+       └─ QEM applied to TFD preparation and time evolution (twirling, ZNE, PEC),
+           focusing on thermodynamic and linear-response observables.
+
+└─ 3. Future fault-tolerant/ post-NISQ directions
+   ├─ Larger qLLG/ qLLB clusters with exact SSE or full master-equation solvers
+   │  (multiple Heron-class nodes or error-corrected logical qubits).
+   ├─ Full QMS phase diagrams for realistic 2D/3D spin Hamiltonians
+   │  (true quantum criticality and Curie-temperature benchmarks).
+   └─ Hierarchical embedding:
+      ├─ Quantum clusters (solved on logical qubits) providing qLLB/ kinetic kernels.
+      └─ These kernels drive a classical MuMax3-like grid at device scale.
+```
+
+
+| Approach                                             | Physical content                                                                                                                 | Strengths for a “MuMax3-quantum” solver                                                                                                                                    | Main limitations on 133-qubit NISQ                                                                                                | How it compares to pure LLB-Boltzmann                                                                                     |
+| ---------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| **Classical LLB-Boltzmann**                          | Classical macrospin + Boltzmann kinetics; quantum physics only in parameters                                                     | Mature, efficient; already used for ultrafast magnetization and near-($T_C$) physics                                                              | Misses quantum entanglement, quantum statistics of spins; macrospin approximation only                                            | Baseline                                                                                                                  |
+| **Ehrenfest-LLB-Boltzmann + QITE + QEM (your idea)** | qLLB-derived macrospin coupled to Boltzmann baths; solved via QITE on a quantum register; Ehrenfest coupling to classical fields | Brings in quantum statistics and local spin–bath correlations; leverages QITE as a PDE/ steady-state solver; QEM + dissipation can stabilize deep-ish circuits   | Still uses an Ehrenfest mean-field treatment; limited by NISQ depth and connectivity; quantum speedup not guaranteed yet          | **Clear upgrade**: more quantum-faithful magnetization dynamics and potentially better scaling for local quantum clusters |
+| **SSE-based quantum trajectories (VQS-SSE)**         | Full quantum trajectories for spins with dissipators; master-equation level                                                      | Captures fluctuations, jumps, non-Markovian effects; directly implements qLLG/ qLLB-like open dynamics                                                 | Circuits deeper and stochastic; heavy sampling burden; harder to embed into large micromagnetic grids                             | **More accurate** but likely **less practical** on current 133-qubit devices for large systems                            |
+| **Quantum-Metropolis/ QMS**                         | True Gibbs states of quantum spin Hamiltonians; avoids sign problem                                                              | Excellent for equilibrium magnetism, phase diagrams, accurate ($T_C$) in strongly correlated regimes                                                               | Needs phase estimation and deep circuits; more suited to off-line equilibrium studies than continuous micromagnetic time-stepping | **Better equilibrium physics** than LLB-Boltzmann but not directly a time-evolution engine                                |
+| **TFD-based VQA**                                    | Purified thermal states + unitary real-time evolution                                                                            | Rigorous thermal correlators; natural way to study finite-T quantum spin dynamics and entanglement                                                     | Doubles qubits; ansatz training overhead; currently demonstrated only on smaller systems                                          | **Most accurate finite-T description** in principle, but expensive; ideal as a cluster-level module                       |
+
+
 
 ---
 
