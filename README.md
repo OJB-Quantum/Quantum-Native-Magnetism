@@ -53,10 +53,10 @@ Relevant equation:
 
 ## Notation
 
-* Magnetization (unit): ( $\boldsymbol{m}=\boldsymbol{M}/M_s$ ), ( $m=\lVert\boldsymbol{m}\rVert$ ).
+* Magnetization (unit): ( $\boldsymbol{m}=\boldsymbol{M}/M_s$ ), ( $m=\lvert\boldsymbol{m}\rvert$ ).
 * Effective field: ( $\boldsymbol{B}_{\mathrm{eff}}=-\partial \mathcal{F}/\partial \boldsymbol{m}$ ), with Zeeman, exchange, anisotropy, Dzyaloshinskii–Moriya (DMI), etc.
 * Quantum expectation (site (i)): ( $\boldsymbol{s}_i(t)$=$\mathrm{Tr}!\big[\rho(t),\boldsymbol{\sigma}_i\big]$ ).
-* Unit field direction: ( $ \hat{\boldsymbol{b}}=\boldsymbol{B}*{\mathrm{eff}}$/ $\lVert \boldsymbol{B}*{\mathrm{eff}}\rVert$ ).
+* Unit field direction: ( $ \hat{\boldsymbol{b}}=\boldsymbol{B}*{\mathrm{eff}}$/ $\lvert \boldsymbol{B}*{\mathrm{eff}}\rvert$ ).
 * Rates: longitudinal ( $\Gamma_\parallel=1/T_1$ ), transverse ( $\Gamma_\perp=1/T_2$ ); LLB coefficients ( $\alpha_\parallel(T),\alpha_\perp(T)$ ).
 * Equilibrium magnetization: ( $m_{\mathrm{eq}}(T)$ ) (or ( $m_{\mathrm{eq}}(T,D)$ ) if a finite‑size parameter ($D$) is included).
 
@@ -115,7 +115,7 @@ $$
 A standard longitudinal field used inside ( $\boldsymbol{B}*{\mathrm{eff}}$ ) is
 
 $$
-\boldsymbol{B}*{\parallel} =\frac{1}{\chi_{\parallel}(T)} \left(1-\frac{m^2}{m_{\mathrm{eq}}^2(T)}\right)\boldsymbol{m}, \quad\text{so}\quad \lVert \boldsymbol{m}\rVert \to m_{\mathrm{eq}}(T).
+\boldsymbol{B}*{\parallel} =\frac{1}{\chi_{\parallel}(T)} \left(1-\frac{m^2}{m_{\mathrm{eq}}^2(T)}\right)\boldsymbol{m}, \quad\text{so}\quad \lvert \boldsymbol{m}\rvert \to m_{\mathrm{eq}}(T).
 $$
 
 ### 2.2 **Ehrenfest form of LLB** (deterministic mean)
@@ -251,4 +251,4 @@ These three primitives (Pauli‑decomposed ($H$); ($L_i^\pm,L_i^z$) with KMS rat
 
 ### Symbol mini‑glossary
 
-( $\gamma$ ): gyromagnetic ratio; ( $\alpha$ ): Gilbert damping; ( $\alpha_{\parallel,\perp}(T)$ ): LLB coefficients; ( $\Gamma_{\parallel,\perp}$ ): Ehrenfest rates; ( $m_{\mathrm{eq}}(T)$ ): equilibrium magnetization; ( $\chi_{\parallel}(T)$ ): longitudinal susceptibility; ( $\boldsymbol{\sigma}=(X,Y,Z)$ ): Pauli vector; ( $J_{x,y,z}$ ): exchange couplings; ( **D**$*{ij}$ ): DMI vector; ( $\gamma*{\uparrow,\downarrow,\phi}$ ): Lindblad rate parameters; ( $\beta=(k_{\mathrm B}T)^{-1}$ ).
+( $\gamma$ ): gyromagnetic ratio; ( $\alpha$ ): Gilbert damping; ( $\alpha_{\parallel,\perp}(T)$ ): LLB coefficients; ( $\Gamma_{\parallel,\perp}$ ): Ehrenfest rates; ( $m_{\mathrm{eq}}(T)$ ): equilibrium magnetization; ( $\chi_{\parallel}(T)$ ): longitudinal susceptibility; ( $\boldsymbol{\sigma}$=$(X,Y,Z)$ ): Pauli vector; ( $J_{x,y,z}$ ): exchange couplings; ( $\boldsymbol{D}$ $*{ij}$ ): DMI vector; ( $\gamma*{\uparrow,\downarrow,\phi}$ ): Lindblad rate parameters; ( $\beta=(k_{\mathrm B}T)^{-1}$ ).
