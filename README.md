@@ -29,6 +29,17 @@ The following techniques are eligible for quantum-native magnetic modeling on Ne
 
 ---
 
+To predict Curie temperature for magnetic materials:
+- Solve the stochastic LLG or the LLB.
+- This can be performed in Python for example, especially on the GPU for larger data.
+- The stochastic LLG equation can be solved with MuMax3 if done carefully.
+
+Other notes: 
+- Solving the standard LLG equation by itself cannot predict the Curie temperature. 
+- MuMax adapted with Python can be used to solve the stochastic LLG for predicting Curie temperature and other temperature dependent dynamics, but it cannot solve the LLB equation.
+
+---
+
 
 
 | Aspect | Ehrenfest–LLB–Boltzmann (E‑LLB‑B) | Ehrenfest–LL–Boltzmann (E‑LL‑B) |
