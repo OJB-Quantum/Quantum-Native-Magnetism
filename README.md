@@ -67,39 +67,28 @@ Relevant equation:
 ### 1.1 Classical original (Gilbert and LL forms)
 
 $$
-\frac{d\boldsymbol{m}}{dt}
-= -\gamma,\boldsymbol{m}\times\boldsymbol{B}_{\mathrm{eff}}
-+\frac{\alpha}{m_s},\boldsymbol{m}\times\frac{d\boldsymbol{m}}{dt} \quad\text{(Gilbert)},,
+\frac{d\boldsymbol{m}}{dt} = -\gamma,\boldsymbol{m}\times\boldsymbol{B}_{\mathrm{eff}} +\frac{\alpha}{m_s},\boldsymbol{m}\times\frac{d\boldsymbol{m}}{dt} \quad \text{(Gilbert)},,
 $$
 
 $$
-\frac{d\boldsymbol{m}}{dt}
-= -\gamma',\boldsymbol{m}\times\boldsymbol{B}*{\mathrm{eff}}
--\gamma'\alpha,\boldsymbol{m}\times\big(\boldsymbol{m}\times\boldsymbol{B}*{\mathrm{eff}}\big),
-\quad
-\gamma'=\frac{\gamma}{1+\alpha^2}\quad\text{(LL)},.
+\frac{d\boldsymbol{m}}{dt} = -\gamma',\boldsymbol{m}\times\boldsymbol{B}*{\mathrm{eff}} -\gamma'\alpha,\boldsymbol{m}\times\big(\boldsymbol{m}\times\boldsymbol{B}*{\mathrm{eff}}\big),
+\quad \gamma'=\frac{\gamma}{1+\alpha^2}\quad\text{(LL)},.
 $$
 
 ### 1.2 Stochastic LLG (thermal field)
 
 $$
-\frac{d\boldsymbol{m}}{dt}
-= -\gamma,\boldsymbol{m}\times\big(\boldsymbol{B}*{\mathrm{eff}}+\boldsymbol{B}*{\mathrm{th}}(t)\big)
-+\frac{\alpha}{m_s},\boldsymbol{m}\times\frac{d\boldsymbol{m}}{dt},
+\frac{d\boldsymbol{m}}{dt} = -\gamma,\boldsymbol{m}\times\big(\boldsymbol{B}*{\mathrm{eff}}+\boldsymbol{B}*{\mathrm{th}}(t)\big) +\frac{\alpha}{m_s},\boldsymbol{m}\times\frac{d\boldsymbol{m}}{dt},
 $$
 
 $$
-\big\langle B_{\mathrm{th},\mu}(t),B_{\mathrm{th},\nu}(t')\big\rangle
-=2D,\delta_{\mu\nu},\delta(t-t'),,\qquad 
-D \propto \frac{\alpha k_{\mathrm B}T}{\gamma M_s V},.
+\big\langle B_{\mathrm{th},\mu}(t),B_{\mathrm{th},\nu}(t')\big\rangle =2D,\delta_{\mu\nu},\delta(t-t'),,\qquad D \propto \frac{\alpha k_{\mathrm B}T}{\gamma M_s V},.
 $$
 
 ### 1.3 Ehrenfest (expectation) form for LL‑type transverse damping
 
 $$
-\frac{d\boldsymbol{s}}{dt}
-=\frac{2}{\hbar},\boldsymbol{s}\times\boldsymbol{B}*{\mathrm{eff}}
--\Gamma*{\perp}\Big(\boldsymbol{s}-(\boldsymbol{s}!\cdot!\hat{\boldsymbol{b}})\hat{\boldsymbol{b}}\Big),.
+\frac{d\boldsymbol{s}}{dt} =\frac{2}{\hbar},\boldsymbol{s}\times\boldsymbol{B}*{\mathrm{eff}} -\Gamma*{\perp}\Big(\boldsymbol{s}-(\boldsymbol{s}!\cdot!\hat{\boldsymbol{b}})\hat{\boldsymbol{b}}\Big),.
 $$
 
 ### 1.4 Adapted (Qiskit‑ready)
@@ -107,8 +96,7 @@ $$
 **Hamiltonian (single macrospin or per site (i))**
 
 $$
-H(t)= -\frac{\hbar\gamma}{2},\boldsymbol{B}_{\mathrm{eff}}(t)\cdot\boldsymbol{\sigma}
-\quad\text{(encode as a sum of Pauli terms)}.
+H(t)= -\frac{\hbar\gamma}{2},\boldsymbol{B}_{\mathrm{eff}}(t)\cdot\boldsymbol{\sigma} \quad\text{(encode as a sum of Pauli terms)}.
 $$
 
 **Optional LL‑like transverse damping on simulators**
@@ -121,30 +109,19 @@ Use dephasing Lindblad ($L^z=\sqrt{\gamma_\phi},\sigma^z$) to reproduce a chosen
 ### 2.1 Classical original (single‑sublattice macrospin)
 
 $$
-\frac{d\boldsymbol{m}}{dt}
-= -\gamma,\boldsymbol{m}\times\boldsymbol{B}_{\mathrm{eff}}
-
-* \frac{\gamma,\alpha_{\parallel}(T)}{m^2},(\boldsymbol{m}!\cdot!\boldsymbol{B}_{\mathrm{eff}}),\boldsymbol{m}
-
-- \frac{\gamma,\alpha_{\perp}(T)}{m^2},\boldsymbol{m}\times\big(\boldsymbol{m}\times\boldsymbol{B}_{\mathrm{eff}}\big).
+\frac{d\boldsymbol{m}}{dt} = -\gamma,\boldsymbol{m}\times\boldsymbol{B}_{\mathrm{eff}} * \frac{\gamma,\alpha_{\parallel}(T)}{m^2},(\boldsymbol{m}!\cdot!\boldsymbol{B}_{\mathrm{eff}}),\boldsymbol{m} - \frac{\gamma,\alpha_{\perp}(T)}{m^2},\boldsymbol{m}\times\big(\boldsymbol{m}\times\boldsymbol{B}_{\mathrm{eff}}\big).
 $$
 
 A standard longitudinal field used inside ( $\boldsymbol{B}*{\mathrm{eff}}$ ) is
 
 $$
-\boldsymbol{B}*{\parallel}
-=\frac{1}{\chi_{\parallel}(T)}
-\left(1-\frac{m^2}{m_{\mathrm{eq}}^2(T)}\right)\boldsymbol{m},
-\quad\text{so}\quad \lVert \boldsymbol{m}\rVert \to m_{\mathrm{eq}}(T).
+\boldsymbol{B}*{\parallel} =\frac{1}{\chi_{\parallel}(T)} \left(1-\frac{m^2}{m_{\mathrm{eq}}^2(T)}\right)\boldsymbol{m}, \quad\text{so}\quad \lVert \boldsymbol{m}\rVert \to m_{\mathrm{eq}}(T).
 $$
 
 ### 2.2 **Ehrenfest form of LLB** (deterministic mean)
 
 $$
-\frac{d\boldsymbol{s}}{dt}
-= \frac{2}{\hbar},\boldsymbol{s}\times\boldsymbol{B}*{\mathrm{eff}}
--\Gamma*{\perp}(T)\Big(\boldsymbol{s}-(\boldsymbol{s}!\cdot!\hat{\boldsymbol{b}})\hat{\boldsymbol{b}}\Big)
--\Gamma_{\parallel}(T)\Big[(\boldsymbol{s}!\cdot!\hat{\boldsymbol{b}})-m_{\mathrm{eq}}(T)\Big]\hat{\boldsymbol{b}},.
+\frac{d\boldsymbol{s}}{dt} = \frac{2}{\hbar},\boldsymbol{s}\times\boldsymbol{B}*{\mathrm{eff}} -\Gamma*{\perp}(T)\Big(\boldsymbol{s}-(\boldsymbol{s}!\cdot!\hat{\boldsymbol{b}})\hat{\boldsymbol{b}}\Big) -\Gamma_{\parallel}(T)\Big[(\boldsymbol{s}!\cdot!\hat{\boldsymbol{b}})-m_{\mathrm{eq}}(T)\Big]\hat{\boldsymbol{b}},.
 $$
 
 ### 2.3 Adapted (Qiskit‑ready)
@@ -152,15 +129,11 @@ $$
 **Jump operators and rates**
 
 $$
-L^{-}=\sqrt{\gamma_{\downarrow}},\sigma^{-},\qquad 
-L^{+}=\sqrt{\gamma_{\uparrow}},\sigma^{+},\qquad 
-L^{z}=\sqrt{\gamma_{\phi}},\sigma^{z},
+L^{-}=\sqrt{\gamma_{\downarrow}},\sigma^{-},\qquad L^{+}=\sqrt{\gamma_{\uparrow}},\sigma^{+},\qquad L^{z}=\sqrt{\gamma_{\phi}},\sigma^{z},
 $$
 
 $$
-\Gamma_{\parallel}=\gamma_{\downarrow}+\gamma_{\uparrow},\qquad 
-\Gamma_{\perp}=\frac{\Gamma_{\parallel}}{2}+\gamma_{\phi},\qquad 
-\frac{\gamma_{\uparrow}}{\gamma_{\downarrow}}=e^{-\beta\hbar\omega}\ \ (\text{KMS}).
+\Gamma_{\parallel}=\gamma_{\downarrow}+\gamma_{\uparrow},\qquad \Gamma_{\perp}=\frac{\Gamma_{\parallel}}{2}+\gamma_{\phi},\qquad \frac{\gamma_{\uparrow}}{\gamma_{\downarrow}}=e^{-\beta\hbar\omega}\ \ (\text{KMS}).
 $$
 
 Implement with `qiskit_dynamics.models.LindbladModel` and a Pauli‑decomposed ($H$).
@@ -170,11 +143,7 @@ Implement with `qiskit_dynamics.models.LindbladModel` and a Pauli‑decomposed (
 **Same drift as 2.2**, but now use **qLLB coefficients**; e.g., for a spin–phonon case:
 
 $$
-\alpha_{\parallel}(T)
-=\lambda,\frac{2T}{3T_C},\frac{2q_s}{\sinh(2q_s)},\qquad 
-\alpha_{\perp}(T)
-=\lambda\left[\frac{\tanh q_s}{q_s}-\frac{2T}{3T_C}\right],\qquad 
-q_s=\frac{\mu H_{\mathrm{MFA}}}{k_{\mathrm B}T},,
+\alpha_{\parallel}(T) =\lambda,\frac{2T}{3T_C},\frac{2q_s}{\sinh(2q_s)},\qquad \alpha_{\perp}(T) =\lambda\left[\frac{\tanh q_s}{q_s}-\frac{2T}{3T_C}\right],\qquad q_s=\frac{\mu H_{\mathrm{MFA}}}{k_{\mathrm B}T},,
 $$
 
 with ($m_{\mathrm{eq}}(T)$) from the Brillouin/Langevin mean‑field appropriate to the material.
@@ -183,10 +152,7 @@ with ($m_{\mathrm{eq}}(T)$) from the Brillouin/Langevin mean‑field appropriate
 Write anisotropic noise consistent with fluctuation–dissipation:
 
 $$
-d\boldsymbol{s}
-=\Big[\text{qLLB drift of 2.2 with qLLB rates}\Big],dt
-+\sqrt{2D_{\perp}(T)},(\boldsymbol{I}-\hat{\boldsymbol{b}}\hat{\boldsymbol{b}}^{!\top}),d\boldsymbol{W}*{\perp}
-+\sqrt{2D*{\parallel}(T)},\hat{\boldsymbol{b}},dW_{\parallel},
+d\boldsymbol{s} =\Big[\text{qLLB drift of 2.2 with qLLB rates}\Big],dt +\sqrt{2D_{\perp}(T)},(\boldsymbol{I}-\hat{\boldsymbol{b}}\hat{\boldsymbol{b}}^{!\top}),d\boldsymbol{W}*{\perp} +\sqrt{2D*{\parallel}(T)} \hat{\boldsymbol{b}},dW_{\parallel},
 $$
 
 with ( $\langle dW_\mu\rangle=0$ ), ( $\langle dW_\mu(t),dW_\nu(t)\rangle=\delta_{\mu\nu},dt$ ), and
@@ -199,10 +165,7 @@ with ( $\langle dW_\mu\rangle=0$ ), ( $\langle dW_\mu(t),dW_\nu(t)\rangle=\delta
 Define a drift–diffusion–collision kinetic equation
 
 $$
-\partial_t f
-+\nabla_{\boldsymbol{m}}!\cdot!\big[\boldsymbol{A}(\boldsymbol{m},T),f\big]
-=\nabla_{\boldsymbol{m}}!\cdot!\big[\boldsymbol{D}(\boldsymbol{m},T),\nabla_{\boldsymbol{m}} f\big]
-+\mathcal{C}[f],
+\partial_t f +\nabla_{\boldsymbol{m}}!\cdot!\big[\boldsymbol{A}(\boldsymbol{m},T),f\big] =\nabla_{\boldsymbol{m}}!\cdot!\big[\boldsymbol{D}(\boldsymbol{m},T),\nabla_{\boldsymbol{m}} f\big] +\mathcal{C}[f],
 $$
 
 where ($\mathcal{C}[f]$) encodes magnon/electron/phonon collision integrals, and ( $\boldsymbol{D}$ ) satisfies fluctuation–dissipation.
@@ -212,10 +175,7 @@ where ($\mathcal{C}[f]$) encodes magnon/electron/phonon collision integrals, and
 Use **LLB drift**:
 
 $$
-\boldsymbol{A}*{\mathrm{LLB}}(\boldsymbol{m},T)
-=\frac{2}{\hbar},\boldsymbol{m}\times\boldsymbol{B}*{\mathrm{eff}}
--\Gamma_{\perp}(T)\Big(\boldsymbol{m}-(\boldsymbol{m}!\cdot!\hat{\boldsymbol{b}})\hat{\boldsymbol{b}}\Big)
--\Gamma_{\parallel}(T)\Big[(\boldsymbol{m}!\cdot!\hat{\boldsymbol{b}})-m_{\mathrm{eq}}(T)\Big]\hat{\boldsymbol{b}},
+\boldsymbol{A}*{\mathrm{LLB}}(\boldsymbol{m},T) =\frac{2}{\hbar},\boldsymbol{m}\times\boldsymbol{B}*{\mathrm{eff}} -\Gamma_{\perp}(T)\Big(\boldsymbol{m}-(\boldsymbol{m}!\cdot! \hat{\boldsymbol{b}})\hat{\boldsymbol{b}}\Big) -\Gamma_{\parallel}(T)\Big[(\boldsymbol{m}!\cdot!\hat{\boldsymbol{b}})-m_{\mathrm{eq}}(T)\Big]\hat{\boldsymbol{b}},
 $$
 
 and let ($\mathcal{C}[f]$) (e.g., Orbach/Raman/direct spin‑lattice processes; magnon–phonon kernels) determine temperature‑ and material‑dependent rates (qLLB‑style).
@@ -225,9 +185,7 @@ and let ($\mathcal{C}[f]$) (e.g., Orbach/Raman/direct spin‑lattice processes; 
 Use **LL transverse drift only**:
 
 $$
-\boldsymbol{A}*{\mathrm{LL}}(\boldsymbol{m},T)
-=\frac{2}{\hbar},\boldsymbol{m}\times\boldsymbol{B}*{\mathrm{eff}}
--\Gamma_{\perp}(T)\Big(\boldsymbol{m}-(\boldsymbol{m}!\cdot!\hat{\boldsymbol{b}})\hat{\boldsymbol{b}}\Big)!,
+\boldsymbol{A}*{\mathrm{LL}}(\boldsymbol{m},T) =\frac{2}{\hbar},\boldsymbol{m}\times\boldsymbol{B}*{\mathrm{eff}} -\Gamma_{\perp}(T)\Big(\boldsymbol{m}-(\boldsymbol{m}!\cdot! \hat{\boldsymbol{b}})\hat{\boldsymbol{b}}\Big)!,
 $$
 
 which lacks a longitudinal channel, so it cannot by itself produce the amplitude collapse ( $m\to 0$ ) at ( $T_C$ ).
@@ -239,11 +197,7 @@ which lacks a longitudinal channel, so it cannot by itself produce the amplitude
 ### 4.1 Quantum‑native GKSL master equation
 
 $$
-\dot{\rho}
-= -\frac{i}{\hbar}[H,\rho]
-
-* \sum_\mu \Big(L_\mu,\rho,L_\mu^\dagger-\tfrac12{L_\mu^\dagger L_\mu,\rho}\Big)
-  \equiv -\frac{i}{\hbar}[H,\rho]+\sum_\mu \mathcal{D}[L_\mu]\rho.
+\dot{\rho} = -\frac{i}{\hbar}[H,\rho] * \sum_\mu \Big(L_\mu,\rho,L_\mu^\dagger-\tfrac12{L_\mu^\dagger L_\mu,\rho}\Big) \equiv -\frac{i}{\hbar}[H,\rho]+\sum_\mu \mathcal{D}[L_\mu]\rho.
 $$
 
 ### 4.2 Detailed balance (KMS) and the ($T_1/T_2$) dictionary
@@ -251,9 +205,7 @@ $$
 For Bohr frequency ($\omega$) between system levels,
 
 $$
-\frac{\gamma_{\uparrow}}{\gamma_{\downarrow}}=e^{-\beta\hbar\omega},\quad
-\Gamma_{\parallel}=\gamma_{\downarrow}+\gamma_{\uparrow},\quad
-\Gamma_{\perp}=\frac{\Gamma_{\parallel}}{2}+\gamma_{\phi}.
+\frac{\gamma_{\uparrow}}{\gamma_{\downarrow}}=e^{-\beta\hbar\omega},\quad \Gamma_{\parallel}=\gamma_{\downarrow}+\gamma_{\uparrow},\quad \Gamma_{\perp}=\frac{\Gamma_{\parallel}}{2}+\gamma_{\phi}.
 $$
 
 ### 4.3 “LL from Lindblad,” and a quantum LLG alternative
@@ -268,17 +220,13 @@ $$
 Nearest‑neighbor Heisenberg + Zeeman + DMI on a qubit graph:
 
 $$
-H = -\frac{\hbar\gamma}{2}\sum_i \boldsymbol{B}*{\mathrm{eff},i}!\cdot!\boldsymbol{\sigma}*i
--\sum*{\langle i,j\rangle}!\big(J_x X_iX_j+J_y Y_iY_j+J_z Z_iZ_j\big)
-+\sum*{\langle i,j\rangle}!\boldsymbol{D}_{ij}!\cdot!(\boldsymbol{\sigma}_i\times\boldsymbol{\sigma}_j) ; (+,\text{penalties/anisotropy}).
+H = -\frac{\hbar\gamma}{2}\sum_i \boldsymbol{B}*{\mathrm{eff},i}!\cdot!\boldsymbol{\sigma}*i -\sum*{\langle i,j\rangle}!\big(J_x X_iX_j+J_y Y_iY_j+J_z Z_iZ_j\big) +\sum*{\langle i,j\rangle}!\boldsymbol{D}_{ij}!\cdot!(\boldsymbol{\sigma}_i\times\boldsymbol{\sigma}_j) ; (+,\text{penalties/anisotropy}).
 $$
 
 **Lindblad channels (per site ($i$))**
 
 $$
-L_i^{-}=\sqrt{\gamma_{\downarrow,i}},\sigma_i^{-},\quad 
-L_i^{+}=\sqrt{\gamma_{\uparrow,i}},\sigma_i^{+},\quad 
-L_i^{z}=\sqrt{\gamma_{\phi,i}},\sigma_i^{z}.
+L_i^{-}=\sqrt{\gamma_{\downarrow,i}},\sigma_i^{-},\quad L_i^{+}=\sqrt{\gamma_{\uparrow,i}},\sigma_i^{+},\quad L_i^{z}=\sqrt{\gamma_{\phi,i}},\sigma_i^{z}.
 $$
 
 These three primitives (Pauli‑decomposed ($H$); ($L_i^\pm,L_i^z$) with KMS rates) reproduce the **Ehrenfest–LLB** drift in §2.2. Adding a kinetic outer loop for ($\mathcal{C}[f]$) turns it into **E‑LLB‑B** (§3.1).
