@@ -100,7 +100,7 @@ H(t)= -\frac{\hbar\gamma}{2},\boldsymbol{B}_{\mathrm{eff}}(t)\cdot\boldsymbol{\s
 $$
 
 **Optional LL‑like transverse damping on simulators**
-Use dephasing Lindblad ($L^z=\sqrt{\gamma_\phi},\sigma^z$) to reproduce a chosen ($T_2$), see §4.
+Use dephasing Lindblad $(L^z=\sqrt{\gamma_\phi},\sigma^z)$ to reproduce a chosen ($T_2$), see §4.
 
 ---
 
