@@ -263,7 +263,7 @@ $$
 
 ---
 
-## 5) “Adapted” Hamiltonian building blocks (for Qiskit encodings)
+## 5) Adapted Hamiltonian building blocks (for Qiskit encodings)
 
 Nearest‑neighbor Heisenberg + Zeeman + DMI on a qubit graph:
 
