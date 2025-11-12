@@ -49,7 +49,7 @@ The following techniques are eligible for quantum-native magnetic modeling on Ne
 
 ---
 
-Relevant equation: 
+## Relevant equations: 
 
 ## Notation
 
