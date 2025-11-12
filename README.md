@@ -89,6 +89,16 @@ Magnetization Dynamics (micromagnetic scale)
 | **Kinetic‑aware Ehrenfest–LLB–Boltzmann (E‑LLB‑B)** | **Yes** ($\Gamma_\parallel$($T$)) | **Yes** with detailed-balance Lindbladian anchoring | **Yes** (full $P(m)$ dynamics enables $\chi$ and Binder) | **Yes** via collision-integral-based rates (qLLB-style) | **Strong** (robust $T_c$ from $m(T)$, $\chi(T)$, Binder $U_4$) | Broad: equilibrium + kinetics + finite-size scaling |
 | **Ehrenfest–LLB (GKSL, expectation-level)** | **Yes** (via Lindblad rates) | **Yes** (KMS/Davies choice) | Moments only; sample trajectories for chi and Binder | Indirect (time-dependent rates) | **Good** if rates are calibrated from microscopic models | Medium–high: efficient but does not evolve full $P(m)$ |
 
+## GPU calculated result for Curie temperature prediction 
+
+<img width="1864" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/23c695e1-4b90-4a50-bbfd-f44ceb211da7" />
+
+
+## Real QPU calculated result (without error mitigation) for Curie temperature prediction 
+
+<img width="1864" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/b3f3bb24-bcda-4a7a-a094-70f9ddf6f22a" />
+
+
 ---
 
 ## Relevant equations: 
