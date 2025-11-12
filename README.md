@@ -276,8 +276,8 @@ $$
 **Lindblad channels (per site ($i$))**
 
 $$
-L_i^{-}=\sqrt{\gamma_{\downarrow,i}},\sigma_i^{-},\quad
-L_i^{+}=\sqrt{\gamma_{\uparrow,i}},\sigma_i^{+},\quad
+L_i^{-}=\sqrt{\gamma_{\downarrow,i}},\sigma_i^{-},\quad 
+L_i^{+}=\sqrt{\gamma_{\uparrow,i}},\sigma_i^{+},\quad 
 L_i^{z}=\sqrt{\gamma_{\phi,i}},\sigma_i^{z}.
 $$
 
