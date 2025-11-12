@@ -56,7 +56,7 @@ Relevant equation:
 * Magnetization (unit): ( $\mathbf{m}=\mathbf{M}/M_s$ ), ( $m=\lVert\mathbf{m}\rVert$ ).
 * Effective field: ( $\mathbf{B}_{\mathrm{eff}}=-\partial \mathcal{F}/\partial \mathbf{m}$ ), with Zeeman, exchange, anisotropy, Dzyaloshinskii–Moriya (DMI), etc.
 * Quantum expectation (site (i)): ( $\mathbf{s}_i(t)=\mathrm{Tr}!\big[\rho(t),\boldsymbol{\sigma}_i\big]$ ).
-* Unit field direction: ( $\hat{\mathbf{b}}=\mathbf{B}*{\mathrm{eff}}/ \lVert \mathbf{B}*{\mathrm{eff}}\rVert$ ).
+* Unit field direction: ( $ \hat{\mathbf{b}}=\mathbf{B}*{\mathrm{eff}}$/ $\lVert \mathbf{B}*{\mathrm{eff}}\rVert$ ).
 * Rates: longitudinal ( $\Gamma_\parallel=1/T_1$ ), transverse ( $\Gamma_\perp=1/T_2$ ); LLB coefficients ( $\alpha_\parallel(T),\alpha_\perp(T)$ ).
 * Equilibrium magnetization: ( $m_{\mathrm{eq}}(T)$ ) (or ( $m_{\mathrm{eq}}(T,D)$ ) if a finite‑size parameter ($D$) is included).
 
@@ -90,7 +90,7 @@ $$
 
 $$
 \big\langle B_{\mathrm{th},\mu}(t),B_{\mathrm{th},\nu}(t')\big\rangle
-=2D,\delta_{\mu\nu},\delta(t-t'),,\qquad
+=2D,\delta_{\mu\nu},\delta(t-t'),,\qquad 
 D \propto \frac{\alpha k_{\mathrm B}T}{\gamma M_s V},.
 $$
 
@@ -152,14 +152,14 @@ $$
 **Jump operators and rates**
 
 $$
-L^{-}=\sqrt{\gamma_{\downarrow}},\sigma^{-},\qquad
-L^{+}=\sqrt{\gamma_{\uparrow}},\sigma^{+},\qquad
+L^{-}=\sqrt{\gamma_{\downarrow}},\sigma^{-},\qquad 
+L^{+}=\sqrt{\gamma_{\uparrow}},\sigma^{+},\qquad 
 L^{z}=\sqrt{\gamma_{\phi}},\sigma^{z},
 $$
 
 $$
-\Gamma_{\parallel}=\gamma_{\downarrow}+\gamma_{\uparrow},\qquad
-\Gamma_{\perp}=\frac{\Gamma_{\parallel}}{2}+\gamma_{\phi},\qquad
+\Gamma_{\parallel}=\gamma_{\downarrow}+\gamma_{\uparrow},\qquad 
+\Gamma_{\perp}=\frac{\Gamma_{\parallel}}{2}+\gamma_{\phi},\qquad 
 \frac{\gamma_{\uparrow}}{\gamma_{\downarrow}}=e^{-\beta\hbar\omega}\ \ (\text{KMS}).
 $$
 
@@ -171,9 +171,9 @@ Implement with `qiskit_dynamics.models.LindbladModel` and a Pauli‑decomposed (
 
 $$
 \alpha_{\parallel}(T)
-=\lambda,\frac{2T}{3T_C},\frac{2q_s}{\sinh(2q_s)},\qquad
+=\lambda,\frac{2T}{3T_C},\frac{2q_s}{\sinh(2q_s)},\qquad 
 \alpha_{\perp}(T)
-=\lambda\left[\frac{\tanh q_s}{q_s}-\frac{2T}{3T_C}\right],\qquad
+=\lambda\left[\frac{\tanh q_s}{q_s}-\frac{2T}{3T_C}\right],\qquad 
 q_s=\frac{\mu H_{\mathrm{MFA}}}{k_{\mathrm B}T},,
 $$
 
@@ -285,7 +285,7 @@ These three primitives (Pauli‑decomposed ($H$); ($L_i^\pm,L_i^z$) with KMS rat
 
 ---
 
-## 6) One‑screen “index” of the requested equations
+## 6) Index of equations
 
 * **LLG/LL (classical):** two forms in §1.1.
 * **sLLG:** thermal‑field form + white‑noise correlator in §1.2.
