@@ -13,7 +13,7 @@ The following techniques are eligible for quantum-native magnetic modeling on No
 - Short-Depth Trotter (NISQ and Near-Term Quantum) 
 ```
 
-One of the best techniques to implement for NISQ systems can be achieved with the following: 
+Three of the best techniques to implement for NISQ systems can be achieved with the following: 
 - QITE implemented with quantum error mitigation on as many qubits as possible.
 - Stochastic Schrödinger‑equation-discretization-implemented near-term quantum computer with error correction or error mitigation.
 - Quantum-metropolis-sampling-implemented near-term quantum computer with error correction or error mitigation.
