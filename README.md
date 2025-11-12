@@ -41,7 +41,7 @@ The following techniques are eligible for quantum-native magnetic modeling on Ne
 
 ---
 
-| Model | Longitudinal relaxation present? | Guaranteed thermal fixed point (Gibbs/Boltzmann)? | Finite-size critical diagnostics (chi, Binder) | Non-equilibrium kinetics (carriers/magnons) | Tc capability | Overall comprehensiveness |
+| Model | Longitudinal relaxation present? | Guaranteed thermal fixed point (Gibbs/Boltzmann)? | Finite-size critical diagnostics ($\chi$, Binder) | Non-equilibrium kinetics (carriers/magnons) | $T_c$ capability | Overall comprehensiveness |
 |---|---|---|---|---|---|---|
 | **Ehrenfest–LL–Boltzmann (E‑LL‑B)** | No (orientation-only) | Not generically near $T_c$ (no $m_{eq}(T)$ channel) | Partial (orientation diffusion only) | Limited | **Weak near $T_c$** unless upgraded to include a longitudinal channel | Narrow; misses magnitude collapse that defines Tc |
 | **Kinetic‑aware Ehrenfest–LLB–Boltzmann (E‑LLB‑B)** | **Yes** ($\Gamma_\parallel(T)$) | **Yes** with detailed-balance Lindbladian anchoring | **Yes** (full $P(m)$ dynamics enables $\chi$ and Binder) | **Yes** via collision-integral-based rates (qLLB-style) | **Strong** (robust $T_c$ from $m(T)$, $\chi(T)$, Binder $U_4$) | Broad: equilibrium + kinetics + finite-size scaling |
