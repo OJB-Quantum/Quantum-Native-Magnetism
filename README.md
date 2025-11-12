@@ -3,7 +3,7 @@ A repository for performing quantum-native scientific quantum computing for atom
 
 ---
 
-The following techniques are at least eligible for quantum-native magnetic modeling on Noisy Intermediate-Scale Quantum (NISQ) computing systems:
+The following techniques are eligible for quantum-native magnetic modeling on Noisy Intermediate-Scale Quantum (NISQ) computing systems:
 
 ```
 - Thermofield-Double State (purified Gibbs state, VQE and VQS-based, NISQ and Near-Term Quantum) 
@@ -13,7 +13,7 @@ The following techniques are at least eligible for quantum-native magnetic model
 - Short-Depth Trotter (NISQ and Near-Term Quantum) 
 ```
 
-One of the best techniques to implement for NISQ systems can be achieved with the following:
+One of the best techniques to implement for NISQ systems can be achieved with the following: 
 - QITE implemented with quantum error mitigation on as many qubits as possible.
 
 
@@ -41,7 +41,7 @@ Other notes:
 
 ---
 
-## Typical approaches for solving magnetism dynamics and other considerations 
+## Typical high performance approaches for solving magnetism dynamics and other considerations 
 
 ```
 Magnetization Dynamics (micromagnetic scale)
