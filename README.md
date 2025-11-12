@@ -55,7 +55,7 @@ Relevant equation:
 
 * Magnetization (unit): ( $\boldsymbol{m}=\boldsymbol{M}/M_s$ ), ( $m=\lvert\boldsymbol{m}\rvert$ ).
 * Effective field: ( $\boldsymbol{B}_{\mathrm{eff}}=-\partial \mathcal{F}/\partial \boldsymbol{m}$ ), with Zeeman, exchange, anisotropy, Dzyaloshinskii–Moriya (DMI), etc.
-* Quantum expectation (site (i)): ( $\boldsymbol{s}_i(t)$ = $\mathrm{Tr}!\big[\rho(t),\boldsymbol{\sigma}_i\big]$ ).
+* Quantum expectation (site (i)): ($\boldsymbol{s}_i(t)$ = $\mathrm{Tr}!\big[\rho(t),\boldsymbol{\sigma}_i\big]$).
 * Unit field direction: ( $\hat{\boldsymbol{b}}$ = $\boldsymbol{B}*{\mathrm{eff}}$ / $\lvert \boldsymbol{B} * {\mathrm{eff}} \rvert$ ).
 * Rates: longitudinal ( $\Gamma_\parallel=1/T_1$ ), transverse ( $\Gamma_\perp=1/T_2$ ); LLB coefficients ( $\alpha_\parallel(T),\alpha_\perp(T)$ ).
 * Equilibrium magnetization: ( $m_{\mathrm{eq}}(T)$ ) (or ( $m_{\mathrm{eq}}(T,D)$ ) if a finite‑size parameter ($D$) is included).
