@@ -340,4 +340,5 @@ The list has been alphabetized by author and duplicates from the original reques
 16. 'Quantum jump method' (2025) *Wikipedia*. Available at: [https://en.wikipedia.org/wiki/Quantum_jump_method](https://en.wikipedia.org/wiki/Quantum_jump_method) (Accessed: 12 November 2025).
 17. Rau, C., Jin, C. and Robert, M. (1988) 'Ferromagnetic order at Tb surfaces above the bulk Curie temperature', *Journal of Applied Physics*, 63(8), pp. 3667–3668. doi: 10.1063/1.340051.
 18. Schlimgen, A.W., Head-Marsden, K., Sager, L.M., Narang, P. and Mazziotti, D.A. (2022) 'Quantum simulation of the Lindblad equation using a unitary decomposition of operators', *Physical Review Research*, 4(2), p. 023216. doi: 10.1103/PhysRevResearch.4.023216.
-19. Wieser, R. (2013) 'Comparison of Quantum and Classical Relaxation in Spin Dynamics', *Physical Review Letters*, 110(14), p. 147201. doi: 10.1103/PhysRevLett.110.147201.
+19. Sergi, A., Lamberto, D., Migliore, A. and Messina, A. (2023) 'Quantum–Classical Hybrid Systems and Ehrenfest's Theorem', Entropy, 25(4), p. 602. doi: 10.3390/e25040602.
+20. Wieser, R. (2013) 'Comparison of Quantum and Classical Relaxation in Spin Dynamics', *Physical Review Letters*, 110(14), p. 147201. doi: 10.1103/PhysRevLett.110.147201.
