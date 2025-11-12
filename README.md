@@ -160,7 +160,7 @@ with ( $\langle dW_\mu\rangle=0$ ), ( $\langle dW_\mu(t),dW_\nu(t)\rangle=\delta
 
 ---
 
-## 3) Kinetic‑aware Ehrenfest models on the Bloch ball ($f(\boldsymbol{m},t)$)
+## 3) Kinetic‑aware Ehrenfest models on the Bloch ball ( $f$($\boldsymbol{m}$,$t$) )
 
 Define a drift–diffusion–collision kinetic equation
 
