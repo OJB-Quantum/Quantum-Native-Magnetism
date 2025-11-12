@@ -22,14 +22,6 @@ Four of the best techniques to implement for NISQ systems can be achieved with t
 - Quantum-metropolis-sampling-implemented near-term quantum computer with quantum error mitigation (QEM) or quantum error correction (QEC).
 ```
 
-* **Near-term:**
-  Ehrenfest–LLB–Boltzmann + QITE + QEM on a **156-qubit Heron-class processor** (for example, `ibm_fez` or its siblings in the Heron r2 family) is likely the most realistic way to build a MuMax3-compatible “full quantum” module that **materially outperforms purely classical LLB–Boltzmann** on selected cluster-level problems. The extra qubits, improved coherence, and built-in error-mitigation workflows in the IBM Runtime stack give more headroom for larger local spin–bath registers and slightly deeper QITE circuits than on earlier ~133-qubit Heron-generation devices, while still staying within NISQ-era limits when combined with zero-noise extrapolation, measurement-error mitigation, and related QEM techniques.
-
-* **Conceptually best:**
-  SSE-, QMS-, and TFD-based methods can, in principle, still deliver **higher physical fidelity and broader applicability**—especially for **strongly correlated spin models, non-Markovian baths, and finite-temperature entanglement and correlation functions**—than any Ehrenfest-style QITE solver. However, even on a 156-qubit Heron-class processor with QEM, they remain **more demanding in qubits, circuit depth, sampling overhead, and variational optimization complexity**, so they are better viewed as high-accuracy cluster-level or equilibrium-only subroutines that complement, rather than replace, an Ehrenfest–LLB–Boltzmann+QITE+QEM “MuMax3-quantum” module in the near term.
-
----
-
 The following techniques are eligible for quantum-native magnetic modeling on Near-Term or Fault-Tolerant quantum computing systems: 
 
 ```
@@ -37,6 +29,13 @@ The following techniques are eligible for quantum-native magnetic modeling on Ne
 - Quantum Metropolis Sampling (preparing thermal distributions, for Near-Term) 
 - Quantum stochastic differential equations (QSDE) (Fault-Tolerant Quantum)
 ```
+
+
+* **Near-term:**
+  Ehrenfest–LLB–Boltzmann + QITE + QEM on a **156-qubit Heron-class processor** (for example, `ibm_fez` or its siblings in the Heron r2 family) is likely the most realistic way to build a MuMax3-compatible “full quantum” module that **materially outperforms purely classical LLB–Boltzmann** on selected cluster-level problems. The extra qubits, improved coherence, and built-in error-mitigation workflows in the IBM Runtime stack give more headroom for larger local spin–bath registers and slightly deeper QITE circuits than on earlier ~133-qubit Heron-generation devices, while still staying within NISQ-era limits when combined with zero-noise extrapolation, measurement-error mitigation, and related QEM techniques.
+
+* **Conceptually best:**
+  SSE-, QMS-, and TFD-based methods can, in principle, still deliver **higher physical fidelity and broader applicability**—especially for **strongly correlated spin models, non-Markovian baths, and finite-temperature entanglement and correlation functions**—than any Ehrenfest-style QITE solver. However, even on a 156-qubit Heron-class processor with QEM, they remain **more demanding in qubits, circuit depth, sampling overhead, and variational optimization complexity**, so they are better viewed as high-accuracy cluster-level or equilibrium-only subroutines that complement, rather than replace, an Ehrenfest–LLB–Boltzmann+QITE+QEM “MuMax3-quantum” module in the near term.
 
 ---
 
