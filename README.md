@@ -32,15 +32,16 @@ The following techniques are eligible for quantum-native magnetic modeling on Ne
 To predict Curie temperature for magnetic materials:
 - Solve the stochastic LLG or the LLB.
 - The stochastic LLG equation can be solved with MuMax3 if done carefully.
-- This can be performed in Python for example, especially on the GPU for larger data.
+- This can be performed in Python on Google Colab for example, especially on the GPU for working with larger data.
 
 Other notes: 
 - Solving the standard LLG equation by itself cannot predict the Curie temperature. 
-- MuMax adapted with Python can be used to solve the stochastic LLG for predicting Curie temperature and other temperature dependent dynamics, but it cannot solve the LLB equation.
+- MuMax adapted with Python (optionally in Google Colab) can be used to solve the stochastic LLG for predicting Curie temperature and other temperature dependent dynamics, but it cannot solve the LLB equation.
+- To solve the LLB equation for magnetic modeling can be performed in Python, and if written carefully, can also mapped to quantum gates in a library such as Qiskit to run on a backend. 
 
 ---
 
-## Typical approaches for solving magnetism dynamics at the micro and nanoscale (non-atomistic) 
+## Typical approaches for solving magnetism dynamics and other considerations 
 
 ```
 Magnetization Dynamics (micromagnetic scale)
