@@ -1,6 +1,8 @@
 # Quantum-Native-Magnetism
 A repository for performing quantum-native scientific quantum computing for atomistic and nanoscale magnetism studies. Created by Onri Jay Benally. 
 
+![Static Badge](https://img.shields.io/badge/GNU_General_Public-License-Green)
+
 ---
 
 The following techniques are eligible for quantum-native magnetic modeling on Noisy Intermediate-Scale Quantum (NISQ) computing systems:
