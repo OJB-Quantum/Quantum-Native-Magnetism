@@ -405,10 +405,6 @@ These three primitives (Pauli‑decomposed ($H$); ($L_i^\pm,L_i^z$) with KMS rat
 
 References
 
-Here is the reference list in numbered Harvard format, compatible with GitHub markdown.
-
-The list has been alphabetized by author and duplicates from the original request have been consolidated. One entry (`https://arxiv.org/abs/2001.02403`) could not be verified and has been omitted.
-
 1.  Atxitia, U., Hinzke, D. and Nowak, U. (2017) 'Fundamentals and applications of the Landau–Lifshitz–Bloch equation', *Journal of Physics D: Applied Physics*, 50(3), p. 033003. doi: 10.1088/1361-6463/50/3/033003.
 2.  Castin, Y., Dalibard, J. and Mølmer, K. (2008) *A Wave Function approach to dissipative processes*. arXiv:0805.4002. doi: 10.48550/arXiv.0805.4002.
 3.  Chen, C-F., Kastoryano, M., Brandão, F.G.S.L. and Gilyén, A. (2025) 'Efficient quantum thermal simulation', *Nature*, 646(8085), pp. 561–566. doi: 10.1038/s41586-025-09583-x.
