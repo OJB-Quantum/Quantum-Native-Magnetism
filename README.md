@@ -310,17 +310,17 @@ Add appropriate Lindblad operators ( $L^\pm,L^z$ ) (see §4) so that the Ehrenfe
 
 ### 2.1 Classical original LLB (single-sublattice macrospin)
 
-$$ \frac{d\boldsymbol{m}}{dt} = -\gamma,\boldsymbol{m}\times\boldsymbol{B}*{\mathrm{eff}} + \frac{\gamma,\alpha*{\parallel}(T)}{m^2},\big(\boldsymbol{m}!\cdot!\boldsymbol{B}*{\mathrm{eff}}\big),\boldsymbol{m} - \frac{\gamma,\alpha*{\perp}(T)}{m^2},\boldsymbol{m}\times\big(\boldsymbol{m}\times\boldsymbol{B}_{\mathrm{eff}}\big). $$
+$$ \frac{d\boldsymbol{m}}{dt} = -\gamma,\boldsymbol{m}\times\boldsymbol{B}* {\mathrm{eff}} + \frac{\gamma,\alpha*{\parallel}(T)}{m^2},\big(\boldsymbol{m}!\cdot!\boldsymbol{B}* {\mathrm{eff}}\big),\boldsymbol{m} - \frac{\gamma,\alpha*{\perp}(T)}{m^2},\boldsymbol{m}\times\big(\boldsymbol{m}\times\boldsymbol{B}_{\mathrm{eff}}\big). $$
 
 A standard longitudinal field component inside ( $\boldsymbol{B}_{\mathrm{eff}}$ ) is
 
-$$ \boldsymbol{B}*{\parallel} = \frac{1}{\chi*{\parallel}(T)} \left(1-\frac{m^2}{m_{\mathrm{eq}}^2(T)}\right)\boldsymbol{m}, \qquad \lvert \boldsymbol{m}\rvert \to m_{\mathrm{eq}}(T). $$
+$$ \boldsymbol{B}* {\parallel} = \frac{1}{\chi*{\parallel}(T)} \left(1-\frac{m^2}{m_{\mathrm{eq}}^2(T)}\right)\boldsymbol{m}, \qquad \lvert \boldsymbol{m}\rvert \to m_{\mathrm{eq}}(T). $$
 
 ### 2.2 Dynamic LLB (time-dependent fields and parameters)
 
 Allow explicit time dependence (e.g. ultrafast laser pumping, evolving temperature ( $T(t)$ )):
 
-$$ \frac{d\boldsymbol{m}}{dt} = -\gamma,\boldsymbol{m}\times\boldsymbol{B}*{\mathrm{eff}}(\boldsymbol{m},t) + \frac{\gamma,\alpha*{\parallel}(T(t))}{m^2},\big(\boldsymbol{m}!\cdot!\boldsymbol{B}*{\mathrm{eff}}(\boldsymbol{m},t)\big),\boldsymbol{m} - \frac{\gamma,\alpha*{\perp}(T(t))}{m^2},\boldsymbol{m}\times\big(\boldsymbol{m}\times\boldsymbol{B}_{\mathrm{eff}}(\boldsymbol{m},t)\big). $$
+$$ \frac{d\boldsymbol{m}}{dt} = -\gamma,\boldsymbol{m}\times\boldsymbol{B}* {\mathrm{eff}}(\boldsymbol{m},t) + \frac{\gamma,\alpha*{\parallel}(T(t))}{m^2},\big(\boldsymbol{m}!\cdot!\boldsymbol{B}* {\mathrm{eff}}(\boldsymbol{m},t)\big),\boldsymbol{m} - \frac{\gamma,\alpha*{\perp}(T(t))}{m^2},\boldsymbol{m}\times\big(\boldsymbol{m}\times\boldsymbol{B}_{\mathrm{eff}}(\boldsymbol{m},t)\big). $$
 
 This is the dynamic Landau–Lifshitz–Bloch (d-LLB) equation.
 
@@ -340,9 +340,9 @@ This is the dynamic Landau–Lifshitz–Bloch–Slonczewski (d-LLBS) equation.
 
 Replace ( $\boldsymbol{m}$ ) by quantum spin expectation ( $\boldsymbol{s}$ ) and write the LLB in Ehrenfest form:
 
-$$ \frac{d\boldsymbol{s}}{dt} = \frac{2}{\hbar},\boldsymbol{s}\times\boldsymbol{B}*{\mathrm{eff}} - \Gamma*{\perp}(T)\Big(\boldsymbol{s}-(\boldsymbol{s}!\cdot!\hat{\boldsymbol{b}}),\hat{\boldsymbol{b}}\Big) - \Gamma_{\parallel}(T)\Big[(\boldsymbol{s}!\cdot!\hat{\boldsymbol{b}})-m_{\mathrm{eq}}(T)\Big]\hat{\boldsymbol{b}}. $$
+$$ \frac{d\boldsymbol{s}}{dt} = \frac{2}{\hbar},\boldsymbol{s}\times\boldsymbol{B}*{\mathrm{eff}} - \Gamma* {\perp}(T)\Big(\boldsymbol{s}-(\boldsymbol{s}!\cdot!\hat{\boldsymbol{b}}),\hat{\boldsymbol{b}}\Big) - \Gamma_{\parallel}(T)\Big[(\boldsymbol{s}!\cdot!\hat{\boldsymbol{b}})-m_{\mathrm{eq}}(T)\Big]\hat{\boldsymbol{b}}. $$
 
-Here ( $\hat{\boldsymbol{b}}=\boldsymbol{B}* {\mathrm{eff}}/\lvert\boldsymbol{B}*{\mathrm{eff}}\rvert$ ) and classical LLB rates are related to ( $\alpha_{\parallel,\perp}(T)$ ).
+Here ( $\hat{\boldsymbol{b}}=\boldsymbol{B}* {\mathrm{eff}}/\lvert\boldsymbol{B}* {\mathrm{eff}}\rvert$ ) and classical LLB rates are related to ( $\alpha_{\parallel,\perp}(T)$ ).
 
 ### 2.5 Quantum Landau–Lifshitz–Bloch (qLLB) — density-matrix form
 
@@ -358,7 +358,7 @@ $$ \alpha_{\parallel}(T) = \lambda,\frac{2T}{3T_C},\frac{2q_s}{\sinh(2q_s)}, \qq
 
 From qLLB, the Ehrenfest equation for ( $\boldsymbol{s}$ ) yields Ehrenfest quantum LLB:
 
-$$ \frac{d\boldsymbol{s}}{dt} = \frac{2}{\hbar},\boldsymbol{s}\times\boldsymbol{B}*{\mathrm{eff}} - \Gamma*{\perp}^{\mathrm{q}}(T)\Big(\boldsymbol{s}-(\boldsymbol{s}!\cdot!\hat{\boldsymbol{b}}),\hat{\boldsymbol{b}}\Big) - \Gamma_{\parallel}^{\mathrm{q}}(T)\Big[(\boldsymbol{s}!\cdot!\hat{\boldsymbol{b}})-m_{\mathrm{eq}}^{\mathrm{q}}(T)\Big]\hat{\boldsymbol{b}}. $$
+$$ \frac{d\boldsymbol{s}}{dt} = \frac{2}{\hbar},\boldsymbol{s}\times\boldsymbol{B}* {\mathrm{eff}} - \Gamma*{\perp}^{\mathrm{q}}(T)\Big(\boldsymbol{s}-(\boldsymbol{s}!\cdot!\hat{\boldsymbol{b}}),\hat{\boldsymbol{b}}\Big) - \Gamma_{\parallel}^{\mathrm{q}}(T)\Big[(\boldsymbol{s}!\cdot!\hat{\boldsymbol{b}})-m_{\mathrm{eq}}^{\mathrm{q}}(T)\Big]\hat{\boldsymbol{b}}. $$
 
 Here ( $\Gamma_{\parallel,\perp}^{\mathrm{q}}(T)$ ) and ( $m_{\mathrm{eq}}^{\mathrm{q}}(T)$ ) are obtained from qLLB.
 
@@ -398,7 +398,7 @@ where ( $\mathcal{C}[f]$ ) encodes magnon/electron/phonon collisions and ( $\bol
 
 Use LLB drift:
 
-$$ \boldsymbol{A}*{\mathrm{LLB}}(\boldsymbol{m},T,t) = \frac{2}{\hbar},\boldsymbol{m}\times\boldsymbol{B}*{\mathrm{eff}} - \Gamma_{\perp}(T)\Big(\boldsymbol{m}-(\boldsymbol{m}!\cdot!\hat{\boldsymbol{b}}),\hat{\boldsymbol{b}}\Big) - \Gamma_{\parallel}(T)\Big[(\boldsymbol{m}!\cdot!\hat{\boldsymbol{b}})-m_{\mathrm{eq}}(T)\Big]\hat{\boldsymbol{b}}. $$
+$$ \boldsymbol{A}* {\mathrm{LLB}}(\boldsymbol{m},T,t) = \frac{2}{\hbar},\boldsymbol{m}\times\boldsymbol{B}*{\mathrm{eff}} - \Gamma_{\perp}(T)\Big(\boldsymbol{m}-(\boldsymbol{m}!\cdot!\hat{\boldsymbol{b}}),\hat{\boldsymbol{b}}\Big) - \Gamma_{\parallel}(T)\Big[(\boldsymbol{m}!\cdot!\hat{\boldsymbol{b}})-m_{\mathrm{eq}}(T)\Big]\hat{\boldsymbol{b}}. $$
 
 With ( $\Gamma_{\parallel,\perp}$ ) and ( $m_{\mathrm{eq}}(T)$ ) obtained from classical LLB, this defines the Ehrenfest–LLB–Boltzmann (E-LLB-B) equation.
 
@@ -406,7 +406,7 @@ With ( $\Gamma_{\parallel,\perp}$ ) and ( $m_{\mathrm{eq}}(T)$ ) obtained from c
 
 Replace classical LLB rates by qLLB rates (§2.5):
 
-$$ \boldsymbol{A}*{\mathrm{qLLB}}(\boldsymbol{m},T,t) = \frac{2}{\hbar},\boldsymbol{m}\times\boldsymbol{B}*{\mathrm{eff}} - \Gamma_{\perp}^{\mathrm{q}}(T)\Big(\boldsymbol{m}-(\boldsymbol{m}!\cdot!\hat{\boldsymbol{b}}),\hat{\boldsymbol{b}}\Big) - \Gamma_{\parallel}^{\mathrm{q}}(T)\Big[(\boldsymbol{m}!\cdot!\hat{\boldsymbol{b}})-m_{\mathrm{eq}}^{\mathrm{q}}(T)\Big]\hat{\boldsymbol{b}}. $$
+$$ \boldsymbol{A}* {\mathrm{qLLB}}(\boldsymbol{m},T,t) = \frac{2}{\hbar},\boldsymbol{m}\times\boldsymbol{B}*{\mathrm{eff}} - \Gamma_{\perp}^{\mathrm{q}}(T)\Big(\boldsymbol{m}-(\boldsymbol{m}!\cdot!\hat{\boldsymbol{b}}),\hat{\boldsymbol{b}}\Big) - \Gamma_{\parallel}^{\mathrm{q}}(T)\Big[(\boldsymbol{m}!\cdot!\hat{\boldsymbol{b}})-m_{\mathrm{eq}}^{\mathrm{q}}(T)\Big]\hat{\boldsymbol{b}}. $$
 
 Then Ehrenfest quantum LLB–Boltzmann (E-qLLB-B) is the kinetic equation with ( $\boldsymbol{A}_{\mathrm{qLLB}}$ ).
 
@@ -414,7 +414,7 @@ Then Ehrenfest quantum LLB–Boltzmann (E-qLLB-B) is the kinetic equation with (
 
 Use LL drift only:
 
-$$ \boldsymbol{A}*{\mathrm{LL}}(\boldsymbol{m},T,t) = \frac{2}{\hbar},\boldsymbol{m}\times\boldsymbol{B}*{\mathrm{eff}} - \Gamma_{\perp}(T)\Big(\boldsymbol{m}-(\boldsymbol{m}!\cdot!\hat{\boldsymbol{b}}),\hat{\boldsymbol{b}}\Big). $$
+$$ \boldsymbol{A}* {\mathrm{LL}}(\boldsymbol{m},T,t) = \frac{2}{\hbar},\boldsymbol{m}\times\boldsymbol{B}* {\mathrm{eff}} - \Gamma_{\perp}(T)\Big(\boldsymbol{m}-(\boldsymbol{m}!\cdot!\hat{\boldsymbol{b}}),\hat{\boldsymbol{b}}\Big). $$
 
 This lacks a longitudinal channel, so it cannot alone produce the amplitude collapse ( $m\to 0$ ) at ( $T_C$ ). With quantum-derived ( $\Gamma_{\perp}^{\mathrm{q}}(T)$ ) this becomes Ehrenfest quantum LL–Boltzmann (E-qLL-B).
 
@@ -456,7 +456,7 @@ gives the thermal ( $T_1/T_2$ ) dictionary underlying LLB/qLLB.
 
 All the GKSL-level equations in §§1–3 can be mapped to quantum-circuit-compatible algorithms:
 
-1. **QITE / VQS for Lindblad**
+1. **QITE/ VQS for Lindblad**
    Treat GKSL as a first-order linear differential equation and apply Variational Quantum Simulation (VQS) or Quantum Imaginary-Time Evolution (QITE) extensions to open systems.
    *Implementation:*
 
@@ -468,7 +468,7 @@ All the GKSL-level equations in §§1–3 can be mapped to quantum-circuit-compa
 
    $$ d\lvert\psi(t)\rangle = -\frac{i}{\hbar}\hat{H}* {\mathrm{eff}}(t)\lvert\psi(t)\rangle,dt + \sum*\mu \Big(\frac{L_\mu}{\sqrt{p_\mu(t)}}-\mathbb{I}\Big)\lvert\psi(t)\rangle,dN_\mu(t), $$
 
-   where ( $\hat{H} *{\mathrm{eff}}$ ) includes non-Hermitian contributions, and ( $dN*\mu(t)$ ) are Poisson increments. Variational SSE implementations on NISQ devices have been developed for time-local master equations and non-Markovian baths.
+   where ( $\hat{H} * {\mathrm{eff}}$ ) includes non-Hermitian contributions, and ( $dN*\mu(t)$ ) are Poisson increments. Variational SSE implementations on NISQ devices have been developed for time-local master equations and non-Markovian baths.
 
 3. **Thermofield-Double (TFD)-based VQAs**
    For finite-temperature qLLB/q-dLLB/q-dLLBS, one can represent thermal states as TFD states on a doubled Hilbert space and optimize a variational circuit to approximate ( $\lvert\mathrm{TFD}(\beta)\rangle$ ), then evolve unitarily.
@@ -491,7 +491,7 @@ In all cases, the Ehrenfest magnetization and kinetic equations in §§1–3 are
 
 Nearest-neighbor Heisenberg + Zeeman + DMI on a qubit graph:
 
-$$ \hat{H} = -\frac{\hbar\gamma}{2}\sum_i \boldsymbol{B}*{\mathrm{eff},i}!\cdot!\boldsymbol{\sigma}*i - \sum*{\langle i,j\rangle}\big(J_x X_iX_j+J_y Y_iY_j+J_z Z_iZ_j\big) + \sum*{\langle i,j\rangle}\boldsymbol{D}_{ij}!\cdot!\big(\boldsymbol{\sigma}*i\times\boldsymbol{\sigma}*j\big) + \hat{H}*{\mathrm{ani}} + \hat{H}*{\mathrm{STT}}. $$
+$$ \hat{H} = -\frac{\hbar\gamma}{2}\sum_i \boldsymbol{B}* {\mathrm{eff},i}!\cdot!\boldsymbol{\sigma}*i - \sum* {\langle i,j\rangle}\big(J_x X_iX_j+J_y Y_iY_j+J_z Z_iZ_j\big) + \sum* {\langle i,j\rangle}\boldsymbol{D}_{ij}!\cdot!\big(\boldsymbol{\sigma}* i\times\boldsymbol{\sigma}* j\big) + \hat{H}* {\mathrm{ani}} + \hat{H}* {\mathrm{STT}}. $$
 
 **Lindblad channels (per site (i))**
 
@@ -501,7 +501,7 @@ With KMS-consistent rates as in §4.2, these primitives reproduce Ehrenfest LL/L
 
 ---
 
-## 6) Index of equations (chronological / conceptual)
+## 6) Index of equations (chronological/ conceptual)
 
 * Canonical Ehrenfest theorem: §0.1.
 
