@@ -284,7 +284,7 @@ $$
 $$
 \big\langle B_{\mathrm{th},\mu}(t),B_{\mathrm{th},\nu}(t')\big\rangle
 = 2D,\delta_{\mu\nu},\delta(t-t'),
-\qquad 
+\qquad
 D\propto\frac{\alpha k_{\mathrm B}T}{\gamma M_s V}.
 $$
 
@@ -467,10 +467,10 @@ with spin-flip and dephasing jump operators (e.g., ( $L^\pm\propto\sigma^\pm$ ),
 $$
 \alpha_{\parallel}(T)
 = \lambda,\frac{2T}{3T_C},\frac{2q_s}{\sinh(2q_s)},
-\qquad 
+\qquad
 \alpha_{\perp}(T)
 = \lambda\left[\frac{\tanh q_s}{q_s}-\frac{2T}{3T_C}\right],
-\qquad 
+\qquad
 q_s=\frac{\mu H_{\mathrm{MFA}}}{k_{\mathrm B}T}.
 $$
 
@@ -618,9 +618,9 @@ For a two-level splitting ( $\hbar\omega$ ) and spin-flip Lindblad operators:
 
 $$
 L^{-} = \sqrt{\gamma_{\downarrow}},\sigma^{-},
-\quad 
+\quad
 L^{+} = \sqrt{\gamma_{\uparrow}},\sigma^{+},
-\quad 
+\quad
 L^{z} = \sqrt{\gamma_{\phi}},\sigma^{z},
 $$
 
@@ -695,9 +695,9 @@ $$
 
 $$
 L_i^{-}=\sqrt{\gamma_{\downarrow,i}},\sigma_i^{-},
-\quad 
+\quad
 L_i^{+}=\sqrt{\gamma_{\uparrow,i}},\sigma_i^{+},
-\quad 
+\quad
 L_i^{z}=\sqrt{\gamma_{\phi,i}},\sigma_i^{z},
 $$
 
