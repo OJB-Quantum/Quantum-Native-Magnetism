@@ -507,7 +507,7 @@ With KMS-consistent rates as in §4.2, these primitives reproduce Ehrenfest LL/L
 
 * General Ehrenfest theorem: §0.2.
 
-* LLG / LL (classical): §1.1.
+* LLG/ LL (classical): §1.1.
 
 * sLLG: thermal-field form + white-noise correlator, §1.2.
 
@@ -545,7 +545,7 @@ With KMS-consistent rates as in §4.2, these primitives reproduce Ehrenfest LL/L
 
 * KMS + ( $T_1/T_2$ ) dictionary: §4.2.
 
-* Quantum-native QITE / SSE / TFD mappings (Qiskit-compatible): §4.3.
+* Quantum-native QITE/ SSE/ TFD mappings (Qiskit-compatible): §4.3.
 
 * Adapted Hamiltonian + dissipators (Qiskit Pauli form): §5.
 
