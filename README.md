@@ -231,7 +231,7 @@ $$
 = \langle \hat{F}\rangle.
 $$
 
-These are the “canonical” Ehrenfest relations: the expectation values obey Newton-like equations whenever the wave packet remains sufficiently localized. ([Physical Review Links][1])
+These are the canonical Ehrenfest relations: the expectation values obey Newton-like equations whenever the wave packet remains sufficiently localized.
 
 ### 0.2 General Ehrenfest theorem (any operator ( $\hat{A}$ ))
 
@@ -244,7 +244,7 @@ $$
 * \frac{1}{i\hbar},\big\langle[\hat{A},\hat{H}]\big\rangle.
   $$
 
-This is the **general Ehrenfest theorem**, valid in Schrödinger or Heisenberg pictures. Choosing appropriate ( $\hat{A}$ ) (e.g., spin components, magnetization operators) yields all the Ehrenfest magnetization equations below. ([Physical Review Links][1])
+This is the general Ehrenfest theorem, valid in Schrödinger or Heisenberg pictures. Choosing appropriate ( $\hat{A}$ ) (e.g., spin components, magnetization operators) yields all the Ehrenfest magnetization equations below.
 
 ---
 
@@ -288,7 +288,7 @@ $$
 D\propto\frac{\alpha k_{\mathrm B}T}{\gamma M_s V}.
 $$
 
-This is the **stochastic LLG** underlying MuMax3-style micromagnetics.
+This is the stochastic LLG underlying MuMax3-style micromagnetics.
 
 ### 1.3 Ehrenfest quantum Landau–Lifshitz (E-qLL)
 
@@ -313,13 +313,11 @@ $$
 \hat{\boldsymbol{b}} = \frac{\boldsymbol{B}*{\mathrm{eff}}}{\lvert\boldsymbol{B}*{\mathrm{eff}}\rvert},
 $$
 
-which is the **Ehrenfest quantum Landau–Lifshitz (E-qLL)** equation (transverse damping only).
+which is the Ehrenfest quantum Landau–Lifshitz (E-qLL) equation (transverse damping only).
 
 ### 1.4 Ehrenfest quantum Landau–Lifshitz–Gilbert (E-qLLG)
 
-A **quantum analog of LLG (q-LLG)** can be formulated for the density operator ( $\rho$ ) of a spin system (Liu *et al.*). ([Physical Review Links][2])
-
-At the level of ( $\boldsymbol{s}(t)=\mathrm{Tr}[\rho(t),\boldsymbol{\sigma}/2]$ ), one obtains an Ehrenfest-type qLLG:
+A quantum analog of LLG (q-LLG) can be formulated for the density operator ( $\rho$ ) of a spin system. At the level of ( $\boldsymbol{s}(t)=\mathrm{Tr}[\rho(t),\boldsymbol{\sigma}/2]$ ), one obtains an Ehrenfest-type qLLG:
 
 $$
 \frac{d\boldsymbol{s}}{dt}
@@ -338,20 +336,20 @@ $$
   \boldsymbol{s}\times\big(\boldsymbol{s}\times\boldsymbol{B}_{\mathrm{eff}}\big),
   $$
 
-with a **quantum-derived damping** coefficient ( $\alpha_{\mathrm{q}}$ ) constrained by the underlying q-LLG master equation. ([Physical Review Links][2])
+with a quantum-derived damping coefficient ( $\alpha_{\mathrm{q}}$ ) constrained by the underlying q-LLG master equation.
 
-This is the **Ehrenfest quantum Landau–Lifshitz–Gilbert (E-qLLG)** equation.
+This is the Ehrenfest quantum Landau–Lifshitz–Gilbert (E-qLLG) equation.
 
 ### 1.5 Ehrenfest quantum Landau–Lifshitz–Gilbert–Slonczewski (E-qLLGS)
 
-Include a **Slonczewski spin-transfer torque (STT)** term with polarization ( $\hat{\boldsymbol{p}}$ ):
+Include a Slonczewski spin-transfer torque (STT) term with polarization ( $\hat{\boldsymbol{p}}$ ):
 
 $$
 \left.\frac{d\boldsymbol{s}}{dt}\right|_{\mathrm{STT}}
 = -\gamma a_J,\boldsymbol{s}\times\big(\boldsymbol{s}\times\hat{\boldsymbol{p}}\big),
 $$
 
-so that the full Ehrenfest **qLLG–Slonczewski (E-qLLGS)** equation becomes
+so that the full Ehrenfest qLLG–Slonczewski (E-qLLGS) equation becomes
 
 $$
 \frac{d\boldsymbol{s}}{dt}
@@ -375,7 +373,7 @@ $$
 
 **Optional LL/LLG-type damping on simulators**
 
-Add appropriate Lindblad operators ( $L^\pm,L^z$ ) (see §4) so that the Ehrenfest equations reproduce E-qLL or E-qLLG. This is directly compatible with a Lindblad-based simulator or a QITE / VQS approximation to Lindblad dynamics in Qiskit ≥ 2.2. ([ADS][3])
+Add appropriate Lindblad operators ( $L^\pm,L^z$ ) (see §4) so that the Ehrenfest equations reproduce E-qLL or E-qLLG. This is directly compatible with a Lindblad-based simulator or a QITE / VQS approximation to Lindblad dynamics in Qiskit ≥ 2.2.
 
 ---
 
@@ -417,7 +415,7 @@ $$
   \boldsymbol{m}\times\big(\boldsymbol{m}\times\boldsymbol{B}_{\mathrm{eff}}(\boldsymbol{m},t)\big).
   $$
 
-This is the **dynamic Landau–Lifshitz–Bloch (d-LLB)** equation.
+This is the dynamic Landau–Lifshitz–Bloch (d-LLB) equation.
 
 ### 2.3 Dynamic LLB–Slonczewski (d-LLBS)
 
@@ -437,7 +435,7 @@ $$
 * \gamma a_J(t),\boldsymbol{m}\times\big(\boldsymbol{m}\times\hat{\boldsymbol{p}}\big).
   $$
 
-This is the **dynamic Landau–Lifshitz–Bloch–Slonczewski (d-LLBS)** equation.
+This is the dynamic Landau–Lifshitz–Bloch–Slonczewski (d-LLBS) equation.
 
 ### 2.4 Ehrenfest classical LLB (deterministic mean)
 
@@ -455,8 +453,6 @@ with ( $\hat{\boldsymbol{b}}=\boldsymbol{B}*{\mathrm{eff}}/\lvert\boldsymbol{B}*
 
 ### 2.5 Quantum Landau–Lifshitz–Bloch (qLLB) — density-matrix form
 
-Nieves *et al.* derive a **quantum LLB (qLLB)** equation from a spin–phonon / spin–electron density-matrix treatment. ([arXiv][4])
-
 At the master-equation level:
 
 $$
@@ -466,7 +462,7 @@ $$
 * \sum_{\mu}\mathcal{D}[L_\mu]\rho,
   $$
 
-with spin-flip and dephasing jump operators (e.g., ( $L^\pm\propto\sigma^\pm$ ), ( $L^z\propto\sigma^z$ )) chosen so that the Ehrenfest equation for ( $\boldsymbol{s}(t)=\mathrm{Tr}[\rho,\boldsymbol{\sigma}/2]$ ) reproduces an LLB-type structure, but with **quantum-corrected rates**:
+with spin-flip and dephasing jump operators (e.g., ( $L^\pm\propto\sigma^\pm$ ), ( $L^z\propto\sigma^z$ )) chosen so that the Ehrenfest equation for ( $\boldsymbol{s}(t)=\mathrm{Tr}[\rho,\boldsymbol{\sigma}/2]$ ) reproduces an LLB-type structure, but with quantum-corrected rates:
 
 $$
 \alpha_{\parallel}(T)
@@ -480,7 +476,7 @@ $$
 
 ### 2.6 Ehrenfest quantum LLB (E-qLLB)
 
-From qLLB, the Ehrenfest equation for ( $\boldsymbol{s}$ ) yields **Ehrenfest quantum LLB**:
+From qLLB, the Ehrenfest equation for ( $\boldsymbol{s}$ ) yields Ehrenfest quantum LLB:
 
 $$
 \frac{d\boldsymbol{s}}{dt}
@@ -506,7 +502,7 @@ $$
   = \text{E-qLLB drift with }T\to T(t),;\boldsymbol{B}*{\mathrm{eff}}\to\boldsymbol{B}*{\mathrm{eff}}(t),
   $$
 
-giving **quantum dynamic LLB (q-dLLB)** for ( $\rho$ ) and **Ehrenfest quantum dynamic LLB (E-q-dLLB)** for ( $\boldsymbol{s}$ ).
+giving quantum dynamic LLB (q-dLLB) for ( $\rho$ ) and Ehrenfest quantum dynamic LLB (E-q-dLLB) for ( $\boldsymbol{s}$ ).
 
 ### 2.8 Quantum dynamic LLB–Slonczewski (q-dLLBS) and E-q-dLLBS
 
@@ -519,7 +515,7 @@ $$
 * \sum_{\mu}\mathcal{D}[L_\mu(t)]\rho(t),
   $$
 
-with ( $\hat{H}_{\mathrm{STT}}\propto a_J(t),\hat{\boldsymbol{S}}\cdot(\hat{\boldsymbol{S}}\times\hat{\boldsymbol{p}})$ ) in an appropriate spin representation. At the Ehrenfest level this yields **Ehrenfest quantum dynamic LLB–Slonczewski (E-q-dLLBS)**:
+with ( $\hat{H}_{\mathrm{STT}}\propto a_J(t),\hat{\boldsymbol{S}}\cdot(\hat{\boldsymbol{S}}\times\hat{\boldsymbol{p}})$ ) in an appropriate spin representation. At the Ehrenfest level this yields Ehrenfest quantum dynamic LLB–Slonczewski (E-q-dLLBS):
 
 $$
 \frac{d\boldsymbol{s}}{dt}
@@ -546,7 +542,7 @@ where ( $\mathcal{C}[f]$ ) encodes magnon/electron/phonon collisions and ( $\bol
 
 ### 3.1 Ehrenfest–LLB–Boltzmann (E-LLB-B)
 
-Use **LLB drift**:
+Use LLB drift:
 
 $$
 \boldsymbol{A}*{\mathrm{LLB}}(\boldsymbol{m},T,t)
@@ -556,11 +552,11 @@ $$
 * \Gamma_{\parallel}(T)\Big[(\boldsymbol{m}!\cdot!\hat{\boldsymbol{b}})-m_{\mathrm{eq}}(T)\Big]\hat{\boldsymbol{b}}.
   $$
 
-With ( $\Gamma_{\parallel,\perp}$ ) and ( $m_{\mathrm{eq}}(T)$ ) obtained from **classical** LLB, this defines the **Ehrenfest–LLB–Boltzmann (E-LLB-B)** equation.
+With ( $\Gamma_{\parallel,\perp}$ ) and ( $m_{\mathrm{eq}}(T)$ ) obtained from classical LLB, this defines the Ehrenfest–LLB–Boltzmann (E-LLB-B) equation.
 
 ### 3.2 Ehrenfest–quantum-LLB–Boltzmann (E-qLLB-B)
 
-Replace classical LLB rates by **qLLB rates** (§2.5):
+Replace classical LLB rates by qLLB rates (§2.5):
 
 $$
 \boldsymbol{A}*{\mathrm{qLLB}}(\boldsymbol{m},T,t)
@@ -570,11 +566,11 @@ $$
 * \Gamma_{\parallel}^{\mathrm{q}}(T)\Big[(\boldsymbol{m}!\cdot!\hat{\boldsymbol{b}})-m_{\mathrm{eq}}^{\mathrm{q}}(T)\Big]\hat{\boldsymbol{b}}.
   $$
 
-Then **Ehrenfest quantum LLB–Boltzmann (E-qLLB-B)** is the kinetic equation with ( $\boldsymbol{A}_{\mathrm{qLLB}}$ ).
+Then Ehrenfest quantum LLB–Boltzmann (E-qLLB-B) is the kinetic equation with ( $\boldsymbol{A}_{\mathrm{qLLB}}$ ).
 
 ### 3.3 Ehrenfest–LL–Boltzmann (E-LL-B) and E-qLL-B
 
-Use **LL drift only**:
+Use LL drift only:
 
 $$
 \boldsymbol{A}*{\mathrm{LL}}(\boldsymbol{m},T,t)
@@ -583,18 +579,18 @@ $$
 * \Gamma_{\perp}(T)\Big(\boldsymbol{m}-(\boldsymbol{m}!\cdot!\hat{\boldsymbol{b}}),\hat{\boldsymbol{b}}\Big),
   $$
 
-which lacks a longitudinal channel, so it cannot alone produce the amplitude collapse ( $m\to 0$ ) at ( $T_C$ ). With quantum-derived ( $\Gamma_{\perp}^{\mathrm{q}}(T)$ ) this becomes **Ehrenfest quantum LL–Boltzmann (E-qLL-B)**.
+which lacks a longitudinal channel, so it cannot alone produce the amplitude collapse ( $m\to 0$ ) at ( $T_C$ ). With quantum-derived ( $\Gamma_{\perp}^{\mathrm{q}}(T)$ ) this becomes Ehrenfest quantum LL–Boltzmann (E-qLL-B).
 
 ### 3.4 Dynamic and Slonczewski variants (d-E-LLB-B, d-E-qLLB-B-S)
 
-For the **dynamic** and **Slonczewski** cases:
+For the dynamic and Slonczewski cases:
 
-* **Dynamic Ehrenfest–LLB–Boltzmann (d-E-LLB-B)**: use ( $\boldsymbol{A}_{\mathrm{LLB}}(\boldsymbol{m},T(t),t)$ ).
-* **Dynamic Ehrenfest–quantum-LLB–Boltzmann (d-E-qLLB-B)**: use ( $\boldsymbol{A}_{\mathrm{qLLB}}(\boldsymbol{m},T(t),t)$ ).
-* **Dynamic Ehrenfest–quantum-LLB–Boltzmann–Slonczewski (d-E-qLLB-B-S)**: add STT drift
+* Dynamic Ehrenfest–LLB–Boltzmann (d-E-LLB-B): use ( $\boldsymbol{A}_{\mathrm{LLB}}(\boldsymbol{m},T(t),t)$ ).
+* Dynamic Ehrenfest–quantum-LLB–Boltzmann (d-E-qLLB-B): use ( $\boldsymbol{A}_{\mathrm{qLLB}}(\boldsymbol{m},T(t),t)$ ).
+* Dynamic Ehrenfest–quantum-LLB–Boltzmann–Slonczewski (d-E-qLLB-B-S): add STT drift
   ( $-\gamma a_J(t),\boldsymbol{m}\times(\boldsymbol{m}\times\hat{\boldsymbol{p}})$ ) to ( $\boldsymbol{A}_{\mathrm{qLLB}}$ ).
 
-These are your **Ehrenfest quantum Landau–Lifshitz–Bloch–Boltzmann**, **Ehrenfest quantum Landau–Lifshitz–Boltzmann**, **dynamic** and **Slonczewski-extended** Boltzmann couplings.
+These are the Ehrenfest quantum Landau–Lifshitz–Bloch–Boltzmann, Ehrenfest quantum Landau–Lifshitz–Boltzmann, dynamic and Slonczewski-extended Boltzmann couplings.
 
 ---
 
@@ -614,7 +610,7 @@ $$
 * \sum_\mu \mathcal{D}[L_\mu]\rho.
   $$
 
-With suitable ( $L_\mu$ ), **Landau–Lifshitz damping can be derived directly from Lindbladian dissipation**, establishing LL/LLG/LLB as Ehrenfest limits of GKSL dynamics. ([Physical Review Links][2])
+With suitable ( $L_\mu$ ), Landau–Lifshitz damping can be derived directly from Lindbladian dissipation, establishing LL/LLG/LLB as Ehrenfest limits of GKSL dynamics.
 
 ### 4.2 Detailed balance (KMS) and ( $T_1/T_2$ ) dictionary
 
@@ -628,7 +624,7 @@ L^{+} = \sqrt{\gamma_{\uparrow}},\sigma^{+},
 L^{z} = \sqrt{\gamma_{\phi}},\sigma^{z},
 $$
 
-imposing **KMS detailed balance**:
+imposing KMS detailed balance:
 
 $$
 \frac{\gamma_{\uparrow}}{\gamma_{\downarrow}}
@@ -643,17 +639,17 @@ gives the thermal ( $T_1/T_2$ ) dictionary underlying LLB/qLLB.
 
 ### 4.3 Quantum-native mappings for QITE, SSE, and TFD
 
-All the GKSL-level equations in §§1–3 can be mapped to **quantum-circuit-compatible algorithms**:
+All the GKSL-level equations in §§1–3 can be mapped to quantum-circuit-compatible algorithms:
 
 1. **QITE / VQS for Lindblad**
-   Treat GKSL as a first-order linear differential equation and apply **Variational Quantum Simulation (VQS)** or **Quantum Imaginary-Time Evolution (QITE)** extensions to open systems. ([ADS][3])
+   Treat GKSL as a first-order linear differential equation and apply Variational Quantum Simulation (VQS) or Quantum Imaginary-Time Evolution (QITE) extensions to open systems.
    *Implementation:*
 
    * Pauli-decompose ( $\hat{H}$ ) and ( $L_\mu$ ) (cf. §5).
    * Use Qiskit ≥ 2.2’s primitive-based VQS/QITE infrastructure with Quantum Error Mitigation (ZNE, MEM, etc.) on a 156-qubit Heron backend.
 
 2. **Stochastic Schrödinger Equation (SSE) trajectories**
-   Unravel GKSL into a **stochastic Schrödinger equation**:
+   Unravel GKSL into a stochastic Schrödinger equation:
 
    $$
    d\lvert\psi(t)\rangle
@@ -662,11 +658,10 @@ All the GKSL-level equations in §§1–3 can be mapped to **quantum-circuit-com
    * \sum_\mu \Big(\frac{L_\mu}{\sqrt{p_\mu(t)}}-\mathbb{I}\Big)\lvert\psi(t)\rangle,dN_\mu(t),
      $$
 
-   where ( $\hat{H}*{\mathrm{eff}}$ ) includes non-Hermitian contributions, and ( $dN*\mu(t)$ ) are Poisson increments. Variational SSE implementations on NISQ devices have been developed for time-local master equations and non-Markovian baths. ([ADS][3])
+   where ( $\hat{H}*{\mathrm{eff}}$ ) includes non-Hermitian contributions, and ( $dN*\mu(t)$ ) are Poisson increments. Variational SSE implementations on NISQ devices have been developed for time-local master equations and non-Markovian baths.
 
 3. **Thermofield-Double (TFD)-based VQAs**
-   For finite-temperature qLLB/q-dLLB/q-dLLBS, one can represent thermal states as **TFD states** on a doubled Hilbert space and optimize a variational circuit to approximate ( $\lvert\mathrm{TFD}(\beta)\rangle$ ), then evolve unitarily. ([Physical Review Links][1])
-
+   For finite-temperature qLLB/q-dLLB/q-dLLBS, one can represent thermal states as TFD states on a doubled Hilbert space and optimize a variational circuit to approximate ( $\lvert\mathrm{TFD}(\beta)\rangle$ ), then evolve unitarily.
    *Implementation:*
 
    * Prepare TFD using QAOA-style or VQE-style ansatz.
@@ -706,57 +701,57 @@ L_i^{+}=\sqrt{\gamma_{\uparrow,i}},\sigma_i^{+},
 L_i^{z}=\sqrt{\gamma_{\phi,i}},\sigma_i^{z},
 $$
 
-with KMS-consistent rates as in §4.2. These primitives reproduce **Ehrenfest LL/LLG/LLB/qLLB** drifts when inserted into the GKSL backbone (§4.1), and their Pauli decompositions are directly usable in Qiskit circuits.
+with KMS-consistent rates as in §4.2. These primitives reproduce Ehrenfest LL/LLG/LLB/qLLB drifts when inserted into the GKSL backbone (§4.1), and their Pauli decompositions are directly usable in Qiskit circuits.
 
 ---
 
 ## 6) Index of equations (chronological / conceptual)
 
-* **Canonical Ehrenfest theorem:** §0.1.
+* Canonical Ehrenfest theorem: §0.1.
 
-* **General Ehrenfest theorem:** §0.2.
+* General Ehrenfest theorem: §0.2.
 
-* **LLG / LL (classical):** §1.1.
+* LLG / LL (classical): §1.1.
 
-* **sLLG:** thermal-field form + white-noise correlator, §1.2.
+* sLLG: thermal-field form + white-noise correlator, §1.2.
 
-* **Ehrenfest quantum LL (E-qLL):** §1.3.
+* Ehrenfest quantum LL (E-qLL): §1.3.
 
-* **Ehrenfest quantum LLG (E-qLLG):** §1.4.
+* Ehrenfest quantum LLG (E-qLLG): §1.4.
 
-* **Ehrenfest quantum LLG–Slonczewski (E-qLLGS):** §1.5.
+* Ehrenfest quantum LLG–Slonczewski (E-qLLGS): §1.5.
 
-* **Classical LLB:** §2.1.
+* Classical LLB: §2.1.
 
-* **Dynamic LLB (d-LLB):** §2.2.
+* Dynamic LLB (d-LLB): §2.2.
 
-* **Dynamic LLB–Slonczewski (d-LLBS):** §2.3.
+* Dynamic LLB–Slonczewski (d-LLBS): §2.3.
 
-* **Ehrenfest classical LLB:** §2.4.
+* Ehrenfest classical LLB: §2.4.
 
-* **Quantum LLB (qLLB, GKSL form):** §2.5.
+* Quantum LLB (qLLB, GKSL form): §2.5.
 
-* **Ehrenfest quantum LLB (E-qLLB):** §2.6.
+* Ehrenfest quantum LLB (E-qLLB): §2.6.
 
-* **Quantum dynamic LLB (q-dLLB) + E-q-dLLB:** §2.7.
+* Quantum dynamic LLB (q-dLLB) + E-q-dLLB: §2.7.
 
-* **Quantum dynamic LLB–Slonczewski (q-dLLBS) + E-q-dLLBS:** §2.8.
+* Quantum dynamic LLB–Slonczewski (q-dLLBS) + E-q-dLLBS: §2.8.
 
-* **Ehrenfest–LLB–Boltzmann (E-LLB-B):** §3.1.
+* Ehrenfest–LLB–Boltzmann (E-LLB-B): §3.1.
 
-* **Ehrenfest–quantum-LLB–Boltzmann (E-qLLB-B):** §3.2.
+* Ehrenfest–quantum-LLB–Boltzmann (E-qLLB-B): §3.2.
 
-* **Ehrenfest–LL–Boltzmann (E-LL-B) and E-qLL-B:** §3.3.
+* Ehrenfest–LL–Boltzmann (E-LL-B) and E-qLL-B: §3.3.
 
-* **Dynamic Ehrenfest–(q)LLB–Boltzmann(+Slonczewski):** §3.4.
+* Dynamic Ehrenfest–(q)LLB–Boltzmann(+Slonczewski): §3.4.
 
-* **GKSL master equation (quantum-native backbone):** §4.1.
+* GKSL master equation (quantum-native backbone): §4.1.
 
-* **KMS + ( $T_1/T_2$ ) dictionary:** §4.2.
+* KMS + ( $T_1/T_2$ ) dictionary: §4.2.
 
-* **Quantum-native QITE / SSE / TFD mappings (Qiskit-compatible):** §4.3.
+* Quantum-native QITE / SSE / TFD mappings (Qiskit-compatible): §4.3.
 
-* **Adapted Hamiltonian + dissipators (Qiskit Pauli form):** §5.
+* Adapted Hamiltonian + dissipators (Qiskit Pauli form): §5.
 
 ---
 
