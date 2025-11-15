@@ -262,7 +262,7 @@ Take a quantum spin (or spin cluster) with Hamiltonian ( $\hat{H}$ ) and define 
 
 $$ \frac{d\boldsymbol{s}}{dt} = \frac{1}{i\hbar},\big\langle[\tfrac12\boldsymbol{\sigma},\hat{H}]\big\rangle \equiv \boldsymbol{s}\times\boldsymbol{\Omega}_{\mathrm{eff}}. $$
 
-Here ( $\boldsymbol{\Omega}*{\mathrm{eff}}$ ) is an operator-averaged precession vector (for ( $\hat{H}= -\tfrac{\hbar\gamma}{2}\boldsymbol{B}*{\mathrm{eff}}!\cdot!\boldsymbol{\sigma}$ one recovers the LL precession term).
+Here ( $\boldsymbol{\Omega}_{\mathrm{eff}}$ ) is an operator-averaged precession vector (for ( $\hat{H}= -\tfrac{\hbar\gamma}{2}\boldsymbol{B}*{\mathrm{eff}}!\cdot!\boldsymbol{\sigma}$ one recovers the LL precession term).
 
 Adding phenomenological transverse damping at the expectation level gives
 
