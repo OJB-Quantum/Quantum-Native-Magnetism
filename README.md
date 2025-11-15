@@ -196,17 +196,6 @@ Goal: “MuMax3 full quantum solver” for magnetization dynamics
 
 <img width="1864" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/b3f3bb24-bcda-4a7a-a094-70f9ddf6f22a" />
 
-
----
-
-Here is a fully updated, chronologically organized version that:
-
-* Starts from **zero assumptions** with the canonical and general Ehrenfest theorems. ([Physical Review Links][1])
-* Adds all the **Ehrenfest + quantum + dynamic + Boltzmann + Slonczewski** variants you listed.
-* Includes **quantum-native forms** for GKSL (Lindblad / qLLG / qLLB), Stochastic Schrödinger Equation (SSE) and Thermofield-Double (TFD)-based VQAs that are directly compatible with **Qiskit ≥ 2.2** and NISQ-era devices such as a **156-qubit Heron processor**. ([Physical Review Links][2])
-
-I have preserved and slightly cleaned your GitHub-renderable markdown style (headings, equation blocks, inline notation) and added grouping symbols where they sharpen the math.
-
 ---
 
 ## Relevant equations:
