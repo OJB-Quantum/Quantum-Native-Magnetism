@@ -466,7 +466,7 @@ All the GKSL-level equations in §§1–3 can be mapped to quantum-circuit-compa
 2. **Stochastic Schrödinger Equation (SSE) trajectories**
    Unravel GKSL into a stochastic Schrödinger equation:
 
-   $$ d\lvert\psi(t)\rangle = -\frac{i}{\hbar}\hat{H}* {\mathrm{eff}}(t)\lvert\psi(t)\rangle,dt + \sum* \mu \Big(\frac{L_\mu}{\sqrt{p_\mu(t)}}-\mathbb{I}\Big)\lvert\psi(t)\rangle,dN_\mu(t), $$
+   $ d\lvert\psi(t)\rangle = -\frac{i}{\hbar}\hat{H}* {\mathrm{eff}}(t)\lvert\psi(t)\rangle,dt + \sum* \mu \Big(\frac{L_\mu}{\sqrt{p_\mu(t)}}-\mathbb{I}\Big)\lvert\psi(t)\rangle,dN_\mu(t), $
 
    where ( $\hat{H} * {\mathrm{eff}}$ ) includes non-Hermitian contributions, and ( $dN* \mu(t)$ ) are Poisson increments. Variational SSE implementations on NISQ devices have been developed for time-local master equations and non-Markovian baths.
 
