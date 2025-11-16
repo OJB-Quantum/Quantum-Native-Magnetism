@@ -158,7 +158,7 @@ Goal: “MuMax3 full quantum solver” for magnetization dynamics
 └─ Conceptual high fidelity
    ├─ q-dLLB (GKSL) → equilibrium & dynamics
    └─ q-dLLB-B (GKSL + kinetic) → most complete
-       └─ SSE / QMS / TFD as subroutines (GPU first, QPU selectively)
+       └─ SSE/ QMS/ TFD as subroutines (GPU first, QPU selectively)
 ```
 
 ---
