@@ -302,7 +302,7 @@ $$ \hat{H}(t) = -\frac{\hbar\gamma}{2},\boldsymbol{B}_{\mathrm{eff}}(t)\cdot\bol
 
 **Optional LL/LLG-type damping on simulators**
 
-Add appropriate Lindblad operators ( $L^\pm,L^z$ ) (see §4) so that the Ehrenfest equations reproduce E-qLL or E-qLLG. This is directly compatible with a Lindblad-based simulator or a QITE / VQS approximation to Lindblad dynamics in Qiskit ≥ 2.2.
+Add appropriate Lindblad operators ( $L^\pm,L^z$ ) (see §4) so that the Ehrenfest equations reproduce E-qLL or E-qLLG. This is directly compatible with a Lindblad-based simulator or a QITE/ VQS approximation to Lindblad dynamics in Qiskit ≥ 2.2.
 
 ---
 
