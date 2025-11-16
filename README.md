@@ -83,71 +83,65 @@ Magnetization Dynamics (micromagnetic scale)
 
 ```
 Goal: “MuMax3 full quantum solver” for magnetization dynamics
-    (backed by a 156-qubit IBM Heron r2 processor with quantum error mitigation)
+    (accuracy referenced by a GPU Lindblad/kinetic integrator, scaled by a 156-qubit IBM Heron r2 processor with quantum error mitigation)
 
 ├─ 0. Classical baseline
 │  └─ LLB–Boltzmann
-│     ├─ LLB for macrospin m(t) (transverse + longitudinal damping)
-│     └─ Boltzmann for electrons/phonons (ultrafast kinetics, spin-flip channels)
+│     ├─ LLB for macrospin m(t), transverse and longitudinal damping
+│     ├─ Boltzmann for electrons and phonons, ultrafast kinetics and spin‑flip channels
+│     └─ qLLB‑calibrated fallback:
+│         replace α∥(T), α⊥(T), and m_eq(T) with qLLB‑consistent forms (KMS/detailed balance enforced)
+│         whenever explicit quantum channels are unavailable, so the classical drift remains faithful near Tc
 │
-├─ 1. Quantum-augmented effective models
-│  ├─ qLLB (Nieves et al.) → quantum corrections to LLB rates/statistics
-│  ├─ Quantum LLG/ q-LLG (Wieser; Liu; Azimi-Mousolou, etc.)
-│  └─ Ehrenfest coupling to classical fields
-│     (Ehrenfest–LLB–Boltzmann: quantum spin cluster + classical micromagnetic field)
+├─ 1. Quantum‑augmented effective models, physics backbone
+│  ├─ qLLB (Nieves et al.) → quantum‑corrected rates and statistics, equilibrium m_eq^q(T)
+│  ├─ Ehrenfest quantum drift:
+│  │   • E‑qLLB‑B (steady regime), with Boltzmann kinetic envelope on the Bloch ball
+│  │   • d‑E‑qLLB‑B (time‑dependent T(t), B_eff(t)), with quantum rates and equilibrium target
+│  ├─ Quantum LLG (q‑LLG) and related forms, for cross‑checks and low‑damping limits
+│  └─ Ehrenfest coupling to classical micromagnetic fields, plus kinetic collisions and diffusion
 │
-└─ 2. NISQ-compatible quantum solvers
-      (156-qubit IBM Heron r2 + QEM layer via Qiskit Runtime)
-
-   ├─ Hardware + QEM envelope
-   │   ├─ Processor: IBM Heron r2, 156-qubit heavy-hex lattice,
-   │   │   tunable couplers, TLS-mitigation-enhanced coherence (e.g. ibm_fez). 
-   │   └─ Quantum error mitigation layer:
-   │       • Noise characterization on Heron (sparse Pauli-Lindblad models, etc.)
-   │       • Techniques: Pauli twirling/ randomized compiling, ZNE, PEC,
-   │         measurement error mitigation, hybrid QEM protocols.
-   │       • Implemented through Qiskit Runtime error-mitigation passes.
-   │
-   ├─ 2A. QITE-based Ehrenfest–LLB–Boltzmann (primary MuMax3-quantum module)
-   │   ├─ Encode local Ehrenfest–qLLB–Boltzmann generator as a linear operator
-   │   │   on a spin + bath register (subset of the 156 qubits).
-   │   ├─ Use QITE-style circuits to prepare steady/ thermal states and
-   │   │   short real-time steps for ⟨m(t)⟩, ⟨E(t)⟩.
-   │   └─ Run on Heron r2 with QEM:
-   │       • Compile to heavy-hex topology, optimize depth.
-   │       • Apply ZNE + Pauli twirling and/or PEC to magnetization observables.
-   │
-   ├─ 2B. SSE-based trajectories on Heron r2
-   │   ├─ Variational SSE (Endo; Lan): simulate stochastic Schrödinger trajectories
-   │   │   for local quantum spin clusters (tens of spins + ancillas).
-   │   ├─ Optionally embed Generalized Quantum Master Equation (GQME) kernels
-   │   │   to capture non-Markovian baths.
-   │   └─ Use QEM on expectation values from trajectory ensembles
-   │       (ZNE/PEC + measurement mitigation).
-   │
-   ├─ 2C. QMS (quantum Metropolis) on Heron r2
-   │   ├─ Quantum-Metropolis(-Hastings) sampling for Gibbs states of spin
-   │   │   Hamiltonians relevant to micromagnetics (Heisenberg + anisotropy, etc.).
-   │   ├─ Use the 156-qubit space to host moderate-size quantum spin lattices
-   │   │   whose thermal states are hard for classical Monte Carlo (sign problems).
-   │   └─ Apply QEM to thermal expectation values (magnetization curves, χ(T), etc.).
-   │
-   └─ 2D. TFD-based finite-T simulation on Heron r2
-       ├─ Variational TFD preparation (Sagastizabal, Su, Zhu style circuits)
-       │   for embedded spin clusters, using up to ~1/2 of the 156 qubits per copy.
-       ├─ Real-time evolution of TFD states to compute finite-temperature
-       │   correlation functions and dynamical susceptibilities.
-       └─ QEM applied to TFD preparation and time evolution (twirling, ZNE, PEC),
-           focusing on thermodynamic and linear-response observables.
-
-└─ 3. Future fault-tolerant/ post-NISQ directions
-   ├─ Larger qLLG/ qLLB clusters with exact SSE or full master-equation solvers
-   │  (multiple Heron-class nodes or error-corrected logical qubits).
-   ├─ Full QMS phase diagrams for realistic 2D/3D spin Hamiltonians
-   │  (true quantum criticality and Curie-temperature benchmarks).
-   └─ Hierarchical embedding:
-      ├─ Quantum clusters (solved on logical qubits) providing qLLB/ kinetic kernels.
-      └─ These kernels drive a classical MuMax3-like grid at device scale.
+├─ 2. Dual‑track solver layer
+│  ├─ 2A. GPU accuracy anchor, primary for Tb 1 nm Curie‑T extraction
+│  │   ├─ Qiskit Dynamics LindbladModel, time‑dependent Hamiltonian and dissipators, with JAX/GPU acceleration
+│  │   ├─ Implement qLLB‑consistent channels (KMS‑compliant T1/T2), finite‑volume Bloch‑ball Boltzmann
+│  │   ├─ Compute m(T), χ(T), and Tc with finite‑size scaling, produce deterministic, mitigation‑free references
+│  │   └─ Export MuMax3‑compatible kernels and lookup tables: α∥(T), α⊥(T), m_eq^q(T), diffusion tensors
+│  │
+│  └─ 2B. NISQ‑compatible quantum solvers (156‑qubit IBM Heron r2 + QEM via Qiskit Runtime)
+│      ├─ Hardware + QEM envelope
+│      │   ├─ Processor: heavy‑hex Heron r2, 156 qubits, tunable couplers, improved error rates
+│      │   └─ QEM toolkit: M3 measurement mitigation, ZNE, Pauli twirling and randomized compiling,
+│      │       selective PEC, hybrid mitigation passes integrated in Runtime
+│      │
+│      ├─ 2B‑1. QITE‑based E‑qLLB‑B / d‑E‑qLLB‑B (primary QPU module)
+│      │   ├─ Encode local E‑qLLB‑B generator on spin + bath registers, drawn from the 156‑qubit pool
+│      │   ├─ Use VarQITE for imaginary‑time anchoring, add short real‑time segments for ⟨m(t)⟩ and ⟨E(t)⟩
+│      │   ├─ Compile to heavy‑hex, optimize depth; apply ZNE + M3, add PEC on small subsystems when beneficial
+│      │   └─ Validate against the GPU anchor; escalate only meshes or clusters that exceed GPU memory
+│      │
+│      ├─ 2B‑2. SSE‑based trajectories (quantum‑jump unraveling)
+│      │   ├─ Variational SSE for local quantum spin clusters, tens of spins with ancillas
+│      │   ├─ Optional GQME kernels for non‑Markovian baths and memory effects
+│      │   └─ Apply QEM to ensemble expectation values; use as targeted, high‑fidelity subroutines
+│      │
+│      ├─ 2B‑3. QMS (Quantum‑Metropolis / Metropolis‑Hastings) sampling
+│      │   ├─ Prepare Gibbs states for Heisenberg + anisotropy models relevant to micromagnetics
+│      │   ├─ Utilize the 156‑qubit space for moderate lattices that stress classical Monte Carlo
+│      │   └─ Apply QEM to thermal observables, magnetization curves m(T) and susceptibilities χ(T)
+│      │
+│      └─ 2B‑4. TFD‑based finite‑T simulation
+│          ├─ Variational TFD preparation on two copies, using up to ~1/2 of qubits per copy
+│          ├─ Real‑time evolution of TFD states, finite‑temperature correlators and dynamical susceptibilities
+│          └─ QEM during preparation and evolution, focusing on thermodynamic and linear‑response observables
+│
+└─ 3. Future fault‑tolerant and post‑NISQ directions
+   ├─ Larger q‑LLG/q‑LLB clusters with exact SSE or full GKSL master‑equation solvers,
+   │  across multiple Heron‑class nodes or on logical qubits with error correction
+   ├─ Full QMS phase diagrams for realistic 2D/3D spin Hamiltonians, true quantum criticality and Curie‑T benchmarks
+   └─ Hierarchical embedding
+       ├─ Quantum clusters on logical qubits that learn qLLB/kinetic kernels
+       └─ Classical MuMax3‑like grids that ingest those kernels at device scale
 ```
 
 ## Nanometer-scale Curie-T prediction
