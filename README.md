@@ -114,7 +114,7 @@ Goal: “MuMax3 full quantum solver” for magnetization dynamics
 │      │   └─ QEM toolkit: M3 measurement mitigation, ZNE, Pauli twirling and randomized compiling,
 │      │       selective PEC, hybrid mitigation passes integrated in Runtime
 │      │
-│      ├─ 2B‑1. QITE‑based E‑qLLB‑B / d‑E‑qLLB‑B (primary QPU module)
+│      ├─ 2B‑1. QITE‑based E‑qLLB‑B/ d‑E‑qLLB‑B (primary QPU module)
 │      │   ├─ Encode local E‑qLLB‑B generator on spin + bath registers, drawn from the 156‑qubit pool
 │      │   ├─ Use VarQITE for imaginary‑time anchoring, add short real‑time segments for ⟨m(t)⟩ and ⟨E(t)⟩
 │      │   ├─ Compile to heavy‑hex, optimize depth; apply ZNE + M3, add PEC on small subsystems when beneficial
@@ -125,7 +125,7 @@ Goal: “MuMax3 full quantum solver” for magnetization dynamics
 │      │   ├─ Optional GQME kernels for non‑Markovian baths and memory effects
 │      │   └─ Apply QEM to ensemble expectation values; use as targeted, high‑fidelity subroutines
 │      │
-│      ├─ 2B‑3. QMS (Quantum‑Metropolis / Metropolis‑Hastings) sampling
+│      ├─ 2B‑3. QMS (Quantum‑Metropolis/ Metropolis‑Hastings) sampling
 │      │   ├─ Prepare Gibbs states for Heisenberg + anisotropy models relevant to micromagnetics
 │      │   ├─ Utilize the 156‑qubit space for moderate lattices that stress classical Monte Carlo
 │      │   └─ Apply QEM to thermal observables, magnetization curves m(T) and susceptibilities χ(T)
