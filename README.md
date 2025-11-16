@@ -33,23 +33,6 @@ The following techniques are eligible for quantum-native magnetic modeling on Ne
 - Quantum stochastic differential equations (QSDE) (Fault-Tolerant Quantum)
 ```
 
-
-* **Near-term:**
-  Ehrenfest–LLB–Boltzmann + QITE + QEM on a **156-qubit Heron-class processor** (for example, `ibm_fez` or its siblings in the Heron r2 family) is likely the most realistic way to build a MuMax3-compatible “full quantum” module that materially outperforms purely classical LLB–Boltzmann on selected cluster-level problems. The extra qubits, improved coherence, and built-in error-mitigation workflows in the IBM Runtime stack give more headroom for larger local spin–bath registers and slightly deeper QITE circuits than on earlier ~133-qubit Heron-generation devices, while still staying within NISQ-era limits when combined with zero-noise extrapolation, measurement-error mitigation, and related QEM techniques.
-
-* **Conceptually best:**
-  SSE-, QMS-, and TFD-based methods can, in principle, still deliver higher physical fidelity and broader applicability (especially for strongly correlated spin models, non-Markovian baths, and finite-temperature entanglement and correlation functions) than any Ehrenfest-style QITE solver. However, even on a 156-qubit Heron-class processor with QEM, they remain more demanding in qubits, circuit depth, sampling overhead, and variational optimization complexity, so they are better viewed as high-accuracy cluster-level or equilibrium-only subroutines that complement, rather than replace, an Ehrenfest–LLB–Boltzmann+QITE+QEM “MuMax3-quantum” module in the near term.
-
-| Equation/ Approach | Quantum‑Native? (Q‑N) | What it captures near Tc (Tb) | GPU path (Qiskit Dynamics/ Aer GPU) – Fit & Today’s Accuracy | QPU path (Heron 156q + QITE + QEM) – Fit & Today’s Accuracy | Best for 1 nm Tb Curie T? |
-|-|-|-|-|-|-|
-| E‑LLB‑B (Ehrenfest–LLB–Boltzmann)              | No (classical); Q‑N‑compatible via GKSL emulation of T1/T2 | Longitudinal + transverse damping, but with **classical** rates; kinetics via Boltzmann; no explicit quantum statistics | **Good fit** via LindbladModel with effective rates; **Medium–Low accuracy** for Tb (misses q corrections) | QITE+QEM can emulate effective channels, but depth/mitigation cost add bias; **Low–Medium accuracy** | ❌ Baseline only          |
-| E‑qLLB‑B (Ehrenfest–quantum‑LLB–Boltzmann)     | Q‑N‑compatible (rates & m_eq from qLLB) | Longitudinal collapse + **quantum‑corrected rates** and m_eq^q(T); kinetics via Boltzmann; quasi‑static | **Very good fit** (native GKSL + JAX GPU); **High accuracy** for quasi‑static Tc extraction with finite‑size | QITE(+TFD) + QEM workable, yet noise/mitigation bring variance; **Medium** | ✅ Strong contender       |
-| d‑E‑LLB‑B (Dynamic Ehrenfest–LLB–Boltzmann)    | No (classical); Q‑N‑compatible via GKSL | Time‑dependent T(t), B_eff(t), classical rates; kinetics; handles ramps/pulses                     | **Good fit**, but **Medium** accuracy near Tc for Tb (classical bias) | Depth grows with steps; mitigation overhead; **Low–Medium** | ❌ Use for baselines      |
-| d‑E‑qLLB‑B (Dynamic Ehrenfest–quantum‑LLB–B)   | Q‑N‑compatible (qLLB‑derived)         | **Quantum‑corrected** longitudinal & transverse channels **with time dependence**, plus kinetics; ideal for ramps | **Best practical fit** (direct GKSL + JAX on GPU); **Very High accuracy** for Tc under ramps & finite‑size | Feasible with QITE(+TFD)/SSE + QEM; **Medium–High** if shallow; falls with step count | 🏆 **Best (practical)**   |
-| q‑dLLB (Quantum dynamic LLB, GKSL density‑matrix) | **Yes (Q‑Native)**                   | Full GKSL Lindblad dynamics with **quantum statistics**, but **no kinetic f(m)** envelope         | **Excellent** for small/meso systems; **High** accuracy if finite‑size enters via Hamiltonian/parameters | **Best QPU candidate** (pure GKSL mapped to circuits), yet still mitigation‑limited; **Medium–High** | ✅ Strong (needs size model) |
-| q‑dLLB‑B (Quantum dynamic LLB–Boltzmann)       | **Yes (Q‑Native)** (+ kinetic extension) | As above **plus** kinetic distribution on Bloch ball; most complete near Tc, finite‑size, surfaces | **Gold standard** conceptually; heavy but **Very High** accuracy when implemented | Very heavy (kinetic sampling + ancillas); **Medium** at best today | 🥇 **Best (if feasible)** |
-
-
 ---
 
 To predict Curie temperature for magnetic materials:
@@ -167,9 +150,26 @@ Goal: “MuMax3 full quantum solver” for magnetization dynamics
       └─ These kernels drive a classical MuMax3-like grid at device scale.
 ```
 
+## Nanometer-scale Curie-T prediction
+
+```
+├─ Start: Ehrenfest-Bloch-ball models (MuMax3-friendly)
+│  ├─ E-LLB-B  → Upgrade rates & m_eq → E-qLLB-B
+│  └─ d-E-qLLB-B (time-dependent)  ← recommended practical target
+│       └─ GPU Dynamics+JAX (primary), QPU QITE+QEM (scale)
+└─ Conceptual high fidelity
+   ├─ q-dLLB (GKSL) → equilibrium & dynamics
+   └─ q-dLLB-B (GKSL + kinetic) → most complete
+       └─ SSE / QMS / TFD as subroutines (GPU first, QPU selectively)
+```
 
 ---
 
+For getting the Curie temperature of a nanometer-scale cuboid of relevant metal as accurately as possible, you should, very likely, run the **quantum‑corrected** models (qLLB‑based) on a **GPU Lindblad solver** because it integrates the open‑system equations directly and deterministically. Then, very usefully, you can prototype a MuMax3‑compatible “quantum module” on a **Heron‑class QPU** with **QITE + QEM** to reach bigger embedded problems, although it will be noisier than the GPU reference.
+
+---
+
+## A Good Start 
 
 | Aspect | Ehrenfest–LLB–Boltzmann (E‑LLB‑B) | Ehrenfest–LL–Boltzmann (E‑LL‑B) |
 |---|---|---|
@@ -181,14 +181,63 @@ Goal: “MuMax3 full quantum solver” for magnetization dynamics
 
 ---
 
-| Model | Longitudinal relaxation present? | Guaranteed thermal fixed point (Gibbs/Boltzmann)? | Finite-size critical diagnostics ($\chi$, Binder) | Non-equilibrium kinetics (carriers/magnons) | $T_c$ capability | Overall comprehensiveness |
-|---|---|---|---|---|---|---|
-| **Ehrenfest–LL–Boltzmann (E‑LL‑B)** | No (orientation-only) | Not generically near $T_c$ (no $m_{eq}(T)$ channel) | Partial (orientation diffusion only) | Limited | **Weak near $T_c$** unless upgraded to include a longitudinal channel | Narrow; misses magnitude collapse that defines Tc |
-| **Kinetic‑aware Ehrenfest–LLB–Boltzmann (E‑LLB‑B)** | **Yes** ($\Gamma_\parallel$($T$)) | **Yes** with detailed-balance Lindbladian anchoring | **Yes** (full $P(m)$ dynamics enables $\chi$ and Binder) | **Yes** via collision-integral-based rates (qLLB-style) | **Strong** (robust $T_c$ from $m(T)$, $\chi(T)$, Binder $U_4$) | Broad: equilibrium + kinetics + finite-size scaling |
-| **Ehrenfest–LLB (GKSL, expectation-level)** | **Yes** (via Lindblad rates) | **Yes** (KMS/Davies choice) | Moments only; sample trajectories for chi and Binder | Indirect (time-dependent rates) | **Good** if rates are calibrated from microscopic models | Medium–high: efficient but does not evolve full $P(m)$ |
+## More Comprehensive Approach
 
-| Approach                                     | Physical content                                                                                                                 | Strengths for a “MuMax3-quantum” solver                                                                                                                                                                                                                                                                                   | Main limitations on 156-qubit Heron NISQ (r2)                                                                                                                                                                                                                                                                                             | How it compares to pure LLB-Boltzmann                                                                                                                                                                                         |
-| -------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Equation/ Approach                            | Quantum‑Native? (Q‑N)                 | What it captures near Tc (Tb)        | GPU path (Qiskit Dynamics/ Aer GPU) – Fit & Today’s Accuracy | QPU path (Heron 156q + QITE + QEM) – Fit & Today’s Accuracy | Best for 1 nm Tb Curie T? |
+|-|-|-|-|-|-|
+| E‑LLB‑B (Ehrenfest–LLB–Boltzmann)              | No (classical); Q‑N‑compatible via GKSL emulation of T1/T2 | Longitudinal + transverse damping, but with **classical** rates; kinetics via Boltzmann; no explicit quantum statistics | **Good fit** via LindbladModel with effective rates; **Medium–Low accuracy** for Tb (misses q corrections) | QITE+QEM can emulate effective channels, but depth/mitigation cost add bias; **Low–Medium accuracy** |  Baseline only          |
+| E‑qLLB‑B (Ehrenfest–quantum‑LLB–Boltzmann)     | Q‑N‑compatible (rates & m_eq from qLLB) | Longitudinal collapse + **quantum‑corrected rates** and m_eq^q(T); kinetics via Boltzmann; quasi‑static | **Very good fit** (native GKSL + JAX GPU); **High accuracy** for quasi‑static Tc extraction with finite‑size | QITE(+TFD) + QEM workable, yet noise/mitigation bring variance; **Medium** |  Strong contender       |
+| d‑E‑LLB‑B (Dynamic Ehrenfest–LLB–Boltzmann)    | No (classical); Q‑N‑compatible via GKSL | Time‑dependent T(t), B_eff(t), classical rates; kinetics; handles ramps/pulses                     | **Good fit**, but **Medium** accuracy near Tc for Tb (classical bias) | Depth grows with steps; mitigation overhead; **Low–Medium** |  Use for baselines      |
+| d‑E‑qLLB‑B (Dynamic Ehrenfest–quantum‑LLB–Boltzmann)   | Q‑N‑compatible (qLLB‑derived)         | **Quantum‑corrected** longitudinal & transverse channels **with time dependence**, plus kinetics; ideal for ramps | **Best practical fit** (direct GKSL + JAX on GPU); **Very High accuracy** for Tc under ramps & finite‑size | Feasible with QITE(+TFD)/SSE + QEM; **Medium–High** if shallow; falls with step count |  **Best (practical)**   |
+| q‑dLLB (Quantum dynamic LLB, GKSL density‑matrix) | **Yes (Q‑Native)**                   | Full GKSL Lindblad dynamics with **quantum statistics**, but **no kinetic f(m)** envelope         | **Excellent** for small/meso systems; **High** accuracy if finite‑size enters via Hamiltonian/parameters | **Best QPU candidate** (pure GKSL mapped to circuits), yet still mitigation‑limited; **Medium–High** |  Strong (needs size model) |
+| q‑dLLB‑B (Quantum dynamic LLB–Boltzmann)       | **Yes (Q‑Native)** (+ kinetic extension) | As above **plus** kinetic distribution on Bloch ball; most complete near Tc, finite‑size, surfaces | **Gold standard** conceptually; heavy but **Very High** accuracy when implemented | Very heavy (kinetic sampling + ancillas); **Medium** at best today |  **Best (if feasible)** |
+
+---
+
+## Focused Approach for a Better "Cost Function" Score
+
+| Equation/ Approach                            | Quantum‑Native? (Q‑N)                 | What it captures near Tc (Tb)        | GPU path (Qiskit Dynamics/ Aer GPU) – Fit & Today’s Accuracy | QPU path (Heron 156q + QITE + QEM) – Fit & Today’s Accuracy | Best for 1 nm Tb Curie T? |
+|-|-|-|-|-|-|
+| d‑E‑qLLB‑B (Dynamic Ehrenfest–quantum‑LLB–Boltzmann)   | Q‑N‑compatible (qLLB‑derived)         | **Quantum‑corrected** longitudinal & transverse channels **with time dependence**, plus kinetics; ideal for ramps | **Best practical fit** (direct GKSL + JAX on GPU); **Very High accuracy** for Tc under ramps & finite‑size | Feasible with QITE(+TFD)/SSE + QEM; **Medium–High** if shallow; falls with step count |  **Best (practical)**   |
+| q‑dLLB (Quantum dynamic LLB, GKSL density‑matrix) | **Yes (Q‑Native)**                   | Full GKSL Lindblad dynamics with **quantum statistics**, but **no kinetic f(m)** envelope         | **Excellent** for small/meso systems; **High** accuracy if finite‑size enters via Hamiltonian/parameters | **Best QPU candidate** (pure GKSL mapped to circuits), yet still mitigation‑limited; **Medium–High** |  Strong (needs size model) |
+| q‑dLLB‑B (Quantum dynamic LLB–Boltzmann)       | **Yes (Q‑Native)** (+ kinetic extension) | As above **plus** kinetic distribution on Bloch ball; most complete near Tc, finite‑size, surfaces | **Gold standard** conceptually; heavy but **Very High** accuracy when implemented | Very heavy (kinetic sampling + ancillas); **Medium** at best today |  **Best (if feasible)** |
+
+## Tiny comparison table (what to run where, for nanometer (T_C))
+
+| Task/ Form                           | GPU (Qiskit Dynamics + JAX)                 | QPU (Heron-class + QITE + QEM)                           |
+|-|-|-|
+| E‑LLB‑B (classical)                  | Fast baseline; not preferred near Tc (Tb)   | Feasible; use only as a scaffold; upgrade to qLLB asap    |
+| E‑qLLB‑B (quantum‑corrected)         | Preferred baseline; steady‑state Tc scans   | Feasible; mitigated; validate vs GPU                      |
+| d‑E‑qLLB‑B (time‑dependent)          | Best practical for ramps + kinetics         | Feasible; deeper circuits & mitigation overhead           |
+| q‑dLLB                               | High‑fidelity GKSL dynamics                 | Feasible on small subsystems; great as an anchor/check    |
+| q‑dLLB‑B                             | Gold‑standard (GKSL + Boltzmann kinetics)   | Heavy today; reserve for focused, equilibrium subroutines |
+
+
+**Why the GPU first:** Direct **Lindblad** integration with time‑dependent operators is native in Qiskit Dynamics and accelerates with JAX/GPU; mitigation‑free numerics dominate hardware noise for today’s long, dissipative evolutions. On the QPU, VarQITE/VarQRTE plus M3/ZNE/PEC is workable and valuable for scale/prototyping, but it carries residual bias/variance that grows with step count and circuit depth.
+
+---
+
+### **Near‑term approach:**
+
+* **What to build:** Keep the MuMax3‑compatible module, but **promote the drift** from **E‑LLB‑B** to **E‑qLLB‑B** (and preferably **d‑E‑qLLB‑B** if you drive ($T(t)$) or ($\mathbf{B}* {\mathrm{eff}}(t))$). This swap keeps the Ehrenfest/Bloch‑ball structure, yet anchors the rates and ($m* {\mathrm{eq}}(T)$) in a **quantum (GKSL/qLLB) derivation**, which is especially important near (T_C) for rare‑earth terbium. On hardware you still run **QITE/VarQITE** with **QEM** (M3 measurement‑mitigation, ZNE extrapolation, and, when feasible, PEC). On day one you can stay within NISQ‑era depth limits on a **Heron‑class** system; in particular, the newer Heron‑family processors in IBM’s **System Two** environment provide improved error rates and scalable mitigation through the **Qiskit/Runtime** stack.
+
+* **How to keep accuracy honest:** For the *same* model and discretization, run a **GPU reference** with **Qiskit Dynamics** (time‑dependent Lindblad) and **JAX/GPU** enabled. Use it to calibrate step sizes, validate QPU mitigation settings, and quantify dynamic‑ramp vs equilibrium bias when you extract (T_C) from (m_{\mathrm{eq}}(T)) or (\chi(T)).
+
+* **Why the upgrade from E‑LLB‑B?** Classical LLB rates mischaracterize quantum relaxation near ($T_C$), whereas **qLLB** (quantum LLB) supplies **temperature‑dependent longitudinal/transverse rates** and the correct **($m_{\mathrm{eq}}^{\mathrm{q}}(T)$)**, which is exactly what matters in the narrow helical‑to‑ferromagnetic window of terbium (helical around ~231 K, ferromagnetic near ~219 K in bulk; nanoscale values are suppressed and broadened).
+
+* **If something here “isn’t true,” how to *make it* true:** If you must start from **E‑LLB‑B** for code simplicity, **replace** the classical ($\alpha_{\parallel,\perp}(T)$) and ($m_{\mathrm{eq}}(T)$) by **qLLB‑consistent** rates and ($m_{\mathrm{eq}}^{\mathrm{q}}(T)$) obtained from a GKSL model enforcing KMS detailed balance. At that point the model *becomes* **E‑qLLB‑B** (or **d‑E‑qLLB‑B**), i.e., quantum‑native compatible.
+
+### **Conceptually best:**
+
+* **What to favor conceptually:** **q‑dLLB** (full GKSL density‑matrix dynamics) and **q‑dLLB‑B** (adds the Boltzmann kinetic envelope) are the most faithful ways to model nanoscale Tb near (T_C). For advanced observables—finite‑temperature entanglement, correlation functions, non‑Markovian baths—**SSE/quantum‑trajectories**, **QMS** (explicit master‑equations), and **TFD** (thermofield‑double thermal states) are the superior, general‑purpose tools.
+
+* **How to use them now:** Implement them first on **GPU** (Dynamics for GKSL; Aer‑GPU or custom trajectories for SSE/TFD). Then, selectively port pieces to the **QPU** as **equilibrium‑only or small‑subsystem** subroutines with **VarQITE + QEM** (expect higher qubit counts, deeper circuits, larger shot budgets, and tougher optimization). In 2025 hardware terms, treat them as **high‑accuracy complements** to the Ehrenfest–qLLB–Boltzmann “main line” rather than replacements.
+
+---
+
+
+| Approach  | Physical content  | Strengths for a “MuMax3-quantum” solver      | Main limitations on 156-qubit Heron NISQ (r2)    | How it compares to pure LLB-Boltzmann          |
+|-|-|-|-|-|
 | **Classical LLB-Boltzmann**                  | Classical macrospin + Boltzmann kinetics; quantum physics only in parameters                                                     | Mature, efficient; already used for ultrafast magnetization and near-($T_C$) physics; easy to scale to full MuMax3-scale grids                                                                                                                                                                                              | No direct use of Heron; limited purely by classical resources. Misses quantum entanglement and quantum statistics of spins; macrospin approximation only                                                                                                                                                                                  | Baseline                                                                                                                                                                                                                      |
 | **Ehrenfest-LLB-Boltzmann + QITE + QEM**     | qLLB-derived macrospin coupled to Boltzmann baths; solved via QITE on a quantum register; Ehrenfest coupling to classical fields | Brings in quantum statistics and local spin–bath correlations; leverages QITE as a PDE/ steady-state solver; QEM + dissipation can stabilize deeper circuits on Heron r2; 156 qubits and improved coherence/TLS mitigation allow larger local clusters and somewhat deeper circuits than 133-qubit Heron r1  | Still uses an Ehrenfest mean-field treatment; limited by NISQ depth, ~($10^{-3}$)–($10^{-2}$) 2-qubit error rates and heavy-hex connectivity (SWAP overhead); QEM (ZNE/PEC/readout mitigation) adds sampling and classical post-processing overhead; quantum speedup not guaranteed yet on 156-qubit devices                | **Clear upgrade**: more quantum-faithful magnetization dynamics and potentially better scaling for local quantum clusters, now with more qubits and better coherence headroom than on 133-qubit Heron r1                      |
 | **SSE-based quantum trajectories (VQS-SSE)** | Full quantum trajectories for spins with dissipators; master-equation level                                                      | Captures fluctuations, jumps, non-Markovian effects; directly implements qLLG/ qLLB-like open dynamics; 156 qubits allow somewhat larger clusters (more spins + ancillas) per trajectory than on 133-qubit hardware                                                                                                      | Circuits are deeper and stochastic; even with Heron r2’s improved fidelities and TLS mitigation, depth + trajectory sampling burden remain large; embedding many such clusters into a full micromagnetic grid is still challenging on a single 156-qubit NISQ device                                                                      | **More accurate** at the local quantum-cluster level but likely **still less practical** on current 156-qubit Heron systems for large-scale MuMax3-style grids                                                                |
@@ -564,6 +613,25 @@ With KMS-consistent rates as in §4.2, these primitives reproduce Ehrenfest LL/L
 ### Symbol mini‑glossary
 
 ( $\gamma$ ): gyromagnetic ratio; ( $\alpha$ ): Gilbert damping; ( $\alpha_{\parallel,\perp}(T)$ ): LLB coefficients; ( $\Gamma_{\parallel,\perp}$ ): Ehrenfest rates; ( $m_{\mathrm{eq}}(T)$ ): equilibrium magnetization; ( $\chi_{\parallel}(T)$ ): longitudinal susceptibility; ( $\boldsymbol{\sigma}$ = $(X,Y,Z)$ ): Pauli vector; ( $J_{x,y,z}$ ): exchange couplings; ( $\boldsymbol{D} * {ij}$ ): DMI vector; ( $\gamma*{\uparrow,\downarrow,\phi}$ ): Lindblad rate parameters; ( $\beta=(k_{\mathrm B}T)^{-1}$ ).
+## Acronym glossary
+
+```
+LLB  : Landau–Lifshitz–Bloch (finite‑T magnetization dynamics)
+qLLB : Quantum LLB (GKSL‑derived rates and m_eq^q(T))
+E‑(q)LLB‑B : Ehrenfest (quantum) LLB + Boltzmann kinetics on Bloch ball
+d‑E‑(q)LLB‑B : Dynamic E‑(q)LLB‑B with T(t), B_eff(t)
+q‑dLLB : Quantum dynamic LLB (full GKSL density‑matrix)
+q‑dLLB‑B : q‑dLLB with kinetic collisions/diffusion
+GKSL : Gorini–Kossakowski–Sudarshan–Lindblad (quantum master equation)
+QITE / VarQITE : (Variational) Quantum Imaginary‑Time Evolution
+QEM : Quantum Error Mitigation (M3, ZNE, PEC)
+M3 : Matrix‑free Measurement Mitigation
+ZNE : Zero‑Noise Extrapolation
+TFD : Thermofield Double (finite‑T pure‑state representation)
+SSE : Stochastic Schrödinger Equation (quantum trajectories)
+QMS : Quantum Master‑Equation solvers (e.g., GKSL integrators)
+```
+
 
 ---
 
