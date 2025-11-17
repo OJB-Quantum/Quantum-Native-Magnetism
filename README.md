@@ -173,7 +173,7 @@ Goal: “MuMax3 full quantum solver” for magnetization dynamics
 └─ Full GKSL density matrix
     ├─ q‑dLLB
     └─ +Boltzmann envelope → q‑dLLB‑B (gold standard, heaviest)
-``
+```
 
 Note: Terms defined below.
 
