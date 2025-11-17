@@ -287,7 +287,7 @@ For getting the Curie temperature of a nanometer-scale cuboid of relevant metal 
 <img width="1386" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/6bdbe326-c117-4821-88e9-42dd8d6588bb" />
 
 
-## Screenshot of the quantum circuit 
+## Screenshot of the quantum circuit used to calculate the quantum results above 
 
 <img width="2461" height="125" alt="image" src="https://github.com/user-attachments/assets/088ae67e-515e-4261-b153-cd54df1502ce" />
 
