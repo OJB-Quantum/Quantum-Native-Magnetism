@@ -265,6 +265,9 @@ For getting the Curie temperature of a nanometer-scale cuboid of relevant metal 
 
 <img width="1386" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/73cc1dc2-2aca-4035-bb79-4776bdfeb4df" />
 
+<img width="2177" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/9038e836-ac3e-4fc9-aaa3-f6082e7f4321" />
+
+
 
 ## Qiskit Real QPU calculated result (without error mitigation) for Curie temperature prediction 
 
