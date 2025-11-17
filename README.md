@@ -276,7 +276,7 @@ For getting the Curie temperature of a nanometer-scale cuboid of relevant metal 
 
 
 
-## Qiskit Real QPU calculated results (with error mitigation) for Curie temperature prediction 
+## Qiskit Real QPU calculated results (with error mitigation) for Curie temperature prediction [total QPU runtime: 4 seconds] 
 
 <img width="1433" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/7f75bea4-13e5-4c16-a7ed-d7e53d020655" />
 
