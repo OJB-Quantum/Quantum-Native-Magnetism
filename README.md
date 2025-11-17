@@ -161,6 +161,22 @@ Goal: “MuMax3 full quantum solver” for magnetization dynamics
        └─ SSE/ QMS/ TFD as subroutines (GPU first, QPU selectively)
 ```
 
+## Spin-thermal modeling
+
+```
+├─ Classical LLB (+Boltzmann) → E‑LLB‑B
+│   └─ +quantum rates → E‑qLLB‑B
+├─ Quantum LLB drift (+Boltzmann) → q‑LLB‑B 
+│   ├─ Lower cost than full GKSL
+│   ├─ KMS-detailed-balance rates, Brillouin m_eq^q(T)
+│   └─ Great for Dy/Tb nanoscale Tc scans, moderate ramps
+└─ Full GKSL density matrix
+    ├─ q‑dLLB
+    └─ +Boltzmann envelope → q‑dLLB‑B (gold standard, heaviest)
+``
+
+Note: Terms defined below.
+
 ---
 
 For getting the Curie temperature of a nanometer-scale cuboid of relevant metal as accurately as possible, you should, very likely, run the quantum‑corrected models (qLLB‑based) on a GPU Lindblad solver because it integrates the open‑system equations directly and deterministically. Then, very usefully, you can prototype a MuMax3‑compatible “quantum module” on a Heron‑class QPU with QITE + QEM to reach bigger embedded problems, although it will be noisier than the GPU reference.
