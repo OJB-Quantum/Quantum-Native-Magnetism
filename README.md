@@ -646,31 +646,58 @@ QMS : Quantum Master‑Equation solvers (e.g., GKSL integrators)
 
 ### **References**
 
-1.  Atxitia, U., Hinzke, D. and Nowak, U. (2017) 'Fundamentals and applications of the Landau–Lifshitz–Bloch equation', *Journal of Physics D: Applied Physics*, 50(3), p. 033003. Available at: [https://doi.org/10.1088/1361-6463/50/3/033003](https://doi.org/10.1088/1361-6463/50/3/033003).  
+1.  Atxitia, U., Hinzke, D. and Nowak, U. (2017) 'Fundamentals and applications of the Landau–Lifshitz–Bloch equation', *Journal of Physics D: Applied Physics*, 50(3), p. 033003. Available at: [https://doi.org/10.1088/1361-6463/50/3/033003](https://doi.org/10.1088/1361-6463/50/3/033003). 
+
 2.  Castin, Y., Dalibard, J. and Mølmer, K. (2008) *A Wave Function approach to dissipative processes*. arXiv:0805.4002. Available at: [https://doi.org/10.48550/arXiv.0805.4002](https://doi.org/10.48550/arXiv.0805.4002). 
+
 3.  Chen, C-F., Kastoryano, M., Brandão, F.G.S.L. and Gilyén, A. (2025) 'Efficient quantum thermal simulation', *Nature*, 646(8085), pp. 561–566. Available at: [https://doi.org/10.1038/s41586-025-09583-x](https://doi.org/10.1038/s41586-025-09583-x). 
+
 4.  Dalibard, J., Castin, Y. and Mølmer, K. (1992) 'Wave-function approach to dissipative processes in quantum optics', *Physical Review Letters*, 68(5), pp. 580–583. Available at: [https://doi.org/10.1103/PhysRevLett.68.580](https://doi.org/10.1103/PhysRevLett.68.580). 
+
 5.  Devyaterikov, D.I., Proglyado, V.V., Zhaketov, V.D., Nikitenko, Y.V., Kondrat'ev, O.A., Pashaev, E.M., Subbotin, I.A., Zverev, V.I., Kravtsov, E.A. and Ustinov, V.V. (2021) 'Influence of Dimensional Effects on the Curie Temperature of Dy and Ho Thin Films', *Physics of Metals and Metallography*, 122(5), pp. 465–471. Available at: [https://doi.org/10.1134/S0031918X21050033](https://doi.org/10.1134/S0031918X21050033). 
+
 6.  Donahue, M.J. and Porter, D.G. (1999) *OOMMF User's Guide, Version 1.0*. Interagency Report NISTIR 6376. National Institute of Standards and Technology, Gaithersburg, MD. Available at: [https://doi.org/10.6028/NIST.IR.6376](https://doi.org/10.6028/NIST.IR.6376). 
+
 7.  Evans, R.F.L., Hinzke, D., Atxitia, U., Nowak, U., Chantrell, R.W. and Chubykalo-Fesenko, O. (2012) 'Stochastic form of the Landau-Lifshitz-Bloch equation', *Physical Review B*, 85(1), p. 014433. Available at: [https://doi.org/10.1103/PhysRevB.85.014433](https://doi.org/10.1103/PhysRevB.85.014433). 
+
 8.  Garanin, D.A. (1998) *Fokker-Planck and Landau-Lifshitz-Bloch equations for classical ferromagnets*. arXiv:cond-mat/9805054. Available at: [https://doi.org/10.48550/arXiv.cond-mat/9805054](https://doi.org/10.48550/arXiv.cond-mat/9805054). 
+
 9.  Gokhale, S. and Manna, U. (2023) *Optimal control of the stochastic Landau-Lifshitz-Bloch equation*. arXiv:2305.10861. Available at: [https://doi.org/10.48550/arXiv.2305.10861](https://doi.org/10.48550/arXiv.2305.10861). 
+
 10. Gorini, V., Kossakowski, A. and Sudarshan, E.C.G. (1976) 'Completely positive dynamical semigroups of N-level systems', *Journal of Mathematical Physics*, 17(5), pp. 821–825. Available at: [https://doi.org/10.1063/1.522979](https://doi.org/10.1063/1.522979). 
+
 11. Liang, J-M., Lv, Q-Q., Wang, Z-X. and Fei, S-M. (2023) 'Assisted quantum simulation of open quantum systems', iScience, 26(4), p. 106306. Available at: [https://doi.org/10.1016/j.isci.2023.106306](https://doi.org/10.1016/j.isci.2023.106306). 
+
 12. Liu, S.H., Behrendt, D.R., Legvold, S. and Good, R.H., Jr. (1959) 'Interpretation of Magnetic Properties of Dysprosium', *Physical Review*, 116(6), pp. 1464–1468. Available at: [https://doi.org/10.1103/PhysRev.116.1464](https://doi.org/10.1103/PhysRev.116.1464). 
+
 13. Meil, D., Evelt, M., Pfau, B., Kläui, M., Atxitia, U. and Nowak, U. (2020) *Thermal-noise-driven magnetization dynamics in a synthetic antiferromagnet*. arXiv:2001.02403. Available at: [https://doi.org/10.48550/arXiv.2001.02403](https://doi.org/10.48550/arXiv.2001.02403). 
+
 14. Menarini, M. and Lomakin, V. (2020) 'Thermal fluctuations in the Landau-Lifshitz-Bloch model', *Physical Review B*, 102(2), p. 024428. Available at: [https://doi.org/10.1103/PhysRevB.102.024428](https://doi.org/10.1103/PhysRevB.102.024428). 
+
 15. Miceli, R. and McGuigan, M. (2019) *Thermo field dynamics on a quantum computer*. arXiv:1911.03335. Available at: [https://doi.org/10.48550/arXiv.1911.03335](https://doi.org/10.48550/arXiv.1911.03335). 
+
 16. Mondal, P., Suresh, A. and Nikolić, B.K. (2021) 'When can localized spins interacting with conduction electrons in ferro- or antiferromagnets be described classically via the Landau-Lifshitz equation: Transition from quantum many-body entangled to quantum-classical nonequilibrium states', *Physical Review B*, 104(21), p. 214401. Available at: [https://doi.org/10.1103/PhysRevB.104.214401](https://doi.org/10.1103/PhysRevB.104.214401). 
+
 17. Mølmer, K., Castin, Y. and Dalibard, J. (1993) 'Monte Carlo wave-function method in quantum optics', *Journal of the Optical Society of America B*, 10(3), pp. 524–538. Available at: [https://www.phys.ens.psl.eu/~dalibard/publi3/osa_93.pdf](https://www.phys.ens.psl.eu/~dalibard/publi3/osa_93.pdf). 
+
 18. Nieves, P., Serantes, D., Atxitia, U. and Chubykalo-Fesenko, O. (2014) 'Quantum Landau-Lifshitz-Bloch (Quantum LLB) equation and its comparison with the classical case', *Physical Review B*, 90(10), p. 104428. Available at: [https://doi.org/10.1103/PhysRevB.90.104428](https://doi.org/10.1103/PhysRevB.90.104428). 
+
 19. 'Quantum jump method' (2025) *Wikipedia*. Available at: [https://en.wikipedia.org/wiki/Quantum_jump_method](https://en.wikipedia.org/wiki/Quantum_jump_method). 
+
 20. Rau, C., Jin, C. and Robert, M. (1988) 'Ferromagnetic order at Tb surfaces above the bulk Curie temperature', *Journal of Applied Physics*, 63(8), pp. 3667–3668. Available at: [https://doi.org/10.1063/1.340051](https://doi.org/10.1063/1.340051). 
+
 21. Schlimgen, A.W., Head-Marsden, K., Sager, L.M., Narang, P. and Mazziotti, D.A. (2022) 'Quantum simulation of the Lindblad equation using a unitary decomposition of operators', *Physical Review Research*, 4(2), p. 023216. Available at: [https://doi.org/10.1103/PhysRevResearch.4.023216](https://doi.org/10.1103/PhysRevResearch.4.023216). 
+
 22. Sergi, A., Lamberto, D., Migliore, A. and Messina, A. (2023) 'Quantum–Classical Hybrid Systems and Ehrenfest's Theorem', *Entropy*, 25(4), p. 602. Available at: [https://doi.org/10.3390/e25040602](https://doi.org/10.3390/e25040602). 
+
 23. Su, V.P. (2021) 'Variational preparation of the thermofield double state of the Sachdev-Ye-Kitaev model', *Physical Review A*, 104(1), p. 012427. Available at: [https://link.aps.org/doi/10.1103/PhysRevA.104.012427](https://link.aps.org/doi/10.1103/PhysRevA.104.012427). 
+
 24. Thibaudeau, P., Fattouhi, M. and Buda-Prejbeanu, L.D. (2025) *Dynamic Landau-Lifshitz-Bloch-Slonczewski equations for spintronics*. [Preprint]. arXiv:2510.04562v2. Available at: [https://arxiv.org/abs/2510.04562v2](https://arxiv.org/abs/2510.04562v2). 
+
 25. Vansteenkiste, A., Leliaert, J., Dvornik, M., Hiasa, M., Garcia-Sanchez, F. and Van Waeyenberge, B. (2014) 'The design and verification of MuMax3', *AIP Advances*, 4(10), p. 107133. Available at: [https://doi.org/10.1063/1.4899186](https://doi.org/10.1063/1.4899186). 
+
 26. Wang, Y., Mulvihill, E., Hu, Z., Lyu, N., Shivpuje, S., Liu, Y., Soley, M.B., Geva, E., Batista, V.S. and Kais, S. (2022) *Simulating Open Quantum System Dynamics on NISQ Computers with Generalized Quantum Master Equations*. arXiv:2209.04956. Available at: [https://doi.org/10.48550/arXiv.2209.04956](https://doi.org/10.48550/arXiv.2209.04956). 
+
 27. Wieser, R. (2013) 'Comparison of Quantum and Classical Relaxation in Spin Dynamics', *Physical Review Letters*, 110(14), p. 147201. Available at: [https://doi.org/10.1103/PhysRevLett.110.147201](https://doi.org/10.1103/PhysRevLett.110.147201). 
+
 28. Wu, J. and Hsieh, T.H. (2019) 'Variational Thermal Quantum Simulation via Thermofield Double States', *Physical Review Letters*, 123(22), p. 220502. Available at: [https://link.aps.org/doi/10.1103/PhysRevLett.123.220502](https://link.aps.org/doi/10.1103/PhysRevLett.123.220502). 
