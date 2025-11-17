@@ -255,12 +255,18 @@ For getting the Curie temperature of a nanometer-scale cuboid of relevant metal 
 
 ---
 
-## GPU calculated result for Curie temperature prediction 
+## Qiskit Aer GPU calculated results for Curie temperature prediction (among 4 candidate models)
 
-<img width="1864" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/23c695e1-4b90-4a50-bbfd-f44ceb211da7" />
+<img width="1386" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/5f76ed1b-d6f5-4e3c-8ec1-670107b9fb9f" />
+
+<img width="1386" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/58f36643-b78a-4848-9384-30543d5372f5" />
+
+<img width="1386" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/d54de531-13b5-4547-b996-41bd054ebfc7" />
+
+<img width="1386" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/73cc1dc2-2aca-4035-bb79-4776bdfeb4df" />
 
 
-## Real QPU calculated result (without error mitigation) for Curie temperature prediction 
+## Qiskit Real QPU calculated result (without error mitigation) for Curie temperature prediction 
 
 <img width="1864" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/b3f3bb24-bcda-4a7a-a094-70f9ddf6f22a" />
 
