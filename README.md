@@ -161,59 +161,76 @@ Goal: “MuMax3 full quantum solver” for magnetization dynamics
        └─ SSE/ QMS/ TFD as subroutines (GPU first, QPU selectively)
 ```
 
+## Spin-thermal modeling
+
+```
+├─ Classical LLB (+Boltzmann) → E‑LLB‑B
+│   └─ +quantum rates → E‑qLLB‑B
+├─ Quantum LLB drift (+Boltzmann) → q‑LLB‑B 
+│   ├─ Lower cost than full GKSL
+│   ├─ KMS-detailed-balance rates, Brillouin m_eq^q(T)
+│   └─ Great for Dy/Tb nanoscale Tc scans, moderate ramps
+└─ Full GKSL density matrix
+    ├─ q‑dLLB
+    └─ +Boltzmann envelope → q‑dLLB‑B (gold standard, heaviest)
+```
+
+Note: Terms defined below.
+
 ---
 
 For getting the Curie temperature of a nanometer-scale cuboid of relevant metal as accurately as possible, you should, very likely, run the quantum‑corrected models (qLLB‑based) on a GPU Lindblad solver because it integrates the open‑system equations directly and deterministically. Then, very usefully, you can prototype a MuMax3‑compatible “quantum module” on a Heron‑class QPU with QITE + QEM to reach bigger embedded problems, although it will be noisier than the GPU reference.
 
 ---
 
-## A good start 
+## A good start
 
-| Technique                                       | Drift structure   | Stationary thermodynamics  | Critical regime near ($T_c$)  | Kinetic inputs  | Use case  |
+| Technique | Drift structure  | Stationary thermodynamics  | Critical regime near ($T_c$) | Kinetic inputs  | Use case  |
 |-|-|-|-|-|-|
-| Ehrenfest–LL–Boltzmann (E‑LL‑B)                 | Precession + transverse relaxation ($\Gamma_\perp$) only; no longitudinal ( $\Gamma_\parallel$ ); magnitude conserved.        | Orientation‑only equilibrium on a fixed‑magnitude shell; no intrinsic route to ( $m \to 0$ ).                   | Misses magnitude collapse; cannot reproduce ($T_c$) without adding a longitudinal term; Binder cumulants ill‑posed.      | Collision integrals may model directional diffusion and dephasing; still no critical behavior without ( $\Gamma_\parallel$ ).    | Directional diffusion, spin‑torque orientation control, domain‑wall transport far from ($T_c$); not reliable for ($T_c$).    |
-| Ehrenfest–LLB–Boltzmann (E‑LLB‑B)               | Precession + ( $\Gamma_\perp$ ) + longitudinal ( $\Gamma_\parallel$ ) toward ( $m_{\mathrm{eq}}(T)$ ).                           | Gibbs/Boltzmann fixed point when rates satisfy KMS detailed balance; ( $m_{\mathrm{eq}}(T)\!\to\!0$ ) at ($T_c$).| Captures magnitude collapse; supports ( $\chi(T)$ ) peaks and Binder cumulants; finite‑size scaling is possible.         | Magnon/electron/phonon collision integrals; fluctuation–dissipation enforced; material‑specific rate models.               | Curie‑temperature prediction, finite‑size scaling, and non‑equilibrium transients with classical relaxation statistics.         |
-| Ehrenfest–quantum‑LLB–Boltzmann (E‑qLLB‑B)      | As E‑LLB‑B, but with quantum‑corrected ( $\Gamma_{\parallel,\perp}^{q}(T)$ ) and ( $m_{\mathrm{eq}}^{q}(T)$ ) from GKSL/KMS.     | Quantum thermal fixed point; correct low‑($T$) saturation and near‑critical behavior under KMS.                 | Improved fidelity near ($T_c$), especially for 4f rare‑earths; reproduces slower quantum relaxation; robust cumulants.    | Same structure, with quantum‑consistent fluctuation–dissipation; energy‑resolved scattering kernels if needed.             | More accurate ($T_c$) for terbium at 1 nm; equilibrium scans and quasi‑static ramps with realistic rare‑earth statistics.        |
-| Dynamic Ehrenfest–LLB–Boltzmann (d‑E‑LLB‑B)     | Time‑dependent ( $\mathbf{B}_ {eff}(t)$ ), ( $T(t)$ ); classical ( $\Gamma_{\parallel,\perp}(T(t))$ ) drive ( $m(t)$ ).       | Quasi‑static manifolds under slow ramps; no exact fixed point during drive; recovers E‑LLB‑B at steady state.   | Models dynamic crossing of ($T_c$) and ultrafast demagnetization; classical rates can bias Tb near‑critical behavior.     | Time‑dependent collision integrals; non‑equilibrium FDT; optional spin‑transfer torque terms for driven devices.               | Heat‑assisted writing, pump–probe demagnetization, and protocol design when quantum corrections are less dominant.              |
-| Dynamic Ehrenfest–qLLB–Boltzmann (d‑E‑qLLB‑B)   | Time‑dependent quantum‑corrected ( $\Gamma_{\parallel,\perp}^{q}(T(t))$ ), ( $m_{\mathrm{eq}}^{q}(T(t))$ ), plus precession.    | Tracks instantaneous quantum thermal targets under slow drives; supports controlled non‑adiabatic corrections.  | Best practical for dynamic ($T_c$) extraction with finite‑size and surface effects; accurate ramps and susceptibilities.| Time‑dependent, quantum‑consistent collision integrals; magnon–electron–phonon coupling; optional Slonczewski STT.           | Primary choice for nanoscale Dy or Tb ($T_c$) under ramps, for ( $m(T)$ ), ( $\chi(T)$ ), and Binder analysis with kinetic broadening. |
-| Quantum dynamic LLB (q‑dLLB)                    | Full GKSL master equation ( $\dot\rho=-\tfrac{i}{\hbar}[H,\rho]+\sum_\mu \mathcal D[L_\mu]\rho$ ); T1/T2 obey KMS; no “‑B” layer.| Exact Gibbs fixed point for the specified model; ( $m\!\to\!0$ ) emerges when Hamiltonian + bath allow ordering. | Captures amplitude collapse and critical response on small clusters; lacks kinetic‑ensemble broadening by itself.          | Kinetics not explicit; approximate via disorder/size averaging, auxiliary reservoirs, or stochastic unraveling (SSE).          | High‑fidelity cluster studies, equilibrium and short‑time dynamics; calibration of effective rates for Ehrenfest models.         |
-| Quantum dynamic LLB–Boltzmann (q‑dLLB‑B)        | GKSL + kinetic Boltzmann envelope on the Bloch ball; most complete open‑system/kinetic coupling.                               | Quantum thermal steady state with kinetic consistency; detailed balance enforced both microscopically and macroscopically. | Captures magnitude collapse and critical fluctuations with finite‑size smearing; conceptually “gold standard.”          | Full, quantum‑consistent collision integrals; energy‑resolved, material‑specific kernels; strict fluctuation–dissipation.       | Benchmarking and validation when computationally feasible; ultimate reference for nanoscale ($T_c$) and dynamic protocols.      |
-
-
+| Ehrenfest–Landau‑Lifshitz–Boltzmann (E‑LL‑B)               | Precession + transverse relaxation ($\Gamma_\perp$) only; no longitudinal ( $\Gamma_\parallel$ ); magnitude conserved.                                                                                                                                     | Orientation‑only equilibrium on a fixed‑magnitude shell; no intrinsic route to ( $m \to 0$ ).                                                            | Misses magnitude collapse; cannot reproduce ($T_c$) without adding a longitudinal term; Binder cumulants ill‑posed.                                                                                            | Collision integrals may model directional diffusion and dephasing; still no critical behavior without ( $\Gamma_\parallel$ ).                                              | Directional diffusion, spin‑torque orientation control, domain‑wall transport far from ($T_c$); not reliable for ($T_c$).                                    |
+| Ehrenfest–Landau‑Lifshitz‑Bloch–Boltzmann (E‑LLB‑B)             | Precession + ( $\Gamma_\perp$ ) + longitudinal ( $\Gamma_\parallel$ ) toward ( $m_{\mathrm{eq}}(T)$ ).                                                                                                                                                     | Gibbs/Boltzmann fixed point when rates satisfy KMS detailed balance; ( $m_{\mathrm{eq}}(T)!\to!0$ ) at ($T_c$).                                          | Captures magnitude collapse; supports ( $\chi(T)$ ) peaks and Binder cumulants; finite‑size scaling is possible.                                                                                               | Magnon/electron/phonon collision integrals; fluctuation–dissipation enforced; material‑specific rate models.                                                               | Curie‑temperature prediction, finite‑size scaling, and non‑equilibrium transients with classical relaxation statistics.                                      |
+| Ehrenfest–quantum‑Landau‑Lifshitz‑Bloch–Boltzmann (E‑qLLB‑B)    | As E‑LLB‑B, but with quantum‑corrected ( $\Gamma_{\parallel,\perp}^{q}(T)$ ) and ( $m_{\mathrm{eq}}^{q}(T)$ ) from GKSL/KMS.                                                                                                                               | Quantum thermal fixed point; correct low‑($T$) saturation and near‑critical behavior under KMS.                                                          | Improved fidelity near ($T_c$), especially for 4f rare‑earths; reproduces slower quantum relaxation; robust cumulants.                                                                                         | Same structure, with quantum‑consistent fluctuation–dissipation; energy‑resolved scattering kernels if needed.                                                             | More accurate ($T_c$) for terbium at 1 nm; equilibrium scans and quasi‑static ramps with realistic rare‑earth statistics.                                    |
+| Quantum Landau‑Lifshitz‑Bloch–Boltzmann (q‑LLB‑B)           | qLLB drift from quantum spin statistics: precession + ( $\Gamma_\perp^{q}$ ) + longitudinal ( $\Gamma_\parallel^{q}$ ) toward ( $m_{\mathrm{eq}}^{q}(T)$ ); magnitude not conserved; rates obey KMS; no full GKSL density matrix (that is q‑dLLB). | Quantum Gibbs fixed point with Brillouin ( $m_{\mathrm{eq}}^{q}(T)$ ); ( $m!\to!0$ ) at ($T_c$); correct low‑($T$) saturation; FDT‑consistent noise. | Captures magnitude collapse and quantum‑slowed relaxation; supports ( $\chi(T)$ ) peaks and Binder cumulants; finite‑size smearing via kinetic envelope; mean‑field‑like unless exchange/geometry refined. | Quantum‑consistent magnon/electron/phonon collision integrals; energy‑resolved kernels; KMS‑respecting stochastic driving; optional inter‑sublattice exchange pumping. | High‑fidelity ($T_c$) and ramps for nanoscale Tb/Dy when q‑dLLB‑B is too heavy; calibrates E‑qLLB‑B; equilibrium and moderately non‑adiabatic protocols. |
+| Dynamic Ehrenfest–Landau‑Lifshitz‑Bloch–Boltzmann (d‑E‑LLB‑B)   | Time‑dependent ( $\mathbf{B}_ {eff}(t)$ ), ( $T(t)$ ); classical ( $\Gamma_{\parallel,\perp}(T(t))$ ) drive ( $m(t)$ ).                                                                                                                                    | Quasi‑static manifolds under slow ramps; no exact fixed point during drive; recovers E‑LLB‑B at steady state.                                            | Models dynamic crossing of ($T_c$) and ultrafast demagnetization; classical rates can bias Tb near‑critical behavior.                                                                                          | Time‑dependent collision integrals; non‑equilibrium FDT; optional spin‑transfer torque terms for driven devices.                                                           | Heat‑assisted writing, pump–probe demagnetization, and protocol design when quantum corrections are less dominant.                                           |
+| Dynamic Ehrenfest–quantum-Landau‑Lifshitz‑Bloch–Boltzmann (d‑E‑qLLB‑B) | Time‑dependent quantum‑corrected ( $\Gamma_{\parallel,\perp}^{q}(T(t))$ ), ( $m_{\mathrm{eq}}^{q}(T(t))$ ), plus precession.                                                                                                                               | Tracks instantaneous quantum thermal targets under slow drives; supports controlled non‑adiabatic corrections.                                           | Best practical for dynamic ($T_c$) extraction with finite‑size and surface effects; accurate ramps and susceptibilities.                                                                                       | Time‑dependent, quantum‑consistent collision integrals; magnon–electron–phonon coupling; optional Slonczewski STT.                                                         | Primary choice for nanoscale Dy or Tb ($T_c$) under ramps, for ( $m(T)$ ), ( $\chi(T)$ ), and Binder analysis with kinetic broadening.                       |
+| Quantum dynamic Landau‑Lifshitz‑Bloch (q‑dLLB)                  | Full GKSL master equation ( $\dot\rho=-\tfrac{i}{\hbar}[H,\rho]+\sum_\mu \mathcal D[L_\mu]\rho$ ); T1/T2 obey KMS; no Boltzmann layer.                                                                                                                          | Exact Gibbs fixed point for the specified model; ( $m!\to!0$ ) emerges when Hamiltonian + bath allow ordering.                                           | Captures amplitude collapse and critical response on small clusters; lacks kinetic‑ensemble broadening by itself.                                                                                              | Kinetics not explicit; approximate via disorder/size averaging, auxiliary reservoirs, or stochastic unraveling (SSE).                                                      | High‑fidelity cluster studies, equilibrium and short‑time dynamics; calibration of effective rates for Ehrenfest models.                                     |
+| Quantum dynamic Landau‑Lifshitz‑Bloch–Boltzmann (q‑dLLB‑B)      | GKSL + kinetic Boltzmann envelope on the Bloch ball; most complete open‑system/kinetic coupling.                                                                                                                                                           | Quantum thermal steady state with kinetic consistency; detailed balance enforced both microscopically and macroscopically.                               | Captures magnitude collapse and critical fluctuations with finite‑size smearing; conceptually “gold standard.”                                                                                                 | Full, quantum‑consistent collision integrals; energy‑resolved, material‑specific kernels; strict fluctuation–dissipation.                                                  | Benchmarking and validation when computationally feasible; ultimate reference for nanoscale ($T_c$) and dynamic protocols.                                   |
 
 ---
 
 ## A more comprehensive approach for model selection
 
-| Equation/ Approach                            | Quantum‑Native? (Q‑N)                 | What it captures near Tc (Tb)        | GPU path (Qiskit Dynamics/ Aer GPU) – Fit & Today’s Accuracy | QPU path (Heron 156q + QITE + QEM) – Fit & Today’s Accuracy | Best for 1 nm Dy or Tb Curie T? |
+| Equation/ Approach | Quantum‑Native? (Q‑N) | What it captures near Tc | GPU path (Qiskit Dynamics/ Aer GPU) - Fit & Today’s Accuracy | QPU path (Heron 156q + QITE + QEM) - Fit & Today’s Accuracy | Best for 2 nm Dy or Tb Curie T? |
 |-|-|-|-|-|-|
-| E‑LLB‑B (Ehrenfest–LLB–Boltzmann)              | No (classical); Q‑N‑compatible via GKSL emulation of T1/T2 | Longitudinal + transverse damping, but with **classical** rates; kinetics via Boltzmann; no explicit quantum statistics | **Good fit** via LindbladModel with effective rates; **Medium–Low accuracy** for Dy or Tb (misses quantum corrections) | QITE+QEM can emulate effective channels, but depth/mitigation cost add bias; **Low–Medium accuracy** |  Baseline only          |
-| E‑qLLB‑B (Ehrenfest–quantum‑LLB–Boltzmann)     | Q‑N‑compatible (rates & m_eq from qLLB) | Longitudinal collapse + **quantum‑corrected rates** and m_eq^q(T); kinetics via Boltzmann; quasi‑static | **Very good fit** (native GKSL + JAX GPU); **High accuracy** for quasi‑static Tc extraction with finite‑size | QITE(+TFD) + QEM workable, yet noise/mitigation bring variance; **Medium** |  Strong contender       |
-| d‑E‑LLB‑B (Dynamic Ehrenfest–LLB–Boltzmann)    | No (classical); Q‑N‑compatible via GKSL | Time‑dependent T(t), B_eff(t), classical rates; kinetics; handles ramps/pulses                     | **Good fit**, but **Medium** accuracy near Tc for Tb (classical bias) | Depth grows with steps; mitigation overhead; **Low–Medium** |  Use for baselines      |
-| d‑E‑qLLB‑B (Dynamic Ehrenfest–quantum‑LLB–Boltzmann)   | Q‑N‑compatible (qLLB‑derived)         | **Quantum‑corrected** longitudinal & transverse channels **with time dependence**, plus kinetics; ideal for ramps | **Best practical fit** (direct GKSL + JAX on GPU); **Very High accuracy** for Tc under ramps & finite‑size | Feasible with QITE(+TFD)/SSE + QEM; **Medium–High** if shallow; falls with step count |  **Best (practical)**   |
-| q‑dLLB (Quantum dynamic LLB, GKSL density‑matrix) | **Yes (Q‑Native)**                   | Full GKSL Lindblad dynamics with **quantum statistics**, but **no kinetic f(m)** envelope         | **Excellent** for small/meso systems; **High** accuracy if finite‑size enters via Hamiltonian/parameters | **Best QPU candidate** (pure GKSL mapped to circuits), yet still mitigation‑limited; **Medium–High** |  Strong (needs size model) |
-| q‑dLLB‑B (Quantum dynamic LLB–Boltzmann)       | **Yes (Q‑Native)** (+ kinetic extension) | As above **plus** kinetic distribution on Bloch ball; most complete near Tc, finite‑size, surfaces | **Gold standard** conceptually; heavy but **Very High** accuracy when implemented | Very heavy (kinetic sampling + ancillas); **Medium** at best today |  **Best (if feasible)** |
+| E‑LLB‑B (Ehrenfest–Landau‑Lifshitz‑Bloch–Boltzmann)                     | No (classical); Q‑N‑compatible via GKSL emulation of T1/T2                    | Longitudinal + transverse damping, but with **classical** rates; kinetics via Boltzmann; no explicit quantum statistics                                        | **Good fit** via LindbladModel with effective rates; **Medium–Low accuracy** for Dy or Tb (misses quantum corrections)     | QITE+QEM can emulate effective channels, but depth/mitigation cost add bias; **Low–Medium accuracy**            | Baseline only                                               |
+| E‑qLLB‑B (Ehrenfest–quantum‑Landau‑Lifshitz‑Bloch–Boltzmann)            | Q‑N‑compatible (rates & $m_eq$ from qLLB)                                       | Longitudinal collapse + **quantum‑corrected rates** and $m_eq^q(T)$; kinetics via Boltzmann; quasi‑static                                                        | **Very good fit** (native GKSL + JAX GPU); **High accuracy** for quasi‑static Tc extraction with finite‑size               | QITE(+TFD) + QEM workable, yet noise/mitigation bring variance; **Medium**                                      | Strong contender                                            |
+| q‑LLB‑B (Quantum Landau‑Lifshitz‑Bloch–Boltzmann) | Q‑N‑compatible (qLLB drift + KMS‑balanced rates; not full density matrix) | **Quantum‑statistical** longitudinal & transverse channels with Brillouin ( $m_{\mathrm{eq}}^{q}(T)$ ); **kinetic envelope** adds finite‑size/transport broadening | **Very good–Excellent fit** (qLLB drift + GPU ODE/PDE; cheaper than q‑dLLB‑B); **High–Very High accuracy** for Dy/Tb ( $T_c$ ) | Use **small q‑dLLB blocks** to calibrate rates, integrate classically; **Medium–High** if calibration is stable | **Very strong** (just below q‑dLLB‑B for ultimate fidelity) |
+| d‑E‑LLB‑B (Dynamic Ehrenfest–Landau‑Lifshitz‑Bloch–Boltzmann)           | No (classical); Q‑N‑compatible via GKSL                                       | Time‑dependent $T(t)$, $B_eff(t)$, classical rates; kinetics; handles ramps/pulses                                                                                 | **Good fit**, but **Medium** accuracy near Tc for Tb (classical bias)                                                      | Depth grows with steps; mitigation overhead; **Low–Medium**                                                     | Use for baselines                                           |
+| d‑E‑qLLB‑B (Dynamic Ehrenfest–quantum‑Landau‑Lifshitz‑Bloch–Boltzmann)  | Q‑N‑compatible (qLLB‑derived)                                                 | **Quantum‑corrected** longitudinal & transverse channels **with time dependence**, plus kinetics; ideal for ramps                                              | **Best practical fit** (direct GKSL + JAX on GPU); **Very High accuracy** for Tc under ramps & finite‑size                 | Feasible with QITE(+TFD)/SSE + QEM; **Medium–High** if shallow; falls with step count                           | **Best (practical)**                                        |
+| q‑dLLB (Quantum dynamic Landau‑Lifshitz‑Bloch, GKSL density‑matrix)     | **Yes (Q‑Native)**                                                            | Full GKSL Lindblad dynamics with **quantum statistics**, but **no kinetic f(m)** envelope                                                                      | **Excellent** for small/meso systems; **High** accuracy if finite‑size enters via Hamiltonian/parameters                   | **Best QPU candidate** (pure GKSL mapped to circuits), yet still mitigation‑limited; **Medium–High**            | Strong (needs size model)                                   |
+| q‑dLLB‑B (Quantum dynamic Landau‑Lifshitz‑Bloch–Boltzmann)              | **Yes (Q‑Native)** (+ kinetic extension)                                      | As above **plus** kinetic distribution on Bloch ball; most complete near Tc, finite‑size, surfaces                                                             | **Gold standard** conceptually; heavy but **Very High** accuracy when implemented                                          | Very heavy (kinetic sampling + ancillas); **Medium** at best today                                              | **Best (if feasible)**                                      |
 
 ---
 
 ## Focused approach for a better "cost function" score
 
-| Equation/ Approach                            | Quantum‑Native? (Q‑N)                 | What it captures near Tc (Tb)        | GPU path (Qiskit Dynamics/ Aer GPU) – Fit & Today’s Accuracy | QPU path (Heron 156q + QITE + QEM) – Fit & Today’s Accuracy | Best for 1 nm Dy or Tb Curie T? |
+| Equation/ Approach  | Quantum‑Native? (Q‑N) | What it captures near Tc | GPU path (Qiskit Dynamics/ Aer GPU) - Fit & Today’s Accuracy| QPU path (Heron 156q + QITE + QEM) – Fit & Today’s Accuracy | Best for 2 nm Dy or Tb Curie T? |
 |-|-|-|-|-|-|
-| d‑E‑qLLB‑B (Dynamic Ehrenfest–quantum‑LLB–Boltzmann)   | Q‑N‑compatible (qLLB‑derived)         | **Quantum‑corrected** longitudinal & transverse channels **with time dependence**, plus kinetics; ideal for ramps | **Best practical fit** (direct GKSL + JAX on GPU); **Very High accuracy** for Tc under ramps & finite‑size | Feasible with QITE(+TFD)/SSE + QEM; **Medium–High** if shallow; falls with step count |  **Best (practical)**   |
-| q‑dLLB (Quantum dynamic LLB, GKSL density‑matrix) | **Yes (Q‑Native)**                   | Full GKSL Lindblad dynamics with **quantum statistics**, but **no kinetic f(m)** envelope         | **Excellent** for small/meso systems; **High** accuracy if finite‑size enters via Hamiltonian/parameters | **Best QPU candidate** (pure GKSL mapped to circuits), yet still mitigation‑limited; **Medium–High** |  Strong (needs size model) |
-| q‑dLLB‑B (Quantum dynamic LLB–Boltzmann)       | **Yes (Q‑Native)** (+ kinetic extension) | As above **plus** kinetic distribution on Bloch ball; most complete near Tc, finite‑size, surfaces | **Gold standard** conceptually; heavy but **Very High** accuracy when implemented | Very heavy (kinetic sampling + ancillas); **Medium** at best today |  **Best (if feasible)** |
+| d‑E‑qLLB‑B (Dynamic Ehrenfest–quantum‑Landau‑Lifshitz‑Bloch–Boltzmann)  | Q‑N‑compatible (qLLB‑derived)               | **Quantum‑corrected** longitudinal & transverse channels **with time dependence**, plus kinetics; ideal for ramps   | **Best practical fit** (direct GKSL + JAX on GPU); **Very High accuracy** for Tc under ramps & finite‑size | Feasible with QITE(+TFD)/SSE + QEM; **Medium–High** if shallow; falls with step count                | **Best (practical)**            |
+| q‑LLB‑B (Quantum Landau‑Lifshitz‑Bloch–Boltzmann) |Q‑N‑compatible (qLLB drift + KMS rates) | **Quantum‑slowed** relaxation + Brillouin ( $m_{\mathrm{eq}}^{q}(T)$ ); **kinetic** broadening; robust Binder cumulants | **High accuracy at moderate cost**; ideal when q‑dLLB‑B is too heavy                                       | **Use small GKSL sub‑blocks** to tune rates; main integration classical; **Medium–High**             | **Excellent trade‑off**         |
+| q‑dLLB (Quantum dynamic Landau‑Lifshitz‑Bloch, GKSL density‑matrix)     | **Yes (Q‑Native)**                          | Full GKSL Lindblad dynamics with **quantum statistics**, but **no kinetic f(m)** envelope                           | **Excellent** for small/meso systems; **High** accuracy if finite‑size enters via Hamiltonian/parameters   | **Best QPU candidate** (pure GKSL mapped to circuits), yet still mitigation‑limited; **Medium–High** | Strong (needs size model)       |
+| q‑dLLB‑B (Quantum dynamic Landau‑Lifshitz‑Bloch–Boltzmann)              | **Yes (Q‑Native)** (+ kinetic extension)    | As above **plus** kinetic distribution on Bloch ball; most complete near Tc, finite‑size, surfaces                  | **Gold standard** conceptually; heavy but **Very High** accuracy when implemented                          | Very heavy (kinetic sampling + ancillas); **Medium** at best today                                   | **Best (if feasible)**          |
 
 ## Tiny comparison table (what to run where, for nanometer ($T_C$))
 
-| Task/ Form                           | GPU (Qiskit Dynamics + JAX)                 | QPU (Heron-class + QITE + QEM)                           |
+| Task/ Form                                    | GPU (Qiskit Dynamics + JAX)                                                                                     | QPU (Heron-class + QITE + QEM)                                                                            |
 |-|-|-|
-| E‑LLB‑B (classical)                  | Fast baseline; not preferred near Tc (Tb)   | Feasible; use only as a scaffold; upgrade to qLLB asap    |
-| E‑qLLB‑B (quantum‑corrected)         | Preferred baseline; steady‑state Tc scans   | Feasible; mitigated; validate vs GPU                      |
-| d‑E‑qLLB‑B (time‑dependent)          | Best practical for ramps + kinetics         | Feasible; deeper circuits & mitigation overhead           |
-| q‑dLLB                               | High‑fidelity GKSL dynamics                 | Feasible on small subsystems; great as an anchor/check    |
-| q‑dLLB‑B                             | Gold‑standard (GKSL + Boltzmann kinetics)   | Heavy today; reserve for focused, equilibrium subroutines |
-
+| E‑LLB‑B (classical)                           | Fast baseline; not preferred near Tc (Tb)                                                                       | Feasible; use only as a scaffold; upgrade to qLLB asap                                                    |
+| E‑qLLB‑B (quantum‑corrected)                  | Preferred baseline; steady‑state Tc scans                                                                       | Feasible; mitigated; validate vs GPU                                                                      |
+| q‑LLB‑B (quantum‑native drift + kinetics)     | High accuracy at moderate cost; favored when q‑dLLB‑B is too heavy; calibrate vs small q‑dLLB or experiment     | Use QPU only to calibrate GKSL/KMS rates; main evolution classical; good anchor for mitigated studies     |
+| d‑E‑qLLB‑B (time‑dependent)                   | Best practical for ramps + kinetics                                                                             | Feasible; deeper circuits & mitigation overhead                                                           |
+| q‑dLLB                                        | High‑fidelity GKSL dynamics                                                                                     | Feasible on small subsystems; great as an anchor/check                                                    |
+| q‑dLLB‑B                                      | Gold‑standard (GKSL + Boltzmann kinetics)                                                                       | Heavy today; reserve for focused, equilibrium subroutines                                                 |
 
 **Why the GPU first:** Direct **Lindblad** integration with time‑dependent operators is native in Qiskit Dynamics and accelerates with JAX/GPU; mitigation‑free numerics dominate hardware noise for today’s long, dissipative evolutions. On the QPU, VarQITE/VarQRTE plus M3/ZNE/PEC is workable and valuable for scale/prototyping, but it carries residual bias/variance that grows with step count and circuit depth.
 
@@ -238,14 +255,43 @@ For getting the Curie temperature of a nanometer-scale cuboid of relevant metal 
 
 ---
 
-## GPU calculated result for Curie temperature prediction 
+## Qiskit Aer GPU calculated results for Curie temperature prediction (among 4 candidate models)
 
-<img width="1864" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/23c695e1-4b90-4a50-bbfd-f44ceb211da7" />
+<img width="1386" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/5f76ed1b-d6f5-4e3c-8ec1-670107b9fb9f" />
+
+<img width="1386" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/58f36643-b78a-4848-9384-30543d5372f5" />
+
+<img width="1386" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/d54de531-13b5-4547-b996-41bd054ebfc7" />
+
+<img width="1386" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/73cc1dc2-2aca-4035-bb79-4776bdfeb4df" />
+
+<img width="2177" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/9038e836-ac3e-4fc9-aaa3-f6082e7f4321" />
+
+<img width="2177" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/3cf3f9d2-354a-43e0-9e84-9e1f752a5249" />
+
+<img width="2177" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/49c19949-b76a-4f67-a18b-ed03a043e4db" />
+
+<img width="2177" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/e952dfe6-444f-495b-b5b9-d6eb118425c8" />
 
 
-## Real QPU calculated result (without error mitigation) for Curie temperature prediction 
 
-<img width="1864" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/b3f3bb24-bcda-4a7a-a094-70f9ddf6f22a" />
+
+## Qiskit Real QPU calculated results (with error mitigation) for Curie temperature prediction [total QPU runtime: 4 seconds] 
+
+<img width="1433" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/7f75bea4-13e5-4c16-a7ed-d7e53d020655" />
+
+<img width="1386" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/dc9ce9da-9db3-4d52-a056-1ab03259449a" />
+
+<img width="1386" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/5bf449a7-6584-429c-8921-64abe70451c6" />
+
+<img width="1386" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/6bdbe326-c117-4821-88e9-42dd8d6588bb" />
+
+
+## Screenshot of the quantum circuit used to calculate the quantum results above 
+
+<img width="2461" height="125" alt="image" src="https://github.com/user-attachments/assets/088ae67e-515e-4261-b153-cd54df1502ce" />
+
+
 
 ---
 
@@ -627,30 +673,60 @@ QMS : Quantum Master‑Equation solvers (e.g., GKSL integrators)
 
 ---
 
-References
+### **References**
 
-1.  Atxitia, U., Hinzke, D. and Nowak, U. (2017) 'Fundamentals and applications of the Landau–Lifshitz–Bloch equation', *Journal of Physics D: Applied Physics*, 50(3), p. 033003. Available at: <https://doi.org/10.1088/1361-6463/50/3/033003>.
-2.  Castin, Y., Dalibard, J. and Mølmer, K. (2008) *A Wave Function approach to dissipative processes*. arXiv:0805.4002. Available at: <https://doi.org/10.48550/arXiv.0805.4002>.
-3.  Chen, C-F., Kastoryano, M., Brandão, F.G.S.L. and Gilyén, A. (2025) 'Efficient quantum thermal simulation', *Nature*, 646(8085), pp. 561–566. Available at: <https://doi.org/10.1038/s41586-025-09583-x>.
-4.  Dalibard, J., Castin, Y. and Mølmer, K. (1992) 'Wave-function approach to dissipative processes in quantum optics', *Physical Review Letters*, 68(5), pp. 580–583. Available at: <https://doi.org/10.1103/PhysRevLett.68.580>.
-5.  Devyaterikov, D.I., Proglyado, V.V., Zhaketov, V.D., Nikitenko, Y.V., Kondrat'ev, O.A., Pashaev, E.M., Subbotin, I.A., Zverev, V.I., Kravtsov, E.A. and Ustinov, V.V. (2021) 'Influence of Dimensional Effects on the Curie Temperature of Dy and Ho Thin Films', *Physics of Metals and Metallography*, 122(5), pp. 465–471. Available at: <https://doi.org/10.1134/S0031918X21050033>.
-6.  Evans, R.F.L., Hinzke, D., Atxitia, U., Nowak, U., Chantrell, R.W. and Chubykalo-Fesenko, O. (2012) 'Stochastic form of the Landau-Lifshitz-Bloch equation', *Physical Review B*, 85(1), p. 014433. Available at: <https://doi.org/10.1103/PhysRevB.85.014433>.
-7.  Garanin, D.A. (1998) *Fokker-Planck and Landau-Lifshitz-Bloch equations for classical ferromagnets*. arXiv:cond-mat/9805054. Available at: <https://doi.org/10.48550/arXiv.cond-mat/9805054>.
-8.  Gokhale, S. and Manna, U. (2023) *Optimal control of the stochastic Landau-Lifshitz-Bloch equation*. arXiv:2305.10861. Available at: <https://doi.org/10.48550/arXiv.2305.10861>.
-9.  Liang, J-M., Lv, Q-Q., Wang, Z-X. and Fei, S-M. (2023) 'Assisted quantum simulation of open quantum systems', iScience, 26(4), p. 106306. Available at: <https://doi.org/10.1016/j.isci.2023.106306>.
-10. Liu, S.H., Behrendt, D.R., Legvold, S. and Good, R.H., Jr. (1959) 'Interpretation of Magnetic Properties of Dysprosium', *Physical Review*, 116(6), pp. 1464–1468. Available at: <https://doi.org/10.1103/PhysRev.116.1464>.
-11. Meil, D., Evelt, M., Pfau, B., Kläui, M., Atxitia, U. and Nowak, U. (2020) *Thermal-noise-driven magnetization dynamics in a synthetic antiferromagnet*. arXiv:2001.02403. Available at: <https://doi.org/10.48550/arXiv.2001.02403>.
-12. Menarini, M. and Lomakin, V. (2020) 'Thermal fluctuations in the Landau-Lifshitz-Bloch model', *Physical Review B*, 102(2), p. 024428. Available at: <https://doi.org/10.1103/PhysRevB.102.024428>.
-13. Miceli, R. and McGuigan, M. (2019) *Thermo field dynamics on a quantum computer*. arXiv:1911.03335. Available at: <https://doi.org/10.48550/arXiv.1911.03335>.
-14. Mondal, P., Suresh, A. and Nikolić, B.K. (2021) 'When can localized spins interacting with conduction electrons in ferro- or antiferromagnets be described classically via the Landau-Lifshitz equation: Transition from quantum many-body entangled to quantum-classical nonequilibrium states', *Physical Review B*, 104(21), p. 214401. Available at: <https://doi.org/10.1103/PhysRevB.104.214401>.
-15. Mølmer, K., Castin, Y. and Dalibard, J. (1993) 'Monte Carlo wave-function method in quantum optics', *Journal of the Optical Society of America B*, 10(3), pp. 524–538. Available at: <https://www.phys.ens.psl.eu/~dalibard/publi3/osa_93.pdf>.
-16. Nieves, P., Serantes, D., Atxitia, U. and Chubykalo-Fesenko, O. (2014) 'Quantum Landau-Lifshitz-Bloch (Quantum LLB) equation and its comparison with the classical case', *Physical Review B*, 90(10), p. 104428. Available at: <https://doi.org/10.1103/PhysRevB.90.104428>.
-17. 'Quantum jump method' (2025) *Wikipedia*. Available at: <https://en.wikipedia.org/wiki/Quantum_jump_method>.
-18. Rau, C., Jin, C. and Robert, M. (1988) 'Ferromagnetic order at Tb surfaces above the bulk Curie temperature', *Journal of Applied Physics*, 63(8), pp. 3667–3668. Available at: <https://doi.org/10.1063/1.340051>.
-19. Schlimgen, A.W., Head-Marsden, K., Sager, L.M., Narang, P. and Mazziotti, D.A. (2202) 'Quantum simulation of the Lindblad equation using a unitary decomposition of operators', *Physical Review Research*, 4(2), p. 023216. Available at: <https://doi.org/10.1103/PhysRevResearch.4.023216>.
-20. Sergi, A., Lamberto, D., Migliore, A. and Messina, A. (2023) 'Quantum–Classical Hybrid Systems and Ehrenfest's Theorem', *Entropy*, 25(4), p. 602. Available at: <https://doi.org/10.3390/e25040602>.
-21. Su, V.P. (2021) 'Variational preparation of the thermofield double state of the Sachdev-Ye-Kitaev model', *Physical Review A*, 104(1), p. 012427. Available at: <https://link.aps.org/doi/10.1103/PhysRevA.104.012427>.
-22. Thibaudeau, P., Fattouhi, M. and Buda-Prejbeanu, L.D. (2025) *Dynamic Landau-Lifshitz-Bloch-Slonczewski equations for spintronics*. [Preprint]. arXiv:2510.04562v2. Available at: <https://arxiv.org/abs/2510.04562v2>.
-23. Wang, Y., Mulvihill, E., Hu, Z., Lyu, N., Shivpuje, S., Liu, Y., Soley, M.B., Geva, E., Batista, V.S. and Kais, S. (2022) *Simulating Open Quantum System Dynamics on NISQ Computers with Generalized Quantum Master Equations*. arXiv:2209.04956. Available at: <https://doi.org/10.48550/arXiv.2209.04956>.
-24. Wieser, R. (2013) 'Comparison of Quantum and Classical Relaxation in Spin Dynamics', *Physical Review Letters*, 110(14), p. 147201. Available at: <https://doi.org/10.1103/PhysRevLett.110.147201>.
-25. Wu, J. and Hsieh, T.H. (2019) 'Variational Thermal Quantum Simulation via Thermofield Double States', *Physical Review Letters*, 123(22), p. 220502. Available at: <https://link.aps.org/doi/10.1103/PhysRevLett.123.220502>.
+1. Atxitia, U., Hinzke, D. and Nowak, U. (2017) 'Fundamentals and applications of the Landau–Lifshitz–Bloch equation', *Journal of Physics D: Applied Physics*, 50(3), p. 033003. Available at: <https://doi.org/10.1088/1361-6463/50/3/033003>.
+
+2. Castin, Y., Dalibard, J. and Mølmer, K. (2008) *A Wave Function approach to dissipative processes*. arXiv:0805.4002. Available at: <https://doi.org/10.48550/arXiv.0805.4002>.
+
+3. Chen, C-F., Kastoryano, M., Brandão, F.G.S.L. and Gilyén, A. (2025) 'Efficient quantum thermal simulation', *Nature*, 646(8085), pp. 561–566. Available at: <https://doi.org/10.1038/s41586-025-09583-x>.
+
+4. Dalibard, J., Castin, Y. and Mølmer, K. (1992) 'Wave-function approach to dissipative processes in quantum optics', *Physical Review Letters*, 68(5), pp. 580–583. Available at: <https://doi.org/10.1103/PhysRevLett.68.580>.
+
+5. Devyaterikov, D.I., Proglyado, V.V., Zhaketov, V.D., Nikitenko, Y.V., Kondrat'ev, O.A., Pashaev, E.M., Subbotin, I.A., Zverev, V.I., Kravtsov, E.A. and Ustinov, V.V. (2021) 'Influence of Dimensional Effects on the Curie Temperature of Dy and Ho Thin Films', *Physics of Metals and Metallography*, 122(5), pp. 465–471. Available at: <https://doi.org/10.1134/S0031918X21050033>.
+
+6. Donahue, M.J. and Porter, D.G. (1999) *OOMMF User's Guide, Version 1.0*. Interagency Report NISTIR 6376. National Institute of Standards and Technology, Gaithersburg, MD. Available at: <https://doi.org/10.6028/NIST.IR.6376>.
+
+7. Evans, R.F.L., Hinzke, D., Atxitia, U., Nowak, U., Chantrell, R.W. and Chubykalo-Fesenko, O. (2012) 'Stochastic form of the Landau-Lifshitz-Bloch equation', *Physical Review B*, 85(1), p. 014433. Available at: <https://doi.org/10.1103/PhysRevB.85.014433>.
+
+8. Garanin, D.A. (1998) *Fokker-Planck and Landau-Lifshitz-Bloch equations for classical ferromagnets*. arXiv:cond-mat/9805054. Available at: <https://doi.org/10.48550/arXiv.cond-mat/9805054>.
+
+9. Gokhale, S. and Manna, U. (2023) *Optimal control of the stochastic Landau-Lifshitz-Bloch equation*. arXiv:2305.10861. Available at: <https://doi.org/10.48550/arXiv.2305.10861>.
+
+10. Gorini, V., Kossakowski, A. and Sudarshan, E.C.G. (1976) 'Completely positive dynamical semigroups of N-level systems', *Journal of Mathematical Physics*, 17(5), pp. 821–825. Available at: <https://doi.org/10.1063/1.522979>.
+
+11. Liang, J-M., Lv, Q-Q., Wang, Z-X. and Fei, S-M. (2023) 'Assisted quantum simulation of open quantum systems', iScience, 26(4), p. 106306. Available at: <https://doi.org/10.1016/j.isci.2023.106306>.
+
+12. Liu, S.H., Behrendt, D.R., Legvold, S. and Good, R.H., Jr. (1959) 'Interpretation of Magnetic Properties of Dysprosium', *Physical Review*, 116(6), pp. 1464–1468. Available at: <https://doi.org/10.1103/PhysRev.116.1464>.
+
+13. Meil, D., Evelt, M., Pfau, B., Kläui, M., Atxitia, U. and Nowak, U. (2020) *Thermal-noise-driven magnetization dynamics in a synthetic antiferromagnet*. arXiv:2001.02403. Available at: <https://doi.org/10.48550/arXiv.2001.02403>.
+
+14. Menarini, M. and Lomakin, V. (2020) 'Thermal fluctuations in the Landau-Lifshitz-Bloch model', *Physical Review B*, 102(2), p. 024428. Available at: <https://doi.org/10.1103/PhysRevB.102.024428>.
+
+15. Miceli, R. and McGuigan, M. (2019) *Thermo field dynamics on a quantum computer*. arXiv:1911.03335. Available at: <https://doi.org/10.48550/arXiv.1911.03335>.
+
+16. Mondal, P., Suresh, A. and Nikolić, B.K. (2021) 'When can localized spins interacting with conduction electrons in ferro- or antiferromagnets be described classically via the Landau-Lifshitz equation: Transition from quantum many-body entangled to quantum-classical nonequilibrium states', *Physical Review B*, 104(21), p. 214401. Available at: <https://doi.org/10.1103/PhysRevB.104.214401>.
+
+17. Mølmer, K., Castin, Y. and Dalibard, J. (1993) 'Monte Carlo wave-function method in quantum optics', *Journal of the Optical Society of America B*, 10(3), pp. 524–538. Available at: <https://www.phys.ens.psl.eu/~dalibard/publi3/osa_93.pdf>.
+
+18. Nieves, P., Serantes, D., Atxitia, U. and Chubykalo-Fesenko, O. (2014) 'Quantum Landau-Lifshitz-Bloch (Quantum LLB) equation and its comparison with the classical case', *Physical Review B*, 90(10), p. 104428. Available at: <https://doi.org/10.1103/PhysRevB.90.104428>.
+
+19. 'Quantum jump method' (2025) *Wikipedia*. Available at: <https://en.wikipedia.org/wiki/Quantum_jump_method>.
+
+20. Rau, C., Jin, C. and Robert, M. (1988) 'Ferromagnetic order at Tb surfaces above the bulk Curie temperature', *Journal of Applied Physics*, 63(8), pp. 3667–3668. Available at: <https://doi.org/10.1063/1.340051>.
+
+21. Schlimgen, A.W., Head-Marsden, K., Sager, L.M., Narang, P. and Mazziotti, D.A. (2022) 'Quantum simulation of the Lindblad equation using a unitary decomposition of operators', *Physical Review Research*, 4(2), p. 023216. Available at: <https://doi.org/10.1103/PhysRevResearch.4.023216>.
+
+22. Sergi, A., Lamberto, D., Migliore, A. and Messina, A. (2023) 'Quantum–Classical Hybrid Systems and Ehrenfest's Theorem', *Entropy*, 25(4), p. 602. Available at: <https://doi.org/10.3390/e25040602>.
+
+23. Su, V.P. (2021) 'Variational preparation of the thermofield double state of the Sachdev-Ye-Kitaev model', *Physical Review A*, 104(1), p. 012427. Available at: <https://link.aps.org/doi/10.1103/PhysRevA.104.012427>.
+
+24. Thibaudeau, P., Fattouhi, M. and Buda-Prejbeanu, L.D. (2025) *Dynamic Landau-Lifshitz-Bloch-Slonczewski equations for spintronics*. [Preprint]. arXiv:2510.04562v2. Available at: <https://arxiv.org/abs/2510.04562v2>.
+
+25. Vansteenkiste, A., Leliaert, J., Dvornik, M., Hiasa, M., Garcia-Sanchez, F. and Van Waeyenberge, B. (2014) 'The design and verification of MuMax3', *AIP Advances*, 4(10), p. 107133. Available at: <https://doi.org/10.1063/1.4899186>.
+
+26. Wang, Y., Mulvihill, E., Hu, Z., Lyu, N., Shivpuje, S., Liu, Y., Soley, M.B., Geva, E., Batista, V.S. and Kais, S. (2022) *Simulating Open Quantum System Dynamics on NISQ Computers with Generalized Quantum Master Equations*. arXiv:2209.04956. Available at: <https://doi.org/10.48550/arXiv.2209.04956>.
+
+27. Wieser, R. (2013) 'Comparison of Quantum and Classical Relaxation in Spin Dynamics', *Physical Review Letters*, 110(14), p. 147201. Available at: <https://doi.org/10.1103/PhysRevLett.110.147201>.
+
+28. Wu, J. and Hsieh, T.H. (2019) 'Variational Thermal Quantum Simulation via Thermofield Double States', *Physical Review Letters*, 123(22), p. 220502. Available at: <https://link.aps.org/doi/10.1103/PhysRevLett.123.220502>.
