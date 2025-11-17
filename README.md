@@ -200,7 +200,7 @@ For getting the Curie temperature of a nanometer-scale cuboid of relevant metal 
 
 ## A more comprehensive approach for model selection
 
-| Equation/ Approach | Quantum‑Native? (Q‑N) | What it captures near Tc (Tb) | GPU path (Qiskit Dynamics/ Aer GPU) - Fit & Today’s Accuracy | QPU path (Heron 156q + QITE + QEM) - Fit & Today’s Accuracy | Best for 1 nm Dy or Tb Curie T? |
+| Equation/ Approach | Quantum‑Native? (Q‑N) | What it captures near Tc | GPU path (Qiskit Dynamics/ Aer GPU) - Fit & Today’s Accuracy | QPU path (Heron 156q + QITE + QEM) - Fit & Today’s Accuracy | Best for 2 nm Dy or Tb Curie T? |
 |-|-|-|-|-|-|
 | E‑LLB‑B (Ehrenfest–Landau‑Lifshitz‑Bloch–Boltzmann)                     | No (classical); Q‑N‑compatible via GKSL emulation of T1/T2                    | Longitudinal + transverse damping, but with **classical** rates; kinetics via Boltzmann; no explicit quantum statistics                                        | **Good fit** via LindbladModel with effective rates; **Medium–Low accuracy** for Dy or Tb (misses quantum corrections)     | QITE+QEM can emulate effective channels, but depth/mitigation cost add bias; **Low–Medium accuracy**            | Baseline only                                               |
 | E‑qLLB‑B (Ehrenfest–quantum‑Landau‑Lifshitz‑Bloch–Boltzmann)            | Q‑N‑compatible (rates & $m_eq$ from qLLB)                                       | Longitudinal collapse + **quantum‑corrected rates** and $m_eq^q(T)$; kinetics via Boltzmann; quasi‑static                                                        | **Very good fit** (native GKSL + JAX GPU); **High accuracy** for quasi‑static Tc extraction with finite‑size               | QITE(+TFD) + QEM workable, yet noise/mitigation bring variance; **Medium**                                      | Strong contender                                            |
@@ -214,7 +214,7 @@ For getting the Curie temperature of a nanometer-scale cuboid of relevant metal 
 
 ## Focused approach for a better "cost function" score
 
-| Equation/ Approach  | Quantum‑Native? (Q‑N) | What it captures near Tc (Tb) | GPU path (Qiskit Dynamics/ Aer GPU) - Fit & Today’s Accuracy| QPU path (Heron 156q + QITE + QEM) – Fit & Today’s Accuracy | Best for 1 nm Dy or Tb Curie T? |
+| Equation/ Approach  | Quantum‑Native? (Q‑N) | What it captures near Tc | GPU path (Qiskit Dynamics/ Aer GPU) - Fit & Today’s Accuracy| QPU path (Heron 156q + QITE + QEM) – Fit & Today’s Accuracy | Best for 2 nm Dy or Tb Curie T? |
 |-|-|-|-|-|-|
 | d‑E‑qLLB‑B (Dynamic Ehrenfest–quantum‑Landau‑Lifshitz‑Bloch–Boltzmann)  | Q‑N‑compatible (qLLB‑derived)               | **Quantum‑corrected** longitudinal & transverse channels **with time dependence**, plus kinetics; ideal for ramps   | **Best practical fit** (direct GKSL + JAX on GPU); **Very High accuracy** for Tc under ramps & finite‑size | Feasible with QITE(+TFD)/SSE + QEM; **Medium–High** if shallow; falls with step count                | **Best (practical)**            |
 | q‑LLB‑B (Quantum Landau‑Lifshitz‑Bloch–Boltzmann) |Q‑N‑compatible (qLLB drift + KMS rates) | **Quantum‑slowed** relaxation + Brillouin ( $m_{\mathrm{eq}}^{q}(T)$ ); **kinetic** broadening; robust Binder cumulants | **High accuracy at moderate cost**; ideal when q‑dLLB‑B is too heavy                                       | **Use small GKSL sub‑blocks** to tune rates; main integration classical; **Medium–High**             | **Excellent trade‑off**         |
