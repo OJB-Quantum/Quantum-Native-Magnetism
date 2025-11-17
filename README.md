@@ -276,9 +276,22 @@ For getting the Curie temperature of a nanometer-scale cuboid of relevant metal 
 
 
 
-## Qiskit Real QPU calculated result (without error mitigation) for Curie temperature prediction 
+## Qiskit Real QPU calculated results (with error mitigation) for Curie temperature prediction 
 
-<img width="1864" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/b3f3bb24-bcda-4a7a-a094-70f9ddf6f22a" />
+<img width="1433" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/7f75bea4-13e5-4c16-a7ed-d7e53d020655" />
+
+<img width="1386" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/dc9ce9da-9db3-4d52-a056-1ab03259449a" />
+
+<img width="1386" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/5bf449a7-6584-429c-8921-64abe70451c6" />
+
+<img width="1386" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/6bdbe326-c117-4821-88e9-42dd8d6588bb" />
+
+
+## Screenshot of the quantum circuit 
+
+<img width="2461" height="125" alt="image" src="https://github.com/user-attachments/assets/088ae67e-515e-4261-b153-cd54df1502ce" />
+
+
 
 ---
 
