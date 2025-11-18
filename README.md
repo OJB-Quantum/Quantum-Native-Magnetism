@@ -1,5 +1,5 @@
 # Quantum-Native-Magnetism
-A repository for performing scientific quantum computing for atomistic and nanoscale magnetism studies. Created by Onri Jay Benally. 
+A repository for performing scientific quantum computing for atomistic and nanoscale magnetism studies using tools like Qiskit. Created by Onri Jay Benally. 
 
 [![License: GNU GPL v3](https://img.shields.io/badge/GNU_General_Public-License-Green)](https://choosealicense.com/licenses/gpl-3.0/)
 
