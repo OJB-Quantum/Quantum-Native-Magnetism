@@ -262,7 +262,7 @@ For getting the Curie temperature of a nanometer-scale cuboid of relevant metal 
 
 ---
 
-## Qiskit Aer GPU calculated results for Curie temperature prediction (among 4 candidate models)
+## Qiskit Aer GPU-calculated results for Curie temperature prediction (among 4 candidate models)
 
 <img width="1386" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/5f76ed1b-d6f5-4e3c-8ec1-670107b9fb9f" />
 
@@ -283,7 +283,7 @@ For getting the Curie temperature of a nanometer-scale cuboid of relevant metal 
 
 
 
-## Qiskit Real QPU calculated results (with error mitigation) for Curie temperature prediction [total QPU runtime: 4 seconds] 
+## Qiskit real superconducting-QPU-calculated results (with error mitigation) for Curie temperature prediction [total QPU runtime: 4 seconds] 
 
 <img width="1433" height="auto" alt="Untitled" src="https://github.com/user-attachments/assets/7f75bea4-13e5-4c16-a7ed-d7e53d020655" />
 
