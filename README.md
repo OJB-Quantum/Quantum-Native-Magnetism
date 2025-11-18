@@ -252,6 +252,13 @@ For getting the Curie temperature of a nanometer-scale cuboid of relevant metal 
 
 * **How to use them now:** Implement them first on **GPU** (Dynamics for GKSL; Aer‑GPU or custom trajectories for SSE/TFD). Then, selectively port pieces to the **QPU** as **equilibrium‑only or small‑subsystem** subroutines with **VarQITE + QEM** (expect higher qubit counts, deeper circuits, larger shot budgets, and tougher optimization). In 2025 hardware terms, treat them as **high‑accuracy complements** to the Ehrenfest–qLLB–Boltzmann “main line” rather than replacements.
 
+---
+
+## Google Colab Demonstrations with Qiskit by Onri Jay Benally
+
+| Some Google Colab Notebooks (More Examples Coming) |  |
+| ----------- | ----------------- |
+| Dy Magnetic Behavior Prediction Using Qiskit on the GPU and QPU in Google Colab | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/OJB-Quantum/Quantum-Native-Magnetism/blob/main/Colab%20Example%20Notebooks/Dy_ferromagnetic_order_parameter_prediction_Qiskit.ipynb) |
 
 ---
 
